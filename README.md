@@ -11,7 +11,7 @@ Agente autónomo que identifica modelos de negócio digitais em crescimento em 2
 
 ## 🌐 Demo online
 
-Quando publicado no GitHub Pages: `https://TEU-UTILIZADOR.github.io/fabrica-mvps/`
+Publicado no GitHub Pages: **<https://rpolicarpo100.github.io/fabrica-mvps/>**
 
 Todos os MVPs são ficheiros HTML únicos, 100% offline (zero recursos externos), em PT-PT e com modo escuro.
 

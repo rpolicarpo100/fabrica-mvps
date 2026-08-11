@@ -12,12 +12,12 @@ O repositório já está preparado localmente (commit inicial feito). Falta apen
 2. Na pasta do projeto, corre:
 
 ```bash
-git remote add origin https://github.com/TEU-UTILIZADOR/fabrica-mvps.git
+git remote add origin https://github.com/rpolicarpo100/fabrica-mvps.git
 git push -u origin main
 ```
 
 3. O workflow `.github/workflows/pages.yml` corre automaticamente no primeiro push
-   e publica o portal em `https://TEU-UTILIZADOR.github.io/fabrica-mvps/`
+   e publica o portal em `https://rpolicarpo100.github.io/fabrica-mvps/`
    (se necessário: Settings → Pages → Source: **GitHub Actions**)
 
 ## Opção B — Eu faço o push (com token)

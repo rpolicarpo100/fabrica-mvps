@@ -71,3 +71,4 @@
 - Repositório git inicializado (branch main, commit inicial).
 - Adicionados: README.md, LICENSE (MIT), .gitignore, DEPLOY.md e workflow GitHub Pages (.github/workflows/pages.yml).
 - Pendente: push (aguarda autenticação do utilizador — token nunca será gravado em ficheiros).
+- Deploy efetuado: rpolicarpo100/fabrica-mvps (público) + GitHub Pages → https://rpolicarpo100.github.io/fabrica-mvps/
