@@ -73,3 +73,4 @@
 - Pendente: push (aguarda autenticação do utilizador — token nunca será gravado em ficheiros).
 - Deploy efetuado: rpolicarpo100/fabrica-mvps (público) + GitHub Pages → https://rpolicarpo100.github.io/fabrica-mvps/
 - Validação pós-deploy: portal HTTP 200 + MVPs a responder (workflow GitHub Pages: success).
+- Hosting: adicionado render.yaml (Blueprint, static site, auto-deploy do GitHub) — alternativa grátis ao domínio .pt.

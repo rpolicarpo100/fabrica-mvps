@@ -1,6 +1,30 @@
-# 🚀 Publicar no GitHub
+# 🚀 Publicar — GitHub Pages + Render
 
-O repositório já está preparado localmente (commit inicial feito). Falta apenas o push.
+O site já está publicado em **duas plataformas grátis** (custo 0):
+
+| Plataforma | URL | Estado |
+|------------|-----|--------|
+| GitHub Pages | https://rpolicarpo100.github.io/fabrica-mvps/ | ✅ no ar |
+| Render | https://fabrica-mvps.onrender.com | ⏳ ativar no dashboard |
+
+## Render (Blueprint — 3 cliques)
+
+O ficheiro `render.yaml` na raiz já define tudo. Para ativar:
+
+1. Vai a <https://render.com> → regista-te **com a conta GitHub** (rpolicarpo100)
+2. Autoriza o acesso ao repositório `fabrica-mvps`
+3. Dashboard → **New +** → **Blueprint** → seleciona `rpolicarpo100/fabrica-mvps`
+
+O Render lê o `render.yaml`, cria o Static Site e publica em `fabrica-mvps.onrender.com`.
+Cada `git push` para `main` atualiza o site sozinho (auto-deploy).
+
+⚠️ Notas do tier grátis (2026): ~5 GB/mês de banda no workspace Hobby; pode pedir cartão
+só como verificação anti-abuso (não cobra dentro dos limites). Sem hibernação para
+sites estáticos.
+
+---
+
+## Notas GitHub Pages
 
 ## Opção A — Fazes tu o push (recomendado, mais seguro)
 

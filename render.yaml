@@ -1,0 +1,18 @@
+# Blueprint do Render — https://render.com/docs/blueprint-spec
+# Deploy com 3 cliques: Dashboard → New + → Blueprint → escolher este repositório
+
+services:
+  - type: web
+    name: fabrica-mvps
+    runtime: static
+    # O site é 100% estático: não há build. O Render exige o campo, usamos um no-op.
+    buildCommand: "echo 'Fábrica de MVPs: site estático, nada a compilar'"
+    staticPublishPath: .
+    # Cabeçalhos de cache para carregamento rápido
+    headers:
+      - path: /negocios/*
+        name: Cache-Control
+        value: public, max-age=3600
+      - path: /index.html
+        name: Cache-Control
+        value: public, max-age=300
