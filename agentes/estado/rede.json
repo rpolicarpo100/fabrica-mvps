@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-11 20:12",
-  "ciclo": 2,
-  "duracao_s": 2.5,
+  "quando": "2026-08-11 21:07",
+  "ciclo": 3,
+  "duracao_s": 5.2,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.8,
+      "s": 4.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,22 +37,22 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.6,
+      "s": 1.1,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Zinley",
-          "Wondering",
-          "Capptivo",
-          "ngrok AI Gateway",
-          "VoiceOS App Store",
-          "Continuum",
-          "Bullet",
-          "Xirp",
-          "Gotcha",
-          "Octomind Cloud and Hub"
+          "DeepSeek-V4-Flash-0731",
+          "oqoqo",
+          "NudgeForMe",
+          "AI Spend Console by Rippling",
+          "SoloUno",
+          "AdmitRaven",
+          "Switchy for Mac",
+          "Lexi",
+          "Cerenovus",
+          "VoiceGecko"
         ],
-        "pendentes": 34,
+        "pendentes": 44,
         "fontes": {
           "mensal": {
             "ok": true,

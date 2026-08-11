@@ -339,6 +339,106 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Octomind Cloud and Hub — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "deepseekv4flash0731",
+      "nome": "DeepSeek-V4-Flash-0731",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "DeepSeek-V4-Flash-0731 — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "oqoqo",
+      "nome": "oqoqo",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "oqoqo — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "nudgeforme",
+      "nome": "NudgeForMe",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "NudgeForMe — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "aispendconsolebyrippling",
+      "nome": "AI Spend Console by Rippling",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AI Spend Console by Rippling — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "solouno",
+      "nome": "SoloUno",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "SoloUno — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "admitraven",
+      "nome": "AdmitRaven",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AdmitRaven — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "switchyformac",
+      "nome": "Switchy for Mac",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Switchy for Mac — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "lexi",
+      "nome": "Lexi",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Lexi — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "cerenovus",
+      "nome": "Cerenovus",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Cerenovus — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "voicegecko",
+      "nome": "VoiceGecko",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 21:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "VoiceGecko — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -357,5 +457,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-11 20:12"
+  "ultima_varrimento": "2026-08-11 21:07"
 }
