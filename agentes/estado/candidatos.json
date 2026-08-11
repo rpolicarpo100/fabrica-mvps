@@ -539,6 +539,106 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Vidaya — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "cloudflarewallets",
+      "nome": "Cloudflare Wallets",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Cloudflare Wallets — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "rindler",
+      "nome": "Rindler",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Rindler — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "nitro40",
+      "nome": "Nitro 4.0",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Nitro 4.0 — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "port22",
+      "nome": "Port22",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Port22 — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "driven",
+      "nome": "Driven",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Driven — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "paritok",
+      "nome": "Paritok",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Paritok — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "grokimagine20",
+      "nome": "Grok Imagine 2.0",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Grok Imagine 2.0 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "home",
+      "nome": "Home",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Home — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "producthunttopproductsto",
+      "nome": "Product Hunt Top Products Today",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Product Hunt Top Products Today — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "isthisanofficialpage",
+      "nome": "Is this an official page?",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 23:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Is this an official page? — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -557,5 +657,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-11 22:06"
+  "ultima_varrimento": "2026-08-11 23:04"
 }

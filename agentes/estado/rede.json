@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-11 22:06",
-  "ciclo": 4,
-  "duracao_s": 3.5,
+  "quando": "2026-08-11 23:04",
+  "ciclo": 5,
+  "duracao_s": 2.9,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.0,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -37,22 +37,22 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.4,
+      "s": 0.9,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Airtop for Google Ads Automation",
-          "Portfolio Lab",
-          "Qwen3.8-Max",
-          "Superlog Responder",
-          "AstraPixels",
-          "SecondBrain Note by GenSpark",
-          "Remix",
-          "AI Group Call",
-          "Gutta",
-          "Vidaya"
+          "Cloudflare Wallets",
+          "Rindler",
+          "Nitro 4.0",
+          "Port22",
+          "Driven",
+          "Paritok",
+          "Grok Imagine 2.0",
+          "Home",
+          "Product Hunt Top Products Today",
+          "Is this an official page?"
         ],
-        "pendentes": 54,
+        "pendentes": 64,
         "fontes": {
           "mensal": {
             "ok": true,
