@@ -1,0 +1,361 @@
+{
+  "vistos": [
+    {
+      "slug": "heynoah",
+      "nome": "Hey Noah",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Hey Noah — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "wisprflownotetaker",
+      "nome": "Wispr Flow Notetaker",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Wispr Flow Notetaker — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "coldteaai",
+      "nome": "Coldtea.ai",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Coldtea.ai — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "soloop",
+      "nome": "Soloop",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Soloop — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "cloudflareos",
+      "nome": "Cloudflare OS",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Cloudflare OS — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "orangebotai",
+      "nome": "OrangeBot.AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "OrangeBot.AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "orangebotaisaveposts",
+      "nome": "OrangeBot.AI Save Posts",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "OrangeBot.AI Save Posts — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "equitybeebenchmark",
+      "nome": "Equitybee Benchmark",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Equitybee Benchmark — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "agentmanager",
+      "nome": "agent-manager",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "agent-manager — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "screenmark",
+      "nome": "ScreenMark",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "ScreenMark — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "quadroex",
+      "nome": "QuadroEx",
+      "tema": "boring niches",
+      "inspiracao": "Job boards verticais ($40-500K ARR)",
+      "brief": "Alertas de vagas por email + destaque pago para empresas",
+      "fonte": "relatorio_negocios_2026.md",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "backlog validado (aguarda supervisão)"
+    },
+    {
+      "slug": "fideliza",
+      "nome": "Fideliza",
+      "tema": "analytics",
+      "inspiracao": "Churn/retention analytics ($25-400K ARR)",
+      "brief": "CSV de clientes → retenção por coorte, churn rate e LTV",
+      "fonte": "relatorio_negocios_2026.md",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "backlog validado (aguarda supervisão)"
+    },
+    {
+      "slug": "cumpre",
+      "nome": "Cumpre",
+      "tema": "regulação",
+      "inspiracao": "Compliance checker vertical ($30-500K ARR)",
+      "brief": "Descrição do site/serviço → checklist de conformidade RGPD",
+      "fonte": "relatorio_negocios_2026.md",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "backlog validado (aguarda supervisão)"
+    },
+    {
+      "slug": "orcamento",
+      "nome": "Orçamento",
+      "tema": "boring niches",
+      "inspiracao": "Quoting p/ serviços ($20-200K ARR)",
+      "brief": "Linhas item|horas|rate → orçamento profissional pronto a enviar",
+      "fonte": "relatorio_negocios_2026.md",
+      "descoberto_em": "2026-08-11 20:08",
+      "estado": "backlog validado (aguarda supervisão)"
+    },
+    {
+      "slug": "nextdoorcompany",
+      "nome": "NextDoor.Company",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "NextDoor.Company — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "agentsky",
+      "nome": "AgentSky",
+      "tema": "devtools",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AgentSky — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "omniwork",
+      "nome": "Omniwork",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Omniwork — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "ctruhstudio",
+      "nome": "Ctruh Studio",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Ctruh Studio — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "thegtmcofounder",
+      "nome": "The GTM Co-Founder",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "The GTM Co-Founder — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "ampbycanyontechsai",
+      "nome": "AMP by CanyonTechs AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AMP by CanyonTechs AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "gitar",
+      "nome": "Gitar",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Gitar — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "tines3b",
+      "nome": "Tines 3B",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Tines 3B — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "betterclaw",
+      "nome": "BetterClaw",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "BetterClaw — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "bb",
+      "nome": "bb",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:10",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "bb — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "zinley",
+      "nome": "Zinley",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Zinley — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "wondering",
+      "nome": "Wondering",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Wondering — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "capptivo",
+      "nome": "Capptivo",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Capptivo — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "ngrokaigateway",
+      "nome": "ngrok AI Gateway",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "ngrok AI Gateway — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "voiceosappstore",
+      "nome": "VoiceOS App Store",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "VoiceOS App Store — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "continuum",
+      "nome": "Continuum",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Continuum — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "bullet",
+      "nome": "Bullet",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Bullet — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "xirp",
+      "nome": "Xirp",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Xirp — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "gotcha",
+      "nome": "Gotcha",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Gotcha — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "octomindcloudandhub",
+      "nome": "Octomind Cloud and Hub",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 20:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Octomind Cloud and Hub — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    }
+  ],
+  "fontes": {
+    "mensal": {
+      "ok": true,
+      "nomes_lidos": 53,
+      "novos": 5
+    },
+    "diário": {
+      "ok": false,
+      "erro": "HTTP Error 403: Forbidden"
+    },
+    "snapshot": {
+      "ok": true,
+      "nomes_lidos": 34,
+      "novos": 5
+    }
+  },
+  "ultima_varrimento": "2026-08-11 20:12"
+}

@@ -1,0 +1,174 @@
+{
+  "quando": "2026-08-11 20:12",
+  "por_negocio": {
+    "01-executare": {
+      "feitos": 8,
+      "total": 10,
+      "abertos": 2,
+      "abertos_p1": []
+    },
+    "02-seolens": {
+      "feitos": 8,
+      "total": 10,
+      "abertos": 2,
+      "abertos_p1": []
+    },
+    "03-leadforge": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "04-postpilot": {
+      "feitos": 6,
+      "total": 10,
+      "abertos": 4,
+      "abertos_p1": []
+    },
+    "05-deckforge": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "06-deckscore": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "07-rumo": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "08-reporta": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "09-timbre": {
+      "feitos": 8,
+      "total": 10,
+      "abertos": 2,
+      "abertos_p1": []
+    },
+    "10-tracao": {
+      "feitos": 6,
+      "total": 10,
+      "abertos": 4,
+      "abertos_p1": []
+    },
+    "11-provafogo": {
+      "feitos": 6,
+      "total": 10,
+      "abertos": 4,
+      "abertos_p1": []
+    },
+    "12-pauta": {
+      "feitos": 6,
+      "total": 10,
+      "abertos": 4,
+      "abertos_p1": []
+    },
+    "13-freio": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "14-duodocs": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "15-anuncia": {
+      "feitos": 8,
+      "total": 10,
+      "abertos": 2,
+      "abertos_p1": []
+    },
+    "16-prep": {
+      "feitos": 5,
+      "total": 10,
+      "abertos": 5,
+      "abertos_p1": []
+    },
+    "17-gancho": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "18-clica": {
+      "feitos": 6,
+      "total": 10,
+      "abertos": 4,
+      "abertos_p1": []
+    },
+    "19-clipradar": {
+      "feitos": 8,
+      "total": 10,
+      "abertos": 2,
+      "abertos_p1": []
+    },
+    "20-scripter": {
+      "feitos": 6,
+      "total": 10,
+      "abertos": 4,
+      "abertos_p1": []
+    },
+    "21-provasocial": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "22-marca": {
+      "feitos": 6,
+      "total": 10,
+      "abertos": 4,
+      "abertos_p1": []
+    },
+    "23-recupera": {
+      "feitos": 8,
+      "total": 10,
+      "abertos": 2,
+      "abertos_p1": []
+    },
+    "24-portalkit": {
+      "feitos": 6,
+      "total": 10,
+      "abertos": 4,
+      "abertos_p1": []
+    },
+    "25-deriva": {
+      "feitos": 8,
+      "total": 10,
+      "abertos": 2,
+      "abertos_p1": []
+    },
+    "26-emprega": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    },
+    "27-escriba": {
+      "feitos": 9,
+      "total": 10,
+      "abertos": 1,
+      "abertos_p1": []
+    },
+    "28-medidor": {
+      "feitos": 7,
+      "total": 10,
+      "abertos": 3,
+      "abertos_p1": []
+    }
+  },
+  "p1_abertos": 0
+}

@@ -1,0 +1,245 @@
+{
+  "quando": "2026-08-11 20:12",
+  "total": 28,
+  "verde": 28,
+  "taxa": 100.0,
+  "taxa_anterior": 100.0,
+  "regressoes": [],
+  "corrigidos": [],
+  "por_negocio": {
+    "01-executare": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 26645,
+      "links_money": true,
+      "localstorage": true
+    },
+    "02-seolens": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 17756,
+      "links_money": true,
+      "localstorage": true
+    },
+    "03-leadforge": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 14301,
+      "links_money": true,
+      "localstorage": true
+    },
+    "04-postpilot": {
+      "ok": true,
+      "erros": [],
+      "avisos": [
+        "sem localStorage nem event listeners — interatividade duvidosa"
+      ],
+      "bytes": 5026,
+      "links_money": true,
+      "localstorage": false
+    },
+    "05-deckforge": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 5213,
+      "links_money": true,
+      "localstorage": false
+    },
+    "06-deckscore": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 15383,
+      "links_money": true,
+      "localstorage": true
+    },
+    "07-rumo": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 16246,
+      "links_money": true,
+      "localstorage": true
+    },
+    "08-reporta": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 17873,
+      "links_money": true,
+      "localstorage": true
+    },
+    "09-timbre": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 11009,
+      "links_money": true,
+      "localstorage": true
+    },
+    "10-tracao": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 14183,
+      "links_money": true,
+      "localstorage": true
+    },
+    "11-provafogo": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 12561,
+      "links_money": true,
+      "localstorage": true
+    },
+    "12-pauta": {
+      "ok": true,
+      "erros": [],
+      "avisos": [
+        "sem localStorage nem event listeners — interatividade duvidosa"
+      ],
+      "bytes": 5481,
+      "links_money": true,
+      "localstorage": false
+    },
+    "13-freio": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 11393,
+      "links_money": true,
+      "localstorage": true
+    },
+    "14-duodocs": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 11066,
+      "links_money": true,
+      "localstorage": true
+    },
+    "15-anuncia": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 9462,
+      "links_money": true,
+      "localstorage": true
+    },
+    "16-prep": {
+      "ok": true,
+      "erros": [],
+      "avisos": [
+        "sem localStorage nem event listeners — interatividade duvidosa"
+      ],
+      "bytes": 8335,
+      "links_money": true,
+      "localstorage": false
+    },
+    "17-gancho": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 9085,
+      "links_money": true,
+      "localstorage": true
+    },
+    "18-clica": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 10360,
+      "links_money": true,
+      "localstorage": true
+    },
+    "19-clipradar": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 9016,
+      "links_money": true,
+      "localstorage": true
+    },
+    "20-scripter": {
+      "ok": true,
+      "erros": [],
+      "avisos": [
+        "sem localStorage nem event listeners — interatividade duvidosa"
+      ],
+      "bytes": 5503,
+      "links_money": true,
+      "localstorage": false
+    },
+    "21-provasocial": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 9570,
+      "links_money": true,
+      "localstorage": true
+    },
+    "22-marca": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 12020,
+      "links_money": true,
+      "localstorage": true
+    },
+    "23-recupera": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 9251,
+      "links_money": true,
+      "localstorage": true
+    },
+    "24-portalkit": {
+      "ok": true,
+      "erros": [],
+      "avisos": [
+        "sem localStorage nem event listeners — interatividade duvidosa"
+      ],
+      "bytes": 6144,
+      "links_money": true,
+      "localstorage": false
+    },
+    "25-deriva": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 10542,
+      "links_money": true,
+      "localstorage": true
+    },
+    "26-emprega": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 13430,
+      "links_money": true,
+      "localstorage": true
+    },
+    "27-escriba": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 10974,
+      "links_money": true,
+      "localstorage": true
+    },
+    "28-medidor": {
+      "ok": true,
+      "erros": [],
+      "avisos": [],
+      "bytes": 6647,
+      "links_money": true,
+      "localstorage": true
+    }
+  }
+}

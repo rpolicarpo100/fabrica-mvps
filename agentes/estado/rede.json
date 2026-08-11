@@ -1,0 +1,76 @@
+{
+  "quando": "2026-08-11 20:12",
+  "ciclo": 2,
+  "duracao_s": 2.5,
+  "agentes": {
+    "vera": {
+      "rc": 0,
+      "s": 1.8,
+      "resumo": {
+        "agente": "vera/qualidade",
+        "verde": 28,
+        "total": 28,
+        "taxa": 100.0,
+        "regressoes": []
+      },
+      "erro": ""
+    },
+    "rui": {
+      "rc": 0,
+      "s": 0.0,
+      "resumo": {
+        "agente": "rui/revisão",
+        "checklists": 28,
+        "p1_abertos": 0
+      },
+      "erro": ""
+    },
+    "kika": {
+      "rc": 0,
+      "s": 0.0,
+      "resumo": {
+        "agente": "kika/kpis",
+        "media": 84.2,
+        "negocios": 28
+      },
+      "erro": ""
+    },
+    "dinis": {
+      "rc": 0,
+      "s": 0.6,
+      "resumo": {
+        "agente": "dinis/mercado",
+        "novos": [
+          "Zinley",
+          "Wondering",
+          "Capptivo",
+          "ngrok AI Gateway",
+          "VoiceOS App Store",
+          "Continuum",
+          "Bullet",
+          "Xirp",
+          "Gotcha",
+          "Octomind Cloud and Hub"
+        ],
+        "pendentes": 34,
+        "fontes": {
+          "mensal": {
+            "ok": true,
+            "nomes_lidos": 53,
+            "novos": 5
+          },
+          "diário": {
+            "ok": false,
+            "erro": "HTTP Error 403: Forbidden"
+          },
+          "snapshot": {
+            "ok": true,
+            "nomes_lidos": 34,
+            "novos": 5
+          }
+        }
+      },
+      "erro": ""
+    }
+  }
+}

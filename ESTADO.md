@@ -93,3 +93,21 @@
 
 ### Gate final
 28/28 verde · 28/28 com links de monetização · ronda 7 completa.
+
+## 🕸 Rede de Agentes autónoma (2026-08-11, noite) — pedido do utilizador
+
+### Construído
+- `agentes/nucleo.py` — convenções partilhadas (estado JSON, log rotativo, paths)
+- `agentes/verificador.py` — **VERA** 🔍: smoke nos 28 + regressões + bytes
+- `agentes/revisor.py` — **RUI** 📋: checklists vivas em `melhorias/*.md` (10 regras P1-P3)
+- `agentes/kpis.py` — **KIKA** 📊: 5 KPIs ponderados/negócio → `kpis/index.html` (rate geral + ▲▼)
+- `agentes/descobridor.py` — **DINIS** 🛰: lê PH ao vivo (hunted.space + orangebot) → candidatos
+- `agentes/orquestrador.py` — maestro: ciclo horário VERA→RUI→KIKA→DINIS→(ARTUR se pendente c/ template), grafo SVG em `rede/index.html`
+- `.github/workflows/rede.yml` — **cron horário no CI** (grátis, repo público) com auto-commit dos relatórios
+- Hub atualizado: 2 cartões novos (Rede + KPIs) · `AGENTES.md` documenta a rede
+
+### Primeiros ciclos reais (medidos)
+- Ciclo #1 e #2: 2.7s/2.5s, OK ✅ · VERA 28/28 · RUI 0 P1 abertos · KIKA média 84.2 · DINIS 10 candidatos novos ao vivo + 4 do backlog (PH diário devolveu 403 → degradou com gracia)
+
+### Nota honesta de arquitetura
+Os agentes são programas determinísticos (checks de nível sénior codificados), NÃO LLMs com acesso extraordinário. "Acesso a repos públicos" = leitura de páginas públicas (DINIS). Upgrade a LLM: chave por env var ativa o modo generativo do ARTUR. Supervisão humana+Arena: auditoria de logs, aprovação de candidatos, direção de rondas. Loop 24/7 real = GitHub Actions cron; loop local no sandbox = instância viva de demonstração.

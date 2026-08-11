@@ -1,0 +1,29 @@
+name: Rede de agentes (ciclo horário)
+
+on:
+  schedule:
+    - cron: "17 * * * *"        # todos os horas, minuto 17 (evita o pico do :00)
+  workflow_dispatch:            # botão manual no GitHub
+
+permissions:
+  contents: write               # para o auto-commit dos relatórios
+
+concurrency:
+  group: rede-agentes
+  cancel-in-progress: false
+
+jobs:
+  ciclo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Correr 1 ciclo da rede
+        run: python3 agentes/orquestrador.py --once
+      - name: Commit dos relatórios da rede
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 rede: ciclo horário [skip ci]"
+          file_pattern: "agentes/estado/*.json agentes/estado/*.log rede/index.html kpis/index.html melhorias/*.md"
