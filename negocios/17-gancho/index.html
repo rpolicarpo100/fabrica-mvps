@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gancho — o teu título aguenta o feed?</title>
+<style>
+:root{--bg:#0d0616;--panel:#180f26;--panel2:#130b1e;--line:#2e1c48;--txt:#f4eefc;--mut:#ab9cc8;
+--acc:#c084fc;--ok:#4ade80;--warn:#fbbf24;--bad:#fb7185;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#35155a,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:940px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),#f472b6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+input,select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:12px 13px;font:15px inherit;width:100%}
+input:focus{outline:2px solid var(--acc)}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#2e0a48;background:linear-gradient(90deg,var(--acc),#f472b6)}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.btnRow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.scoreBarra{height:16px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:10px 0 4px}
+.scoreBarra i{display:block;height:100%;border-radius:99px;transition:width .5s}
+.scoreMeta{display:flex;justify-content:space-between;font-size:.78rem;color:var(--mut)}
+.feat{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin:3px;font-size:.76rem}
+.feat.ok{border-color:rgba(74,222,128,.4);color:var(--ok)}
+.feat.no{border-color:rgba(251,113,133,.4);color:var(--bad)}
+.variante{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-bottom:9px;font-size:.9rem}
+.variante small{color:var(--mut);display:block;font-size:.7rem}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+.charCount{font-size:.75rem;color:var(--mut);margin-top:5px;text-align:right;font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>Gancho</em> 🎯<small>o título certo vale 10× o conteúdo · clone das packaging tools de 2026 (Pikzels / ThumbnailTest)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Testa o teu título ou hook</h3>
+<input id="titulo" placeholder="Ex.: Como eu poupei €2000 em 3 meses (sem cortar no café)" oninput="conta()">
+<div class="charCount" id="cc">0 caracteres</div>
+<div class="btnRow">
+<button onclick="avaliar()">🎯 Avaliar gancho</button>
+<button class="ghost" onclick="exemplo()">Exemplo forte</button>
+<button class="ghost" onclick="exemploFraco()">Exemplo fraco</button>
+</div>
+</div>
+
+<div id="res"><div class="vazio">O veredito aparece aqui: score, o que está a funcionar, o que falta, e 5 variantes prontas.</div></div>
+
+<footer>Gancho — MVP reconstruído pela Fábrica 2026 · implementação original · nada sai do browser</footer>
+</div>
+
+<script>
+var LS='gancho_v1';
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function conta(){$('cc').textContent=$('titulo').value.length+' caracteres';}
+var PODER=['grátis','segredo','erro','erros','prova','provado','ninguém','exato','exata','rápido','fácil','simples','guia','passo','truque','verdade','pare','pára','evita','nunca','sempre','melhor','pior','custa','ganha','poupa','vende','cresce'];
+var VAZIO=['melhor','incrível','espetacular','fantástico','brutal','inesquecível'];
+var STOP=['de','a','o','e','do','da','em','um','uma','para','com','os','no','na','por','as','que','se','eu','tu','meu','minha','teu','sem','como','é','ao','à','dos','das','num','numa'].reduce(function(o,w){o[w]=1;return o;},{});
+function temaDe(t){
+var w=t.replace(/[?!()]/g,' ').split(/\s+/).filter(function(x){var c=x.toLowerCase().replace(/[^a-zà-ÿ]/g,'');return c.length>2&&!STOP[c];});
+return w.slice(0,4).join(' ')||t.slice(0,40);}
+function avaliar(){
+var t=$('titulo').value.trim();
+if(t.length<8){$('res').innerHTML='<div class="vazio">Escreve um título/hook com pelo menos 8 caracteres.</div>';return;}
+try{localStorage.setItem(LS,t);}catch(e){}
+var low=t.toLowerCase();var len=t.length;var pts=0;var feats=[];
+function tem(sub){return low.indexOf(sub)>=0;}
+function feat(ok,label,delta){pts+=ok?delta:0;feats.push('<span class="feat '+(ok?'ok':'no')+'">'+(ok?'✓':'✗')+' '+label+'</span>');}
+/* comprimento */
+var bomC=len>=45&&len<=75;
+feat(bomC,'comprimento YouTube (45-75c) — atual '+len,bomC?16:0);
+if(len>100)pts-=6;
+feat(/\d/.test(t),'número concreto',14);
+var pw=PODER.filter(function(p){return tem(p);});
+feat(pw.length>0,'palavra de poder ('+pw.slice(0,2).join(', ')+')',12);
+feat(tem('como')||tem('porque')||tem('porquê'),'estrutura de curiosidade',10);
+feat(/[(\[]/.test(t),'detalhe extra entre parênteses',8);
+feat(tem('2026'),'atualidade (2026)',8);
+feat(/\?/.test(t),'forma de pergunta',6);
+var em=(t.match(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu)||[]).length;
+feat(em>=1&&em<=2,'emoji com conta-pinga ('+em+')',6);
+var caps=(t.match(/\b[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{4,}\b/g)||[]).length;
+if(caps>1){pts-=8;feats.push('<span class="feat no">✗ ' +caps+' palavras em CAPS (parece spam)</span>');}
+var vazioHit=VAZIO.filter(function(v){return tem(v);}).length;
+if(vazioHit&&!/\d/.test(t)){pts-=10;feats.push('<span class="feat no">✗ clickbait vazio: adjetivo sem prova nem número</span>');}
+if(!/\s/.test(t))pts-=10;
+pts=Math.max(2,Math.min(100,pts+30));
+var cor=pts>=75?'var(--ok)':(pts>=50?'var(--warn)':'var(--bad)');
+var ver=pts>=75?'Gancho forte — testa as variantes contra ele.':(pts>=50?'Tem ossatura; falta especificidade ou estrutura.':'Fraco no feed. Usa as variantes abaixo como ponto de partida.');
+/* variantes */
+var tema=temaDe(t);var T=tema.charAt(0).toUpperCase()+tema.slice(1);
+var vars=[
+['Numérica + lista','5 erros em '+low.replace(/[?!.]+$/,'')+' que te custam resultados'],
+['Como-fazer 2026','Como dominar '+tema+' em 2026 (passo a passo)'],
+['Contrária','Pare de errar em '+tema+' — faz isto em vez disso'],
+['Pergunta de curiosidade','Porque é que ninguém fala de '+tema+'?'],
+['Guia honesto',T+': o guia que eu queria ter lido há 2 anos']];
+var html='<div class="card"><h3 class="painel">2 · Veredito</h3>'+
+'<div class="scoreBarra"><i style="width:'+pts+'%;background:'+cor+'"></i></div>'+
+'<div class="scoreMeta"><span><b style="color:'+cor+';font-size:1.3rem">'+pts+'/100</b> · '+ver+'</span><span>base 30 + sinais CTR</span></div>'+
+'<div style="margin-top:10px">'+feats.join('')+'</div></div>';
+html+='<div class="card"><h3 class="painel">3 · Variantes geradas (adapta ao teu conteúdo real)</h3>';
+vars.forEach(function(v){html+='<div class="variante"><div>'+esc(v[1])+'<small>'+v[0]+'</small></div><button class="ghost" style="padding:5px 12px;font-size:.75rem;white-space:nowrap" onclick="copiarV(this,\''+esc(v[1]).replace(/'/g,"")+'\')">📋</button></div>';});
+html+='</div>';
+$('res').innerHTML=html;}
+function copiarV(btn,txt){if(navigator.clipboard)navigator.clipboard.writeText(txt);btn.textContent='✓';setTimeout(function(){btn.textContent='📋';},1200);}
+function exemplo(){$('titulo').value='Como poupei €2.000 em 3 meses sem cortar no café (método 2026)';avaliar();}
+function exemploFraco(){$('titulo').value='O melhor vídeo incrível sobre dicas';avaliar();}
+try{var u=localStorage.getItem(LS);if(u){$('titulo').value=u;conta();}}catch(e){}
+</script>
+</body>
+</html>

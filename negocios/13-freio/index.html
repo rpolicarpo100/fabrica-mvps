@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Freio — o freio antes de comprares</title>
+<style>
+:root{--bg:#071014;--panel:#0e1e24;--panel2:#0b171c;--line:#16333d;--txt:#ecf6fa;--mut:#8fb2bf;
+--acc:#67e8f9;--ok:#4ade80;--warn:#fde047;--bad:#fb7185;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#07303d,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:940px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+input,select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:15px inherit;width:100%}
+input:focus,select:focus{outline:2px solid var(--acc)}
+.gridIn{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px}
+@media(max-width:720px){.gridIn{grid-template-columns:1fr 1fr}}
+label.lab{display:block;font-size:.72rem;color:var(--mut);margin:0 0 5px 2px;text-transform:uppercase;letter-spacing:.6px}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#06313a;background:linear-gradient(90deg,var(--acc),#22d3ee)}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+button.ok{background:linear-gradient(90deg,var(--ok),#34d399);color:#052e16}
+button.bad{background:linear-gradient(90deg,#fb7185,#f43f5e);color:#3d0a12}
+.btnRow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:.78rem;color:var(--mut)}
+.kpi b{display:block;font-size:1.5rem;color:var(--txt)}
+.item{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.item .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.item h4{font-size:1rem}
+.item .preco{font-weight:800;color:var(--acc);font-size:1.05rem}
+.derive{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.dch{font-size:.74rem;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 11px;color:var(--mut)}
+.dch b{color:var(--txt)}
+.cd{margin-top:10px}
+.cd .bar{height:9px;background:var(--panel);border-radius:99px;overflow:hidden}
+.cd .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--warn),var(--acc));transition:width 1s}
+.cd .t{font-size:.76rem;color:var(--mut);margin-top:5px;font-variant-numeric:tabular-nums}
+.desbloq{margin-top:10px;background:rgba(103,232,249,.08);border:1px solid rgba(103,232,249,.3);border-radius:10px;padding:10px 12px;font-size:.86rem}
+.fechado{opacity:.55}
+.dica{background:linear-gradient(90deg,rgba(103,232,249,.08),transparent);border-left:3px solid var(--acc);border-radius:10px;padding:11px 14px;font-size:.87rem;color:#d6ecf3}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>Freio</em> 🧊<small>regista → arrefece → decide com a cabeça fria · clone do conceito Impause (Best SaaS Tools 2026)</small></div>
+</header>
+
+<div class="kpis">
+<div class="kpi"><b id="kPoup">€0</b>poupado por desistência</div>
+<div class="kpi"><b id="kItens">0</b>a arrefecer agora</div>
+<div class="kpi"><b id="kTaxa">—</b>taxa de desistência</div>
+<div class="kpi"><b id="kConsc">0</b>compras conscientes</div>
+</div>
+
+<div class="card">
+<h3 class="painel">⚙ Quanto vale a tua hora?</h3>
+<div class="gridIn" style="grid-template-columns:1fr 3fr">
+<div><label class="lab">O teu €/hora</label><input type="number" id="eurH" min="1" step="0.5" placeholder="12"></div>
+<div><label class="lab">&nbsp;</label><div class="dica">O Freio traduz cada compra em <b>horas da tua vida</b>. Se ganhas 900€/mês líquidos a 40h/semana, o teu valor é ~5,6€/h. Sê honesto — é só teu.</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3 class="painel">1 · Apeteces-te comprar?</h3>
+<div class="gridIn">
+<div><label class="lab">O quê?</label><input id="item" placeholder="Ex.: Ténis novos"></div>
+<div><label class="lab">Preço (€)</label><input type="number" id="preco" min="0" step="0.01" placeholder="89"></div>
+<div><label class="lab">Usos/mês esperados</label><input type="number" id="usos" min="1" step="1" placeholder="12"></div>
+<div><label class="lab">Arrefecimento</label><select id="cool"><option value="24">24 horas</option><option value="48" selected>48 horas</option><option value="72">72 horas</option><option value="168">7 dias</option></select></div>
+</div>
+<div class="btnRow"><button onclick="adicionar()">🧊 Meter no Freio</button></div>
+</div>
+
+<div id="lista"></div>
+
+<div class="card"><h3 class="painel">🧠 Dica Freio</h3><div class="dica" id="dica"></div></div>
+
+<footer>Freio — MVP reconstruído pela Fábrica 2026 · implementação original · dados só no teu browser</footer>
+</div>
+
+<script>
+var LS='freio_v1';
+var S={eurh:null,itens:[],poupado:0,conscientes:0,fechados:0};
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fmtEur(n){return '€'+n.toLocaleString('pt-PT',{maximumFractionDigits:2});}
+function guardar(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
+function carregar(){try{var d=JSON.parse(localStorage.getItem(LS)||'null');if(d)S=d;}catch(e){}}
+var DICAS=[
+'Regra das 24h: 70% dos impulsos morrem sozinhos ao fim de um dia.',
+'Antes de comprar: "usava isto esta semana se já o tivesse?" Se não, é desejo, não necessidade.',
+'Compara o preço com um objetivo real (viagem, fundo de emergência). O cérebro percebe comparações, não números.',
+'Custo por uso é o antídoto: €89 em sapatos usados 2× = €44,5 por uso. Um serviço de €10/mês usado diariamente = €0,33.',
+'Impulso gosta de pressa. Toda a tecnologia de checkouts ("só hoje!", "últimas unidades") existe para te impedir de pensar.',
+'Guardar o cartão fora dos sites poupa em média mais do que qualquer app de orçamento.',
+'Pergunta final: "comprava isto ao dobro do preço?" Se sim, é mesmo valor. Se não, é só preço.' ];
+function adicionar(){
+var item=$('item').value.trim(),preco=parseFloat($('preco').value),usos=parseInt($('usos').value,10)||10,cool=parseInt($('cool').value,10);
+var eurh=parseFloat($('eurH').value);
+if(eurh>0){S.eurh=eurh;}
+if(!item||!preco||preco<=0){alert('Preenche pelo menos o item e o preço.');return;}
+if(!S.eurh){alert('Define primeiro o teu €/hora — é o que transforma preço em perspetiva.');$('eurH').focus();return;}
+S.itens.unshift({id:Date.now(),item:item,preco:preco,usos:usos,inicio:Date.now(),fim:Date.now()+cool*3600e3,estado:'fresco'});
+$('item').value='';$('preco').value='';$('usos').value='';
+guardar();render();}
+function resolver(id,comprou){
+var it=S.itens.find(function(x){return x.id===id;});if(!it)return;
+it.estado=comprou?'comprado':'desistido';it.fechado=Date.now();
+if(comprou)S.conscientes++;else S.poupado+=it.preco;
+S.fechados++;
+guardar();render();}
+function apagar(id){S.itens=S.itens.filter(function(x){return x.id!==id;});guardar();render();}
+function faltaTexto(ms){if(ms<=0)return '🔓 desbloqueado';
+var h=Math.floor(ms/3600e3),m=Math.floor(ms%3600e3/60e3);
+return h>0?(h+'h '+m+'m'):(m+'m');}
+function render(){
+if(S.eurh)$('eurH').value=S.eurh;
+var frescos=S.itens.filter(function(i){return i.estado==='fresco';});
+$('kPoup').textContent=fmtEur(S.poupado);
+$('kItens').textContent=frescos.length;
+$('kConsc').textContent=S.conscientes;
+var dec=S.conscientes+ (S.itens.filter(function(i){return i.estado==='desistido';}).length);
+$('kTaxa').textContent=dec?Math.round(S.itens.filter(function(i){return i.estado==='desistido';}).length/dec*100)+'%':'—';
+var html='';
+var agora=Date.now();
+S.itens.forEach(function(it){
+var horas=S.eurh?it.preco/S.eurh:null;
+var cpu=it.preco/(it.usos*12);
+var cls=it.estado!=='fresco'?' fechado':'';
+html+='<div class="item'+cls+'"><div class="top"><h4>'+esc(it.item)+'</h4><span class="preco">'+fmtEur(it.preco)+'</span></div>';
+html+='<div class="derive">'+
+'<span class="dch">⏳ <b>'+(horas!==null?horas.toFixed(1)+'h':'—')+'</b> de trabalho</span>'+
+'<span class="dch">📆 custo/uso (12 meses): <b>'+fmtEur(cpu)+'</b></span></div>';
+if(it.estado==='fresco'){
+var restam=it.fim-agora;
+var coolTot=it.fim-(it.inicio||(it.fim-48*3600e3));
+var pct=Math.min(100,Math.max(0,100-(restam/(coolTot||1))*100));
+if(restam>0){
+html+='<div class="cd"><div class="bar"><i style="width:'+pct+'%"></i></div><div class="t">🧊 a arrefecer — faltam '+faltaTexto(restam)+' até poderes decidir</div></div>';
+}else{
+html+='<div class="desbloq">🔓 <b>Período cumprido.</b> Ainda queres? Decide agora, com a cabeça fria:<div class="btnRow">'+
+'<button class="ok" onclick="resolver('+it.id+',true)">✔ Comprei com consciência</button>'+
+'<button class="bad" onclick="resolver('+it.id+',false)">🧊 Desisti — poupei '+fmtEur(it.preco)+'</button></div></div>';}
+}else{
+html+='<div class="cd"><div class="t">'+(it.estado==='comprado'?'🛍 comprado conscientemente':'🎉 desististe — '+fmtEur(it.preco)+' poupados')+' · '+new Date(it.fechado).toLocaleDateString('pt-PT')+
+' <a href="#" onclick="apagar('+it.id+');return false" style="color:var(--mut);font-size:.72rem;margin-left:8px">remover</a></div></div>';}
+html+='</div>';});
+$('lista').innerHTML=html||'<div class="vazio">Nada no Freio. Da próxima vez que o dedo tremer para o "comprar", mete aqui primeiro. 🧊</div>';
+$('dica').textContent=DICAS[Math.floor(agora/3e5)%DICAS.length];}
+carregar();render();
+setInterval(render,30000);
+document.getElementById('preco').addEventListener('keydown',function(e){if(e.key==='Enter')adicionar();});
+</script>
+</body>
+</html>

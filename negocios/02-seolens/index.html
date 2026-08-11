@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEOLens — auditoria SEO + GEO local</title>
+<style>
+:root{--bg:#0a0e13;--panel:#111a24;--panel2:#0d141d;--line:#1f3346;--txt:#e8f0f4;--mut:#8ba0af;
+--acc:#4fd1c5;--ok:#68d391;--warn:#f6ad55;--bad:#fc8181;--azul:#63b3ed;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#123a3a,transparent),var(--bg);color:var(--txt);
+font:15px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--azul));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.paineis{display:grid;grid-template-columns:1fr;gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+textarea{width:100%;min-height:170px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);
+border-radius:10px;padding:12px;font:13px/1.5 ui-monospace,Consolas,monospace}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#06281f;background:linear-gradient(90deg,var(--acc),var(--ok))}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.rowBtns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.anéis,.aneis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.anel{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.anel svg{width:92px;height:92px}
+.anel .pct{font:800 1.4rem system-ui;fill:var(--txt)}
+.anel h4{font-size:.8rem;color:var(--mut);margin-top:6px;text-transform:uppercase;letter-spacing:.8px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+.check{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);
+border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.88rem}
+.check .ic{font-size:1rem;line-height:1.2}
+.check.ok{border-left:3px solid var(--ok)} .check.warn{border-left:3px solid var(--warn)} .check.bad{border-left:3px solid var(--bad)}
+.check small{color:var(--mut);display:block}
+.kw{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:4px 12px;margin:3px;font-size:.8rem}
+.kw b{color:var(--acc)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.vazio{color:var(--mut);text-align:center;padding:24px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+details{margin-top:10px}summary{cursor:pointer;color:var(--acc);font-size:.82rem;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>SEOLens</em> ⌕<small>auditoria SEO + GEO 100% local · clone do conceito OpenSEO (PH jul-2026) com camada GEO para motores de IA</small></div>
+</header>
+
+<div class="paineis">
+<div class="card">
+<h3 class="painel">1 · Cola o HTML da tua página</h3>
+<textarea id="htmlIn" placeholder="Cola aqui o código-fonte da página (Ctrl+U no browser → copiar)…"></textarea>
+<div class="rowBtns">
+<button onclick="auditar()">🔍 Auditar</button>
+<button class="ghost" onclick="exemplo()">Carregar exemplo</button>
+<button class="ghost" onclick="exportarMD()">⬇ Exportar relatório (.md)</button>
+</div>
+</div>
+<div id="resultado"><div class="vazio">Os resultados aparecem aqui — anéis de score, checklist completo e recomendações priorizadas.</div></div>
+</div>
+<footer>SEOLens — MVP reconstruído pela Fábrica 2026 · implementação original · nenhum dado sai do teu browser</footer>
+</div>
+
+<script>
+var ULTIMO=null;
+var STOP=['de','a','o','que','e','do','da','em','um','para','é','com','uma','os','no','se','na','por','mais','as','dos','como','mas','foi','ao','ele','das','tem','à','seu','sua','ou','ser','quando','muito','há','nos','já','está','eu','também','só','pelo','pela','até','isso','ela','entre','era','depois','sem','mesmo','aos','ter','seus','suas','numa','nem','suas','meu','às','minha','têm','num','pelos','elas','você','tinha','foram','essa','num','esse','seus','the','and','for','with','this','that','you','are','your'].reduce(function(o,w){o[w]=1;return o;},{});
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function textoVisivel(doc){var c=doc.body?doc.body.cloneNode(true):null;if(!c)return '';
+c.querySelectorAll('script,style,noscript').forEach(function(n){n.remove();});
+return (c.textContent||'').replace(/\s+/g,' ').trim();}
+
+function anelSVG(score){
+var cor=score>=80?'var(--ok)':(score>=50?'var(--warn)':'var(--bad)');
+var r=40,circ=2*Math.PI*r,off=circ*(1-score/100);
+return '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="'+r+'" fill="none" stroke="#1c2b3c" stroke-width="9"/>'+
+'<circle cx="50" cy="50" r="'+r+'" fill="none" stroke="'+cor+'" stroke-width="9" stroke-linecap="round" '+
+'stroke-dasharray="'+circ+'" stroke-dashoffset="'+off+'" transform="rotate(-90 50 50)"/>'+
+'<text x="50" y="55" text-anchor="middle" class="pct">'+score+'</text></svg>';}
+
+function check(estado,titulo,detalhe){
+var ic=estado==='ok'?'✅':(estado==='warn'?'⚠️':'❌');
+return '<div class="check '+estado+'"><span class="ic">'+ic+'</span><div><b>'+titulo+'</b>'+(detalhe?'<small>'+detalhe+'</small>':'')+'</div></div>';}
+
+function auditar(){
+var raw=$('htmlIn').value;
+if(!raw.trim()){$('resultado').innerHTML='<div class="vazio">Cola primeiro o HTML da página.</div>';return;}
+var doc=new DOMParser().parseFromString(raw,'text/html');
+var R={tecnico:[],conteudo:[],social:[],geo:[]};
+var deduz={tecnico:0,conteudo:0,social:0,geo:0};
+function tira(cat,pontos){deduz[cat]+=pontos;}
+
+/* ---- técnico ---- */
+var title=(doc.querySelector('title')||{}).textContent||'';
+title=title.trim();
+if(!title){R.tecnico.push(check('bad','&lt;title&gt; em falta','Sem título, os motores de busca adivinham — e adivinham mal.'));tira('tecnico',25);}
+else if(title.length<30||title.length>60){R.tecnico.push(check('warn','&lt;title&gt; com '+title.length+' caracteres','Ideal: 30–60. Atual: "'+esc(title.slice(0,70))+'"'));tira('tecnico',8);}
+else R.tecnico.push(check('ok','&lt;title&gt; ('+title.length+' caracteres)',esc(title)));
+var md=doc.querySelector('meta[name="description"]');
+var mdc=md?(md.getAttribute('content')||'').trim():'';
+if(!mdc){R.tecnico.push(check('bad','Meta description em falta','É o teu anúncio grátis nos resultados de pesquisa.'));tira('tecnico',20);}
+else if(mdc.length<70||mdc.length>160){R.tecnico.push(check('warn','Meta description com '+mdc.length+' caracteres','Ideal: 70–160.'));tira('tecnico',8);}
+else R.tecnico.push(check('ok','Meta description ('+mdc.length+' caracteres)'));
+R.tecnico.push(doc.querySelector('meta[name="viewport]')||doc.querySelector('meta[name="viewport"]')?
+check('ok','meta viewport presente','mobile-friendly ✔'):
+(check('bad','meta viewport em falta','Sem ele, o Google mobile penaliza.'),tira('tecnico',15)));
+R.tecnico.push(doc.querySelector('link[rel="canonical"]')?check('ok','URL canónico definido'):
+(check('warn','Sem link canonical','Risco de conteúdo duplicado entre URLs.'),tira('tecnico',6)));
+var lang=(doc.documentElement.getAttribute('lang')||'');
+R.tecnico.push(lang?check('ok','Atributo lang="'+esc(lang)+'"'):(check('warn','Atributo lang em falta no <html>','Ajuda motores e leitores de ecrã.'),tira('tecnico',5)));
+var sc=doc.querySelectorAll('script[type="application/ld+json"]');
+var tipos=[];sc.forEach(function(s){try{var j=JSON.parse(s.textContent);(Array.isArray(j)?[j[0]]:[j]).concat(j['@graph']||[]).forEach(function(o){if(o&&o['@type'])tipos.push(o['@type']);});}catch(e){}});
+R.tecnico.push(sc.length?check('ok','Dados estruturados JSON-LD ('+sc.length+' bloco[s])','Tipos: '+(tipos.join(', ')||'por identificar')):
+(check('bad','Sem dados estruturados (schema.org)','Essencial para rich snippets E para motores de IA citarem a página.'),tira('tecnico',15)));
+
+/* ---- conteúdo ---- */
+var h1s=doc.querySelectorAll('h1');
+if(h1s.length===1)R.conteudo.push(check('ok','Exatamente um &lt;h1&gt;',esc(h1s[0].textContent.trim().slice(0,80))));
+else{R.conteudo.push(check('bad',h1s.length===0?'Sem &lt;h1&gt;':h1s.length+' &lt;h1&gt; na página','Um — e só um — H1 por página.'));tira('conteudo',18);}
+var ultimo=0,skips=0;
+doc.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(function(h){var n=parseInt(h.tagName[1],10);
+if(ultimo&&n>ultimo+1)skips++;ultimo=n;});
+R.conteudo.push(skips?check('warn','Hierarquia de headings com '+skips+' salto[s]','Não saltes de H2 para H4 — quebra a estrutura.'):(check('ok','Hierarquia de headings limpa')));
+if(skips)tira('conteudo',7);
+var txt=textoVisivel(doc);
+var palavras=txt.toLowerCase().replace(/[^a-zà-ÿ0-9\s]/g,' ').split(/\s+/).filter(function(w){return w.length>2&&!STOP[w];});
+var totalPal=txt.split(/\s+/).filter(Boolean).length;
+if(totalPal<300){R.conteudo.push(check('warn','Conteúdo curto: '+totalPal+' palavras','Páginas que rankeiam costumam ter 600+. '));tira('conteudo',12);}
+else R.conteudo.push(check('ok',totalPal+' palavras de conteúdo'));
+var imgs=doc.querySelectorAll('img'),semAlt=0;
+imgs.forEach(function(i){if(!(i.getAttribute('alt')||'').trim())semAlt++;});
+R.conteudo.push(imgs.length===0?check('warn','Sem imagens','Imagens com alt ajudam SEO e acessibilidade.'):
+(semAlt?(check('bad',semAlt+' de '+imgs.length+' imagens sem atributo alt'),tira('conteudo',Math.min(15,3*semAlt))):check('ok',imgs.length+' imagens, todas com alt')));
+var freq={};palavras.forEach(function(w){freq[w]=(freq[w]||0)+1;});
+var top=Object.keys(freq).map(function(k){return[k,freq[k]];}).sort(function(a,b){return b[1]-a[1];}).slice(0,6);
+var kwsHtml=top.map(function(k){return '<span class="kw"><b>'+esc(k[0])+'</b> '+k[1]+'× ('+Math.round(k[1]/totalPal*1000)/10+'%)</span>';}).join('');
+var kd=top.length?top[0][1]/totalPal*100:0;
+R.conteudo.push(check(kd>4?'warn':'ok','Keyword principal: "'+(top.length?esc(top[0][0]):'—')+'"','Densidade '+Math.round(kd*10)/10+'%'+(kd>4?' — risco de keyword stuffing':'')+(kd<0.5&&top.length?' — considera reforçar o termo-alvo no H1 e primeiro parágrafo':'')));
+if(kd>4)tira('conteudo',10);
+
+/* ---- social ---- */
+var og=['og:title','og:description','og:image'].filter(function(p){return doc.querySelector('meta[property="'+p+'"]');});
+R.social.push(og.length===3?check('ok','Open Graph completo (title/description/image)'):
+(og.length?check('warn','Open Graph parcial: '+og.length+'/3','Faltam: '+['og:title','og:description','og:image'].filter(function(p){return og.indexOf(p)<0;}).join(', ')):
+check('bad','Sem tags Open Graph','Partilhas nas redes ficam feias e sem CTR.'),tira('social',og.length?10:20)));
+R.social.push(doc.querySelector('meta[name="twitter:card"]')?check('ok','Twitter/X card definido'):
+(check('warn','Sem twitter:card'),tira('social',6)));
+
+/* ---- GEO (otimização para motores de IA) ---- */
+var temFAQ=/faq|perguntas/i.test(raw)||Array.prototype.some.call(doc.querySelectorAll('h2,h3'),function(h){return /\?/.test(h.textContent);});
+var temFAQSchema=tipos.join(',').indexOf('FAQPage')>=0;
+R.geo.push((temFAQ||temFAQSchema)?check('ok','Conteúdo em formato pergunta→resposta','Motores de IA adoram citar FAQs'+(temFAQSchema?' com schema':'')):
+(check('warn','Sem secção de FAQ','Adiciona 3–5 perguntas reais com respostas diretas; schema FAQPage vale ouro em 2026.'),tira('geo',20)));
+var listas=doc.querySelectorAll('ul,ol').length;
+R.geo.push(listas>=2?check('ok',listas+' listas estruturadas','Formato fácil de extrair por LLMs'):
+(check('warn','Poucas listas ('+listas+')','Converte blocos de texto em listas — são o formato mais citado por IA.'),tira('geo',12)));
+var primeiroP=(doc.querySelector('p')||{}).textContent||'';
+primeiroP=primeiroP.trim();
+R.geo.push(primeiroP&&primeiroP.length<320?check('ok','Resposta direta no primeiro parágrafo','"'+esc(primeiroP.slice(0,90))+'…"'):
+(check('warn','Sem resposta direta no topo','Abre a página com a resposta em 1–2 frases (estilo featured snippet).'),tira('geo',15)));
+var temDados=/\d+\s?%|\d+x|€\s?\d|\d{4}/.test(txt);
+R.geo.push(temDados?check('ok','Dados citáveis presentes (%/valores/anos)','Estatísticas aumentam citações por IA'):
+(check('warn','Sem dados citáveis','Inclui números concretos; LLMs citam frases com estatísticas.'),tira('geo',12)));
+var datas=/20(2[4-9]|3\d)/.test(raw);
+R.geo.push(datas?check('ok','Sinais de atualidade (datas recentes)'):(check('warn','Sem sinais de atualidade','Marca data de atualização — IA prefere fontes frescas.'),tira('geo',8)));
+
+/* ---- scores ---- */
+function score(cat){return Math.max(0,100-deduz[cat]);}
+var geral=Math.round(score('tecnico')*0.3+score('conteudo')*0.3+score('social')*0.15+score('geo')*0.25);
+ULTIMO={tecnico:R.tecnico,conteudo:R.conteudo,social:R.social,geo:R.geo,
+scores:{tecnico:score('tecnico'),conteudo:score('conteudo'),social:score('social'),geo:score('geo'),geral:geral},
+title:title,kws:top,totalPal:totalPal};
+
+var html='<div class="card"><h3 class="painel">2 · Scores</h3><div class="aneis">'+
+[['GERAL',geral],['Técnico',score('tecnico')],['Conteúdo',score('conteudo')],['Social',score('social')],['GEO (IA)',score('geo')]].map(function(p){
+return '<div class="anel">'+anelSVG(p[1])+'<h4>'+p[0]+'</h4></div>';}).join('')+'</div></div>';
+html+='<div class="card"><h3 class="painel">Top keywords detectadas</h3>'+(kwsHtml||'<span class="vazio">sem texto suficiente</span>')+'</div>';
+html+='<div class="grid2">';
+[['🔧 Técnico','tecnico'],['📝 Conteúdo','conteudo'],['📣 Social / partilha','social'],['🤖 GEO — motores de IA','geo']].forEach(function(s){
+html+='<div class="card"><h3 class="painel">'+s[0]+' · '+score(s[1])+'/100</h3>'+R[s[1]].join('')+'</div>';});
+html+='</div>';
+$('resultado').innerHTML=html;
+try{localStorage.setItem('seolens_ultimo',raw);}catch(e){}}
+
+function exportarMD(){
+if(!ULTIMO){$('resultado').innerHTML='<div class="vazio">Faz primeiro uma auditoria.</div>';return;}
+var L=['# Relatório SEOLens','Data: '+new Date().toLocaleString('pt-PT'),'','## Scores','| Categoria | Score |','|---|---|'];
+Object.keys(ULTIMO.scores).forEach(function(k){L.push('| '+k+' | '+ULTIMO.scores[k]+'/100 |');});
+L.push('','## Top keywords');
+ULTIMO.kws.forEach(function(k){L.push('- '+k[0]+' — '+k[1]+' ocorrências');});
+L.push('','## Recomendações por prioridade','');
+var tmp=document.createElement('div');
+[['Técnico',ULTIMO.tecnico],['Conteúdo',ULTIMO.conteudo],['Social',ULTIMO.social],['GEO',ULTIMO.geo]].forEach(function(sec){
+L.push('### '+sec[0]);
+sec[1].forEach(function(c){tmp.innerHTML=c;var det=tmp.textContent.replace(/\s+/g,' ').trim();
+if(!/^✅/.test(det))L.push('- '+det.replace(/^[⚠️❌]\s*/,''));});
+L.push('');});
+var blob=new Blob([L.join('\n')],{type:'text/markdown'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='relatorio-seolens.md';a.click();}
+
+function exemplo(){$('htmlIn').value=['<!DOCTYPE html>','<html lang="pt">','<head>','<meta charset="utf-8">',
+'<meta name="viewport" content="width=device-width, initial-scale=1">',
+'<title>Ração natural para cães | PetNova — entregas em Portugal</title>',
+'<meta name="description" content="Ração natural portuguesa para cães de todos os portes. Ingredientes locais, entrega em 48h e plano de subscrição com 15% de desconto. Experimente grátis a primeira embalagem.">',
+'<link rel="canonical" href="www.exemplo.pt/racao-natural-caes">','<meta property="og:title" content="Ração natural para cães | PetNova">',
+'<meta property="og:image" content="capa.jpg">','</head>','<body>','<h1>Ração natural para cães, feita em Portugal</h1>',
+'<p>A PetNova produz ração natural para cães com 92% de ingredientes de origem portuguesa, entregue em 48 horas.</p>',
+'<h2>Porquê ração natural?</h2>','<p>Texto explicativo sobre benefícios, digestão, pelagem e energia. '*1,'</p>','<ul><li>Sem corantes</li><li>Sem cereais</li></ul>',
+'<h2>Quanto custa?</h2><p>Planos desde 19€/mês com 15% de desconto na subscrição.</p>',
+'<h2>Perguntas frequentes</h2><h3>A ração serve para cachorros?</h3><p>Sim, temos gama puppy.</p>','</body></html>'].join('\n');}
+if(document.querySelector){try{var u=localStorage.getItem('seolens_ultimo');if(u)$('htmlIn').value=u;}catch(e){}}
+document.addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))auditar();});
+</script>
+</body>
+</html>

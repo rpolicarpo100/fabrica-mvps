@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anuncia — copy de anúncios que converte</title>
+<style>
+:root{--bg:#120508;--panel:#20090f;--panel2:#1a070c;--line:#3f1622;--txt:#fbeef1;--mut:#c999a6;
+--acc:#fb7185;--ok:#4ade80;--warn:#fde047;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#4a0f1e,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),#fb923c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+input,select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:15px inherit;width:100%}
+.gridIn{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:680px){.gridIn{grid-template-columns:1fr}}
+label.lab{display:block;font-size:.72rem;color:var(--mut);margin:0 0 5px 2px;text-transform:uppercase;letter-spacing:.6px}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#3d0a12;background:linear-gradient(90deg,var(--acc),#fb923c)}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.btnRow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.ad{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+.ad h4{font-size:.95rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.ad h4 .fw{background:var(--acc);color:#3d0a12;border-radius:999px;padding:2px 12px;font-size:.7rem;font-weight:800}
+.parte{margin-top:9px;font-size:.9rem}
+.parte b{display:inline-block;min-width:74px;font-size:.7rem;text-transform:uppercase;letter-spacing:.6px;color:var(--warn)}
+.chars{font-size:.72rem;color:var(--mut);margin-top:10px;font-variant-numeric:tabular-nums}
+.chars.over{color:var(--acc);font-weight:700}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>Anuncia</em> 📣<small>copy de anúncios por framework comprovado · clone do conceito AdAnt AI (PH #1 ago-2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · O essencial</h3>
+<div class="gridIn">
+<div><label class="lab">Produto (o que é/faz)</label><input id="prod" placeholder="Ex.: app que agenda posts de Instagram"></div>
+<div><label class="lab">Público</label><input id="pub" placeholder="Ex.: freelancers de marketing"></div>
+<div><label class="lab">Dor principal</label><input id="dor" placeholder="Ex.: perder horas a publicar manualmente"></div>
+<div><label class="lab">CTA (chamada à ação)</label><input id="cta" placeholder="Ex.: Testa 14 dias grátis"></div>
+<div><label class="lab">Plataforma</label><select id="plat">
+<option value="meta">Meta / Instagram (125 c.)</option>
+<option value="google">Google Search (título 30 / desc. 90)</option>
+<option value="linkedin">LinkedIn (150 c.)</option>
+<option value="tiktok">TikTok (100 c.)</option></select></div>
+</div>
+<div class="btnRow">
+<button onclick="gerar()">📣 Gerar variações</button>
+<button class="ghost" onclick="exemplo()">Exemplo</button>
+</div>
+</div>
+
+<div id="ads"><div class="vazio">As variações aparecem aqui — AIDA, PAS e Hook→Prova→Oferta, com contagem de caracteres.</div></div>
+
+<footer>Anuncia — MVP reconstruído pela Fábrica 2026 · implementação original · tudo local</footer>
+</div>
+
+<script>
+var LS='anuncia_v1';
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var LIMITES={meta:125,google:90,linkedin:150,tiktok:100};
+function pick(arr,seed){return arr[Math.floor(Math.random()*arr.length)];}
+function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+
+function frameworkAIDA(p){
+return[
+['Atenção',pick(['Ainda '+p.dor+' ?','E se '+p.dor+' deixasse de ser problema?',''+cap(p.pub)+': isto é para vocês.','O fim de "'+p.dor+'" chegou.'])],
+['Interesse',pick([p.prod+' — feito exatamente para '+p.pub+'.','Conhece '+p.prod+': simples, direto, sem curva de aprendizagem.'])],
+['Desejo',pick(['Imagina a tua semana sem isso, com resultados melhores.','Junta-te a quem já trocou o caos por clareza.','Mais resultado, menos esforço — todos os dias.'])],
+['Ação',p.cta+'.']];}
+function frameworkPAS(p){
+return[
+['Problema',cap(p.dor)+' — conheces bem?'],
+['Agitação',pick(['Cada semana nisto custa-te horas, foco e dinheiro.','Ignorar custa mais do que parece — acumula, todos os meses.','É o tipo de coisa que ninguém vê… até custar clientes.'])],
+['Solução',p.prod+'. '+p.cta+'.']];}
+function frameworkHPO(p){
+return[
+['Hook',pick(['A maioria de '+p.pub+' ainda '+p.dor+'.','Pergunta rápida para '+p.pub+': quanto tempo perdes com isto?','Parabéns, '+p.pub+': encontrámos o vosso anti-'+p.dor+'.'])],
+['Prova',pick(['Construído com feedback de utilizadores reais, iterado semana a semana.','Resultados desde a primeira semana — medíveis, não promessas.','Feito por quem viveu a dor na pele.'])],
+['Oferta',p.cta+' — sem cartão, sem compromissos.']];}
+
+function gerar(){
+var p={prod:$('prod').value.trim()||'o teu produto',pub:$('pub').value.trim()||'o teu público',
+dor:$('dor').value.trim()||'perder tempo',cta:$('cta').value.trim()||'Sabe mais'};
+var plat=$('plat').value;var limite=LIMITES[plat];
+try{localStorage.setItem(LS,JSON.stringify({prod:$('prod').value,pub:$('pub').value,dor:$('dor').value,cta:$('cta').value,plat:plat}));}catch(e){}
+var nomePlat={meta:'Meta/IG',google:'Google',linkedin:'LinkedIn',tiktok:'TikTok'}[plat];
+var FW=[['AIDA',frameworkAIDA(p)],['PAS',frameworkPAS(p)],['Hook→Prova→Oferta',frameworkHPO(p)]];
+var html='';
+FW.forEach(function(fwi){
+var nome=fwi[0],partes=fwi[1];
+var corpo=partes.map(function(x){return x[1];}).join(' ');
+var n=corpo.length;
+var over=n>limite;
+html+='<div class="ad"><h4><span><span class="fw">'+nome+'</span></span>'+
+'<button class="ghost" style="padding:5px 12px;font-size:.76rem" onclick="copiarAd(this)">📋 copiar</button></h4>'+
+partes.map(function(x){return '<div class="parte"><b>'+x[0]+'</b>'+esc(x[1])+'</div>';}).join('')+
+'<div class="chars'+(over?' over':'')+'">'+n+' caracteres · limite orientativo '+nomePlat+': '+limite+(over?' ⚠ acima — usa a versão "título" curta ou corta a 2.ª frase':' ✓ dentro')+'</div></div>';});
+if(plat==='google'){
+var titulo=(p.prod.length>30?p.prod.slice(0,27)+'…':p.prod);
+html+='<div class="ad"><h4><span><span class="fw">Google Search</span> formato título+descrição</span><button class="ghost" style="padding:5px 12px;font-size:.76rem" onclick="copiarAd(this)">📋 copiar</button></h4>'+
+'<div class="parte"><b>Título (30)</b>'+esc(cap(titulo))+' — sem mais '+esc(p.dor)+'</div>'+
+'<div class="parte"><b>Desc. (90)</b>'+esc(cap(p.dor))+'? '+esc(p.prod)+' ajuda '+esc(p.pub)+'. '+esc(p.cta)+'.</div>'+
+'<div class="chars">headline ≤30 · descrição ≤90 (o Google corta o resto)</div></div>';}
+$('ads').innerHTML=html;}
+
+function copiarAd(btn){
+var partes=btn.closest('.ad').querySelectorAll('.parte');
+var t=Array.prototype.map.call(partes,function(el){return el.textContent.replace(/^[A-Za-zÁ-ú().→ ]{2,22}/,'').trim();}).join('\n');
+if(navigator.clipboard)navigator.clipboard.writeText(t);
+btn.textContent='copiado ✓';setTimeout(function(){btn.textContent='📋 copiar';},1400);}
+function exemplo(){$('prod').value='Freio — a app que trava compras por impulso com cooldown de 48h';
+$('pub').value='jovens profissionais que poupam pouco';$('dor').value='comprar por impulso e arrependerem-se';
+$('cta').value='Instala grátis';$('plat').value='meta';}
+try{var d=JSON.parse(localStorage.getItem(LS)||'null');if(d){$('prod').value=d.prod||'';$('pub').value=d.pub||'';$('dor').value=d.dor||'';$('cta').value=d.cta||'';if(d.plat)$('plat').value=d.plat;}}catch(e){}
+</script>
+</body>
+</html>

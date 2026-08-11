@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProvaSocial — a tua Wall of Love, sem mensalidade</title>
+<style>
+:root{--bg:#0b0714;--panel:#170f24;--panel2:#120b1c;--line:#2c1d45;--txt:#f3eefa;--mut:#a695c2;
+--acc:#c084fc;--ok:#4ade80;--warn:#fbbf24;--bad:#fb7185;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#351b5a,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+input[type=text]{width:100%;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font:15px inherit}
+textarea{width:100%;min-height:140px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:12px;font:13.5px/1.6 ui-monospace,Consolas,monospace;margin-top:10px}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#2d0a4a;background:linear-gradient(90deg,var(--acc),#f0abfc)}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.btnRow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:.78rem;color:var(--mut)}
+.kpi b{display:block;font-size:1.4rem;color:var(--txt)}
+.wall{columns:2;column-gap:12px}
+@media(max-width:680px){.wall{columns:1}}
+.tst{break-inside:avoid;background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:15px;margin-bottom:12px}
+.tst .est{color:var(--warn);letter-spacing:2px;font-size:.85rem}
+.tst p{font-size:.9rem;margin:8px 0 10px}
+.tst .who{font-size:.8rem;color:var(--mut)}
+.tst .who b{color:var(--txt)}
+.alert{background:rgba(251,113,133,.08);border:1px solid rgba(251,113,133,.3);border-left:3px solid var(--bad);border-radius:10px;padding:9px 13px;margin-bottom:8px;font-size:.85rem}
+.note{font-size:.78rem;color:var(--mut);margin-top:8px}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>ProvaSocial</em> 🧱<small>testemunhos → Wall of Love, sem mensalidade · clone da classe Senja (2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Configuração e testemunhos</h3>
+<input type="text" id="marca" placeholder="Nome da tua marca/projeto">
+<textarea id="lista" placeholder="Nome | Cargo ou empresa | estrelas (1-5) | texto do testemunho — um por linha"></textarea>
+<div class="btnRow">
+<button onclick="gerar()">🧱 Gerar Wall of Love</button>
+<button class="ghost" onclick="exemplo()">Exemplo</button>
+<button class="ghost" onclick="exportar()">⬇ Exportar wall.html</button>
+</div>
+<div class="note">Moderação automática incluída: textos curtos são rejeitados, estrelas fora de 1-5 são corrigidas, duplicados sinalizados.</div>
+</div>
+
+<div id="res"><div class="vazio">A tua parede de prova social aparece aqui — depois exportas o HTML e é teu para sempre.</div></div>
+
+<footer>ProvaSocial — MVP reconstruído pela Fábrica 2026 · implementação original · corre no browser</footer>
+</div>
+
+<script>
+var LS='provasocial_v1';var ULT=null;
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function guardarLocal(){try{localStorage.setItem(LS,JSON.stringify({m:$('marca').value,l:$('lista').value}));}catch(e){}}
+function estrelas(n){var s='';for(var i=0;i<n;i++)s+='★';return s;}
+function gerar(){
+guardarLocal();
+var marca=$('marca').value.trim()||'A Nossa Marca';
+var linhas=$('lista').value.split(/\r?\n/).map(function(l){return l.trim();}).filter(Boolean);
+if(!linhas.length){$('res').innerHTML='<div class="vazio">Cola testemunhos primeiro (ou carrega o exemplo).</div>';return;}
+var ok=[],rejeitados=[],vistos={};
+linhas.forEach(function(l,i){
+var p=l.split('|').map(function(x){return x.trim();});
+var nome=p[0]||'Anónimo',cargo=p[1]||'',est=parseInt(p[2],10),texto=p.slice(3).join(' | ')||p[p.length-1];
+if(p.length<3){texto=p[p.length-1];est=5;cargo='';nome=p.length>1?p[0]:'Anónimo';
+if(p.length===2){nome=p[0];cargo='';texto=p[1];}}
+if(!(est>=1&&est<=5))est=5;
+var key=(nome+texto.slice(0,25)).toLowerCase();
+if(texto.length<15){rejeitados.push(nome+': texto demasiado curto ("'+texto.slice(0,30)+'")');return;}
+if(vistos[key]){rejeitados.push(nome+': duplicado ignorado');return;}
+vistos[key]=1;
+ok.push({nome:nome,cargo:cargo,est:est,texto:texto});});
+var media=ok.length?(ok.reduce(function(a,t){return a+t.est;},0)/ok.length):0;
+ULT={marca:marca,ok:ok,media:media};
+var html='<div class="kpis">'+
+'<div class="kpi"><b>'+ok.length+'</b>aprovados</div>'+
+'<div class="kpi"><b>'+estrelas(Math.round(media))+' '+media.toFixed(1)+'</b>média</div>'+
+'<div class="kpi"><b>'+rejeitados.length+'</b>rejeitados</div></div>';
+if(rejeitados.length){html+='<div class="card"><h3 class="painel">Moderação</h3>'+rejeitados.map(function(r){return '<div class="alert">🚫 '+esc(r)+'</div>';}).join('')+'</div>';}
+html+='<div class="card"><h3 class="painel">2 · Wall of Love → exportável</h3><div class="wall">'+wallCards(ok)+'</div></div>';
+$('res').innerHTML=html;}
+function wallCards(ok){
+return ok.map(function(t){
+return '<div class="tst"><span class="est">'+estrelas(t.est)+'</span><p>"'+esc(t.texto)+'"</p>'+
+'<div class="who"><b>'+esc(t.nome)+'</b>'+(t.cargo?' · '+esc(t.cargo):'')+'</div></div>';}).join('');}
+function exportar(){
+if(!ULT){gerar();}if(!ULT)return;
+if(!ULT.ok.length){$('res').innerHTML='<div class="vazio">Sem testemunhos aprovados para exportar.</div>';return;}
+var html='<!DOCTYPE html><html lang="pt"><head><meta charset="utf-8">'+
+'<meta name="viewport" content="width=device-width, initial-scale=1"><title>Wall of Love — '+esc(ULT.marca)+'</title>'+
+'<style>*{box-sizing:border-box;margin:0}body{background:#faf9ff;color:#1c1530;font:16px/1.6 system-ui,sans-serif;padding:40px 20px}'+
+'.w{max-width:900px;margin:auto}h1{text-align:center;font-size:2rem}.sub{text-align:center;color:#6b6390;margin:6px 0 34px}'+
+'.est{color:#f59e0b}.wall{columns:2;column-gap:16px}.t{break-inside:avoid;background:#fff;border:1px solid #e7e2f5;'+
+'border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 10px rgba(30,10,60,.05)}'+
+'.t p{margin:8px 0 12px;font-size:.95rem}.who{font-size:.82rem;color:#6b6390}.who b{color:#1c1530}'+
+'@media(max-width:640px){.wall{columns:1}}</style></head><body><div class="w">'+
+'<h1>O que dizem sobre '+esc(ULT.marca)+'</h1>'+
+'<div class="sub"><span class="est">'+estrelas(Math.round(ULT.media))+'</span> '+ULT.media.toFixed(1)+'/5 · '+ULT.ok.length+' testemunhos</div>'+
+'<div class="wall">'+ULT.ok.map(function(t){
+return '<div class="t"><span class="est">'+estrelas(t.est)+'</span><p>"'+esc(t.texto)+'"</p>'+
+'<div class="who"><b>'+esc(t.nome)+'</b>'+(t.cargo?' · '+esc(t.cargo):'')+'</div></div>';}).join('')+
+'</div></div></body></html>';
+var blob=new Blob([html],{type:'text/html'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='wall.html';a.click();}
+function exemplo(){$('marca').value='FaturasZen';
+$('lista').value=['Marta Silva | CEO, PetNova | 5 | Passei a emitir faturas em 2 minutos. O lembrete automático recuperou-me 3 pagamentos que estavam esquecidos.',
+'Rui Pinto | Freelancer dev | 5 | A exportação CSV poupou-me umas 4 horas por mês com o contabilista. Melhor ferramenta que subscrevo.',
+'Ana Costa | Consultora | 4 | Interface simples e direta. Só queria dark mode, mas a equipa disse que vem a caminho.',
+'marta@petnova.pt | | 5 | Funciona.',
+'Carla Mendes | Estúdio Criativo | 5 | Os meus clientes acham que tenho uma secretária. É o FaturasZen.'].join('\n');}
+try{var d=JSON.parse(localStorage.getItem(LS)||'null');if(d){$('marca').value=d.m||'';$('lista').value=d.l||'';}}catch(e){}
+</script>
+</body>
+</html>

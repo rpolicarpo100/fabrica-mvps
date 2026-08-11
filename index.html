@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fábrica 2026 — Central do Agente</title>
+<style>
+:root{--bg:#080b12;--panel:#11182a;--line:#202c46;--txt:#e9edf6;--mut:#8d97ad;--acc:#6c8cff;--ok:#38d9a9;--warn:#f4bf75;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1100px 600px at 75% -10%,#17203d,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:26px}
+header{text-align:center;padding:30px 0 26px}
+h1{font-size:2.2rem;letter-spacing:-1px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mut);margin-top:8px;max-width:640px;margin-left:auto;margin-right:auto}
+.loop{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:22px 0 30px}
+.loop span{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.78rem;color:var(--mut)}
+.loop b{color:var(--ok);font-weight:400}
+h2.ronda{font-size:.85rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--mut);margin:26px 0 12px;text-align:center}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+.biz{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;position:relative;transition:.2s}
+.biz:hover{border-color:var(--acc);transform:translateY(-2px)}
+.biz .num{position:absolute;top:16px;right:18px;color:var(--mut);font-size:.75rem}
+.biz h2{font-size:1.15rem;margin-bottom:4px}
+.biz .insp{font-size:.75rem;color:var(--warn);margin-bottom:8px}
+.biz p{color:var(--mut);font-size:.86rem;margin-bottom:14px}
+.biz a{display:inline-block;background:linear-gradient(90deg,var(--acc),#4f6ef0);color:#fff;text-decoration:none;
+border-radius:9px;padding:9px 18px;font-weight:700;font-size:.85rem}
+.biz a:hover{filter:brightness(1.15)}
+.badge{display:inline-block;background:rgba(56,217,169,.12);color:var(--ok);border:1px solid rgba(56,217,169,.3);
+border-radius:999px;font-size:.68rem;padding:2px 10px;margin-left:8px;vertical-align:middle}
+.cmds{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:26px}
+.cmds h3{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+pre{background:#0a0f1c;border:1px solid var(--line);border-radius:10px;padding:14px;font:13px/1.7 ui-monospace,Consolas,monospace;color:#c8d4ea;overflow:auto}
+kbd{background:#0a0f1c;border:1px solid var(--line);border-radius:6px;padding:1px 7px;font:12px ui-monospace,monospace}
+footer{color:var(--mut);font-size:.76rem;text-align:center;padding:30px 0 12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>🏭 <em>Fábrica 2026</em></h1>
+<p class="sub">Agente que identifica negócios novos com sucesso em 2026 e recria versões funcionais dos mesmos, em loop, até passarem nos testes. Implementações originais — replicamos modelos de negócio, nunca código ou marca alheia.</p>
+<div class="loop"><span>🔍 descobrir</span><b>→</b><span>📋 planear</span><b>→</b><span>🔨 construir</span><b>→</b><span>🧪 testar</span><b>→</b><span>🔧 reparar</span><b>→</b><span>📝 registar</span><b>→</b><span>🔁 repetir</span></div>
+</header>
+
+<h2 class="ronda">— Ronda 1 · produtividade & vendas —</h2>
+<div class="grid">
+<div class="biz"><span class="num">#01</span><h2>▶ Executare<span class="badge">✅ funcional</span></h2>
+<div class="insp">Bond — "a to-do list que se faz sozinha" (PH #4 jun-2026)</div>
+<p>Tarefas em português natural; o agente redige emails, prepara guiões, decompõe tarefas grandes e agenda foco. Eisenhower + plano do dia.</p>
+<a href="negocios/01-executare/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#02</span><h2>⌕ SEOLens<span class="badge">✅ funcional</span></h2>
+<div class="insp">OpenSEO — Ahrefs open-source (PH #3 jul-2026)</div>
+<p>Auditoria SEO 100% local com camada GEO (otimização para motores de IA): scores, checklist por severidade, relatório exportável.</p>
+<a href="negocios/02-seolens/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#03</span><h2>⚒ LeadForge<span class="badge">✅ funcional</span></h2>
+<div class="insp">Fuzzy AI — aquecer prospects (PH #7 jul-2026)</div>
+<p>CSV de leads → scoring heurístico → tiers Quente/Morno/Frio → primeira mensagem personalizada → pipeline.</p>
+<a href="negocios/03-leadforge/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#04</span><h2>✂ PostPilot<span class="badge">✅ pelo agente</span></h2>
+<div class="insp">StoryShort.ai / AutoShorts.ai (~$20k/mês indie)</div>
+<p>Um texto longo → variações com hooks e limites para X, LinkedIn e Instagram, prontas a copiar.</p>
+<a href="negocios/04-postpilot/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#05</span><h2>📊 DeckForge<span class="badge">✅ pelo agente</span></h2>
+<div class="insp">Gamma — apresentações por IA ($100M ARR, Forbes 2026)</div>
+<p>Outline ("título: ponto; ponto" por linha) → deck de slides navegável com as setas do teclado.</p>
+<a href="negocios/05-deckforge/index.html">Abrir app →</a></div>
+</div>
+
+<h2 class="ronda">— Ronda 2 · founders & dados —</h2>
+<div class="grid">
+<div class="biz"><span class="num">#06</span><h2>🏆 DeckScore<span class="badge">✅ funcional</span></h2>
+<div class="insp">Fundraisly / VC Boom (Fundraisly = #1 do mês PH jun-2026)</div>
+<p>Pitch → score investor-readiness por framework de 10 secções + métricas detetadas + BS meter + relatório MD.</p>
+<a href="negocios/06-deckscore/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#07</span><h2>🧭 Rumo<span class="badge">✅ funcional</span></h2>
+<div class="insp">Paradigm — trajetos de aprendizagem adaptativos (PH jul-2026)</div>
+<p>Objetivo + nível + horas/semana → plano por fases com marcos, duração adaptada, progresso e "sessão de hoje".</p>
+<a href="negocios/07-rumo/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#08</span><h2>📈 Reporta<span class="badge">✅ funcional</span></h2>
+<div class="insp">Migma AI — analista instantâneo (PH jul-2026)</div>
+<p>CSV → KPIs, gráficos SVG e insights em português. Exporta MD ou dashboard HTML partilhável.</p>
+<a href="negocios/08-reporta/index.html">Abrir app →</a></div>
+</div>
+
+<h2 class="ronda">— Ronda 3 · voz, GTM & qualidade —</h2>
+<div class="grid">
+<div class="biz"><span class="num">#09</span><h2>🎙 Timbre<span class="badge">✅ funcional</span></h2>
+<div class="insp">Goldfish — "responde como tu" (PH #2 jun-2026)</div>
+<p>Amostras da tua escrita → perfil estilométrico → respostas geradas no teu tom a partir de pontos.</p>
+<a href="negocios/09-timbre/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#10</span><h2>🚀 Tração<span class="badge">✅ funcional</span></h2>
+<div class="insp">Elentaria — "GTM: do diagnóstico à execução" (PH jun-2026)</div>
+<p>Questionário → motor de regras → top-3 canais com justificação, anti-padrões, plano de 30 dias e KPI norte.</p>
+<a href="negocios/10-tracao/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#11</span><h2>🔥 ProvaFogo<span class="badge">✅ funcional</span></h2>
+<div class="insp">Replay QA — "o que está partido antes dos utilizadores" (PH jul-2026)</div>
+<p>Cola HTML → auditoria QA/a11y com severidades, correções concretas e score de risco.</p>
+<a href="negocios/11-provafogo/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#12</span><h2>🗓 Pauta<span class="badge">✅ pelo agente</span></h2>
+<div class="insp">Mina Meeting Assistant + voz local-first (ago-2026)</div>
+<p>Um tópico por linha ("~15m", "| dono: Nome") → pauta cronometrada pronta a copiar.</p>
+<a href="negocios/12-pauta/index.html">Abrir app →</a></div>
+</div>
+
+<h2 class="ronda">— Ronda 4 · finanças, docs & anúncios —</h2>
+<div class="grid">
+<div class="biz"><span class="num">#13</span><h2>🧊 Freio<span class="badge">✅ funcional</span></h2>
+<div class="insp">Impause — anti-compras por impulso (Best SaaS Tools 2026)</div>
+<p>Apeteces-te comprar? Mete no Freio: countdown de arrefecimento, "horas da tua vida", custo por uso e total poupado por desistência.</p>
+<a href="negocios/13-freio/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#14</span><h2>📄🤖 DuoDocs<span class="badge">✅ funcional</span></h2>
+<div class="insp">DocsAlot — docs para humanos E sistemas de IA (PH #1 dia jul-2026)</div>
+<p>Notas livres → duas saídas: doc para pessoas (estrutura README renderizada) e llms.txt para agentes de IA te citarem corretamente.</p>
+<a href="negocios/14-duodocs/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#15</span><h2>📣 Anuncia<span class="badge">✅ funcional</span></h2>
+<div class="insp">AdAnt AI — #1 "Best of August 2026" PH</div>
+<p>Produto+público+dor+CTA → variações de copy por AIDA, PAS e Hook→Prova→Oferta, com limites de caracteres por plataforma.</p>
+<a href="negocios/15-anuncia/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#16</span><h2>🧪 Prep<span class="badge">✅ pelo agente</span></h2>
+<div class="insp">LeetDesign — treino de system design com IA</div>
+<p>Casos de system design ao calhas (chat, rate limiter, reservas…) → esboça a tua solução → revela a resposta modelo e auto-avalia-te na rubrica.</p>
+<a href="negocios/16-prep/index.html">Abrir app →</a></div>
+</div>
+
+<h2 class="ronda">— Ronda 5 · creator economy (X / YouTube / Instagram) —</h2>
+<div class="grid">
+<div class="biz"><span class="num">#17</span><h2>🎯 Gancho<span class="badge">✅ funcional</span></h2>
+<div class="insp">Pikzels / ThumbnailTest — packaging YouTube 2026 (~$25K MRR)</div>
+<p>O título certo vale 10× o conteúdo: grader CTR por heurísticas (números, curiosidade, comprimento por plataforma), alertas de clickbait vazio e 5 variantes geradas.</p>
+<a href="negocios/17-gancho/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#18</span><h2>🔗 Clica<span class="badge">✅ funcional</span></h2>
+<div class="insp">YourSitee — link-in-bio (PH top ago-2026)</div>
+<p>Identidade + links → preview em tempo real → exportas o teu próprio <b>bio.html</b> single-file, pronto a alojar em qualquer lado, sem mensalidades nem marcas d'água.</p>
+<a href="negocios/18-clica/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#19</span><h2>🎬 ClipRadar<span class="badge">✅ funcional</span></h2>
+<div class="insp">AutoShorts / PassiveShorts — repurposing (2026)</div>
+<p>Momentos-chave do teu longo → conceitos de clips com hook embalado, duração por ritmo de leitura, sugestão de corte e caption com hashtags do nicho. Um episódio = uma semana de Shorts.</p>
+<a href="negocios/19-clipradar/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#20</span><h2>✍ Scripter<span class="badge">✅ pelo agente</span></h2>
+<div class="insp">Creator AI — guiões para criadores (2026)</div>
+<p>Mete o tema na caixa → guião de Short de 30s estruturado: hook (0–3s), setup, payoff e CTA, com orçamento de palavras para leitura natural.</p>
+<a href="negocios/20-scripter/index.html">Abrir app →</a></div>
+</div>
+
+<h2 class="ronda">— Ronda 6 · "boring niches" (dinheiro quieto) —</h2>
+<div class="grid">
+<div class="biz"><span class="num">#21</span><h2>🧱 ProvaSocial<span class="badge">✅ funcional</span></h2>
+<div class="insp">Senja/Famewall — testemunhos (Senja: $83K MRR, equipa de 2)</div>
+<p>Testemunhos em linhas simples → moderação automática (dedupe, clamp, flags) → Wall of Love com preview e <b>wall.html</b> exportável — sem subscrição mensal.</p>
+<a href="negocios/21-provasocial/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#22</span><h2>📅 Marca<span class="badge">✅ funcional</span></h2>
+<div class="insp">Scheduling vertical — $35K–$450K ARR</div>
+<p>Dias + horário + serviços ("nome | min | €") → calculadora de capacidade e receita potencial → página de marcações exportável com CTA mailto. Sem Calendly pago.</p>
+<a href="negocios/22-marca/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#23</span><h2>💸 Recupera<span class="badge">✅ funcional</span></h2>
+<div class="insp">Dunning/payment recovery — classe Churnkey ($20K–$360K ARR)</div>
+<p>Os teus números de subscrição → € recuperável por mês/ano (benchmark 55%) + sequência de 4 emails de dunning em PT prontos a copiar.</p>
+<a href="negocios/23-recupera/index.html">Abrir app →</a></div>
+
+<div class="biz"><span class="num">#24</span><h2>🗂 PortalKit<span class="badge">✅ pelo agente</span></h2>
+<div class="insp">Client portals p/ agências — $30K–$400K ARR</div>
+<p>"Entregável | estado | prazo" por linha → relatório de progresso com barra ██████░░, resumo e próximos passos — pronto a colar no email do cliente.</p>
+<a href="negocios/24-portalkit/index.html">Abrir app →</a></div>
+</div>
+
+<div class="cmds">
+<h3>🤖 Correr o agente autónomo</h3>
+<pre># dentro de fabrica/
+python3 agente.py --demo        # loop contínuo offline (templates: 4 geradores ativos)
+python3 agente.py --once        # uma só iteração
+python3 agente.py --status      # ver a fila
+ANTHROPIC_API_KEY=sk-... python3 agente.py   # modo LLM (MVPs gerados do zero)</pre>
+<p style="color:var(--mut);font-size:.82rem;margin-top:10px">Adiciona novos alvos em <kbd>fila.json</kbd> com <kbd>"status": "pendente"</kbd> e o agente trata do resto: SPEC → build → smoke test → reparação → registo. Log completo em <kbd>ESTADO.md</kbd>.</p>
+</div>
+
+<footer>Fábrica 2026 · sessão de 11-08-2026 · 6 rondas · 24 iterações, 24 MVPs funcionais · todo o processamento é local</footer>
+</div>
+</body>
+</html>

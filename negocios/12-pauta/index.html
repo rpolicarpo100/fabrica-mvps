@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pauta — Mina Meeting Assistant + trend voz local-first (ago-2026)</title>
+<style>
+:root{--bg:#0b0e14;--card:#141a26;--txt:#e6e9f0;--mut:#8b93a7;--acc:#6c8cff;--acc2:#38d9a9;}
+*{box-sizing:border-box;margin:0}
+body{background:radial-gradient(1200px 600px at 80% -10%,#1b2440,transparent),var(--bg);color:var(--txt);font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif;padding:24px}
+.wrap{max-width:860px;margin:0 auto}
+header{text-align:center;padding:48px 16px 32px}
+header h1{font-size:2.4rem;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mut);margin-top:8px}
+.card{background:var(--card);border:1px solid #232c40;border-radius:14px;padding:20px;margin:16px 0}
+textarea{width:100%;min-height:140px;background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:10px;padding:12px;font:inherit}
+button{background:linear-gradient(90deg,var(--acc),#4f6ef0);color:#fff;border:0;border-radius:10px;padding:12px 22px;font:600 15px inherit;cursor:pointer;margin-top:12px}
+button:hover{filter:brightness(1.1)}
+.post pre{white-space:pre-wrap;background:#0d1220;border-radius:8px;padding:12px;margin:8px 0;font:14px/1.5 inherit}
+.post h3 span{color:var(--mut);font-weight:400;font-size:.8rem}
+.aviso{color:#f4bf75}
+.slide{display:none;flex-direction:column;justify-content:center;min-height:320px;background:#101828;border:1px solid #232c40;border-radius:14px;padding:40px}
+.slide.capa h1{font-size:2.2rem}
+.slide ul{margin-top:12px;color:var(--mut)}
+.nav{text-align:center;margin-top:14px}
+footer{text-align:center;color:var(--mut);font-size:.85rem;padding:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:24px 0}
+.grid .card{margin:0}
+.grid h3{color:var(--acc2);font-size:1rem}
+.grid p{color:var(--mut);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Pauta</h1>
+<p>Um tópico por linha — '~15m' para duração, '| dono: Nome' para responsável.</p>
+</header>
+<div class="card">
+<textarea id="entrada" placeholder="Boas-vindas e objetivo ~5m\nRevisão do trimestre ~20m | dono: Marta\nBloqueios e riscos ~10m\nPróximos passos ~10m"></textarea>
+<div style="margin-top:10px;color:var(--mut);font-size:.85rem">Hora de início: <input id="inicio" value="10:00" style="background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:8px;padding:8px 10px;width:95px;font:inherit"></div>
+<button onclick="gerarPauta()">Gerar pauta</button>
+</div>
+<div id="saida"></div>
+<div class="grid">
+<div class="card"><h3>⚡ Rápido</h3><p>Do conteúdo ao resultado em segundos, sem registos nem servidores.</p></div>
+<div class="card"><h3>🔒 Privado</h3><p>Tudo corre no teu browser. Os teus textos nunca saem daqui.</p></div>
+<div class="card"><h3>💸 Modelo 2026</h3><p>Freemium: grátis até N usos/mês, Pro desbloqueia histórico e marca.</p></div>
+</div>
+<footer>Recriado pelo Agente Fábrica 2026 · inspiração: Mina Meeting Assistant + trend voz local-first (ago-2026) · implementação original</footer>
+</div>
+<script>
+function gerarPauta(){
+var el=document.getElementById('inicio');
+var ini=(el&&el.value)||'10:00';
+var pp=ini.split(':');var base=(parseInt(pp[0],10)||10)*60+(parseInt(pp[1],10)||0);
+var linhas=document.getElementById('entrada').value.split(/\n+/).map(function(l){return l.trim();}).filter(Boolean);
+var out=document.getElementById('saida');
+if(!linhas.length){out.innerHTML='<p class="aviso">Escreve um tópico por linha. Opcionais: "~15m" e "| dono: Ana".</p>';return;}
+function f(x){return ('0'+Math.floor(x/60)).slice(-2)+':'+('0'+(x%60)).slice(-2);}
+var tot=0,txt='',cur=base;
+linhas.forEach(function(l){
+var dm=l.match(/~\s*(\d+)\s*m(in)?/i);var dur=dm?parseInt(dm[1],10):10;
+var dn=(l.match(/\|\s*(?:dono|resp|owner)?:?\s*([\w\u00C0-\u024F .]+)/i)||[])[1]||'';
+var tema=l.replace(/~\s*\d+\s*m(in)?/i,'').replace(/\|.*$/,'').trim()||'Tópico';
+tema=tema.charAt(0).toUpperCase()+tema.slice(1);
+tot+=dur;
+txt+=f(cur)+'-'+f(cur+dur)+'  '+tema+(dn?' · '+dn.trim():'')+'\n';
+cur+=dur;});
+out.innerHTML='<div class="post"><h3>Pauta · início '+f(base)+' · '+tot+' min no total</h3><pre>'+txt.replace(/</g,'&lt;')+'</pre><button onclick="copiarPauta(this)">Copiar pauta</button></div>';
+}
+function copiarPauta(btn){var t=btn.parentNode.querySelector('pre').innerText;if(navigator.clipboard){navigator.clipboard.writeText(t);}btn.innerText='Copiado ✓';setTimeout(function(){btn.innerText='Copiar pauta';},1500);}
+</script>
+</body>
+</html>

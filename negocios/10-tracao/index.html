@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tração — do diagnóstico GTM à execução</title>
+<style>
+:root{--bg:#05120e;--panel:#0d1f17;--panel2:#0a1811;--line:#1d3f2c;--txt:#eef9f2;--mut:#8fb59e;
+--acc:#4ade80;--ok:#4ade80;--warn:#fde047;--bad:#f87171;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#0b3524,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--warn));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px}
+.q{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px}
+.q label{display:block;font-size:.82rem;font-weight:600;margin-bottom:8px}
+.q select{width:100%;background:#05120e;color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:10px;font:14px inherit}
+button{border:0;border-radius:10px;padding:12px 24px;font:700 15px inherit;cursor:pointer;color:#052e16;background:linear-gradient(90deg,var(--acc),#22d3ee)}
+button:hover{filter:brightness(1.12)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.rowBtns{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.canal{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px}
+.canal h4{font-size:1rem;display:flex;justify-content:space-between;align-items:center}
+.canal h4 .sc{font-size:.75rem;color:var(--acc);font-variant-numeric:tabular-nums}
+.canal .order{position:relative;top:-2px;background:var(--acc);color:#052e16;border-radius:999px;padding:1px 10px;font-size:.7rem;font-weight:800;margin-right:8px}
+.canal p{font-size:.85rem;color:var(--mut);margin-top:6px}
+.canal .acao{margin-top:8px;font-size:.83rem;background:#05120e;border:1px solid var(--line);border-radius:8px;padding:8px 11px}
+.canal .acao b{color:var(--warn)}
+.aviso{display:flex;gap:10px;align-items:flex-start;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.3);
+border-left:3px solid var(--bad);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.88rem}
+.plan{font-size:.88rem}
+.plan li{margin:6px 0 6px 18px}
+.plan b{color:var(--acc)}
+.kpi{background:linear-gradient(90deg,rgba(74,222,128,.12),transparent);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:12px;padding:12px 15px;font-size:.92rem}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>Tração</em> 🚀<small>da diagnóstico à execução · clone do conceito Elentaria (PH jun-2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Diagnóstico (responde com sinceridade — o motor decide melhor assim)</h3>
+<div class="qgrid" id="perguntas"></div>
+<div class="rowBtns">
+<button onclick="calcular()">🚀 Gerar a minha rota GTM</button>
+<button class="ghost" onclick="exportarMD()">⬇ Exportar (.md)</button>
+</div>
+</div>
+
+<div id="res"><div class="vazio">A tua rota aparece aqui: 3 canais priorizados, avisos, plano de 30 dias e KPI norte.</div></div>
+
+<footer>Tração — MVP reconstruído pela Fábrica 2026 · implementação original · tudo corre no teu browser</footer>
+</div>
+
+<script>
+var ULT=null;
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var QS=[
+{id:'fase',q:'Em que fase estás?',o:[['ideia','Ideia / ainda sem produto'],['mvp','MVP lançado, zero clientes'],['primeiros','Primeiros clientes (<20)'],['escalar','A escalar (>20 clientes)']]},
+{id:'tipo',q:'Tipo de negócio',o:[['b2c','App/produto B2C'],['saas','SaaS / software B2B'],['ecom','E-commerce / produto físico'],['local','Serviço local'],['creator','Conteúdo / criador']]},
+{id:'ticket',q:'Preço médio para o cliente',o:[['impulso','< 15€ (impulso)'],['baixo','15–100€'],['medio','100–1.000€'],['alto','> 1.000€']]},
+{id:'ciclo',q:'Quanto tempo o cliente decide?',o:[['rapido','Compra no momento / dias'],['medio','1–2 semanas'],['longo','1 mês ou mais']]},
+{id:'canal',q:'O que já testaste com melhor resultado?',o:[['nada','Ainda nada'],['conteudo','Conteúdo orgânico'],['pago','Anúncios pagos'],['outbound','Contacto direto (outbound)'],['parcerias','Parcerias / referências']]},
+{id:'budget',q:'Orçamento de marketing mensal',o:[['zero','~0€'],['low','< 500€'],['mid','500–5.000€'],['high','> 5.000€']]},
+{id:'tempo',q:'Horas semanais para marketing/vendas',o:[['pouco','< 5h'],['algum','5–15h'],['muito','15h+']]},
+{id:'gargalo',q:'Onde está a fuga hoje?',o:[['trafego','Ninguém nos conhece (tráfego)'],['conversao','Visitam mas não compram'],['retencao','Compram e não voltam'],['preco','Não sei se o preço está certo']]}];
+QS.forEach(function(q){
+var d=document.createElement('div');d.className='q';
+d.innerHTML='<label>'+q.q+'</label><select id="q_'+q.id+'">'+q.o.map(function(o){return '<option value="'+o[0]+'">'+o[1]+'</option>';}).join('')+'</select>';
+$('perguntas').appendChild(d);});
+
+var CANAIS={
+conteudo:{n:'Conteúdo orgânico / SEO',w:'Custa tempo, compõe-se. Em 2026, adiciona GEO: estrutura respostas para motores de IA citarem a tua marca.',a:'Publica 1 peça/semana respondendo à dor nº1 do teu ICP, com FAQ no fim.'},
+social:{n:'Redes orgânicas / conteúdo curto',w:'Alcance gratuito com formato curto; perfeito para impulso e para mostrar o produto em ação.',a:'3 vídeos curtos/semana: problema → produto → prova. Mesmo gancho em todos.'},
+pago:{n:'Anúncios pagos (paid social/search)',w:'Rápido de testar, caro de errar. Só escala o que já converte organicamente.',a:'Testa 3 criativos × 1 público com 10€/dia durante 7 dias; mata o pior em 72h.'},
+outbound:{n:'Vendas diretas / contacto frio',w:'O canal mais rápido para feedback real — e o único que não depende de algoritmos.',a:'Lista de 30 ICPs → mensagem personalizada (ver LeadForge) → meta: 5 conversas/semana.'},
+parcerias:{n:'Parcerias e referências',w:'Acesso a audiências já montadas e confiança emprestada. Lento a arrancar, forte a pagar.',a:'Lista 10 negócios complementares; propõe troca de valor concreta ao 1.º email.'},
+local:{n:'Google Business / canais locais',w:'Para serviço local, pesquisa "perto de mim" é a mina mais barata que existe.',a:'Perfil Google Business completo + 10 avaliações pedidas esta semana aos melhores clientes.'},
+email:{n:'Email / CRM de base',w:'O canal que possuis. Recupera quem já demonstrou interesse antes de caçar desconhecidos.',a:'Segmenta base: quentes (7d), mornos, frios → 1 sequência de 3 emails por segmento.'},
+comunidade:{n:'Comunidade / dark social',w:'Grupos onde o teu ICP já vive (Discords, WhatsApps, associações): vendas sem parecer venda.',a:'Entra em 5 comunidades do nicho; 2 semanas a ajudar antes de mencionar o produto.'}};
+
+function calcular(){
+var a={};QS.forEach(function(q){a[q.id]=$('q_'+q.id).value;});
+try{localStorage.setItem('tracao_ans',JSON.stringify(a));}catch(e){}
+var S={conteudo:0,social:0,pago:0,outbound:0,parcerias:0,local:0,email:0,comunidade:0};
+var avisos=[];
+if(a.tipo==='b2c'){S.social+=4;S.conteudo+=2;S.pago+=2;S.outbound-=2;}
+if(a.tipo==='saas'){S.outbound+=4;S.conteudo+=3;S.parcerias+=2;S.email+=1;}
+if(a.tipo==='ecom'){S.pago+=4;S.social+=3;S.email+=3;S.local+=1;}
+if(a.tipo==='local'){S.local+=5;S.parcerias+=3;}
+if(a.tipo==='creator'){S.social+=5;S.comunidade+=3;S.conteudo+=2;}
+if(a.ticket==='alto'){S.outbound+=3;S.parcerias+=2;S.social-=2;if(a.tipo!=='saas')avisos.push('Ticket alto: compras quase nunca nascem de um anúncio. O canal é conversa — prepara materiais de apoio à venda.');}
+if(a.ticket==='medio'){S.outbound+=1;S.conteudo+=1;}
+if(a.ciclo==='longo'){S.email+=3;S.conteudo+=2;avisos.push('Ciclo longo = nutrição. Captura email desde o dia 1 e automatiza follow-ups.');}
+if(a.ciclo==='rapido'){S.social+=1;S.pago+=1;}
+if(a.budget==='zero'){S.pago-=5;avisos.push('Sem orçamento, pago está fora — e tudo bem: outbound e conteúdo são grátis em euros e caros em horas.');}
+if(a.budget==='high'){S.pago+=3;}
+if(a.budget==='mid'){S.pago+=1;}
+if(a.fase==='ideia'){S.comunidade+=3;S.outbound+=2;S.pago-=4;avisos.push('Fase de ideia: nada de anúncios. Meta: 20 conversas com o cliente ideal antes de construir mais.');}
+if(a.fase==='mvp'){S.outbound+=3;S.pago-=3;avisos.push('MVP sem clientes + anúncios = queimar dinheiro com estilo. Vende à mão os primeiros 10.');}
+if(a.fase==='primeiros'){S.outbound+=2;}
+if(a.fase==='escalar'){S.pago+=3;S.email+=2;if(a.budget==='zero')avisos.push('A escalar sem orçamento: dobra a aposta em referências — cada cliente deve trazer outro.');}
+if(a.canal==='conteudo')S.conteudo+=2;if(a.canal==='pago')S.pago+=2;if(a.canal==='outbound')S.outbound+=2;if(a.canal==='parcerias')S.parcerias+=2;
+if(a.canal!=='nada')avisos.push('O teu melhor resultado veio de '+({conteudo:'conteúdo',pago:'pago',outbound:'outbound',parcerias:'parcerias'})[a.canal]+' — bom sinal: recebeu bónus de continuidade.');
+
+if(a.gargalo==='conversao'){avisos.push('Gargalo de conversão: antes de mais tráfego, revê proposta de valor, prova social e preço na página. 10 sessões de análise/guião de vendas valem mais que 10.000 visitas.');S.email+=1;}
+if(a.gargalo==='retencao'){S.email+=4;avisos.push('Retenção fraca: marketing novo não tapa balde furado. Fala com 5 clientes perdidos esta semana.');}
+if(a.gargalo==='preco'){avisos.push('Dúvida de preço: corre 3 tiers durante 2 semanas e mede conversão, não opiniões.');}
+if(a.tempo==='pouco'){avisos.push('Com <5h/semana: escolhe 1 canal (o nº1 abaixo) e ignora os outros durante 60 dias.');}
+var rank=Object.keys(S).map(function(k){return[k,S[k]];}).sort(function(x,y){return y[1]-x[1];});
+var top3=rank.slice(0,3).filter(function(r){return r[1]>-3;});
+var kpiNorte={ideia:'Nº de conversas com clientes por semana (meta: 5+)',
+mvp:'Primeiros 10 pagantes — sem meta de receita, com meta de prova',
+primeiros:'Clientes pagantes/semana + taxa de referência (quantos trazem outro)',
+escalar:'Rácio LTV/CAC > 3 e churn mensal em queda'}[a.fase];
+var sem=[
+['Semana 1 — fundação',null],
+['Semana 2 — primeiro contacto',null],
+['Semana 3 — volume e iteração',null],
+['Semana 4 — decisão com dados',null]];
+var plano=[
+['Define ICP em 1 frase e 1 KPI (o norte acima)','Monta o mínimo do canal nº1 (perfil/página/lista)'],
+['Primeira ação concreta de cada canal do top-3','Regista tudo numa folha: tentativas → respostas → conversões'],
+['Sobe o volume no que respondeu; corta o que ficou a zero','1 ajuste de mensagem/oferta com base nas objeções'],
+['Revisão honesta: escalar, iterar ou mudar de canal','Agenda o ciclo seguinte — tração é cadência, não sorte']];
+ULT={a:a,top3:top3,avisos:avisos,kpi:kpiNorte};
+var html='<div class="card"><h3 class="painel">2 · Canais priorizados</h3>';
+top3.forEach(function(r,i){var c=CANAIS[r[0]];
+html+='<div class="canal"><h4><span><span class="order">'+(i+1)+'º</span>'+c.n+'</span><span class="sc">fit '+r[1]+'</span></h4><p>'+c.w+'</p><div class="acao">⚡ <b>Primeira ação:</b> '+c.a+'</div></div>';});
+html+='</div>';
+if(avisos.length){html+='<div class="card"><h3 class="painel">⚠ Avisos do motor</h3>'+avisos.map(function(v){return '<div class="aviso">⚠️ '+esc(v)+'</div>';}).join('')+'</div>';}
+html+='<div class="card"><h3 class="painel">3 · Plano de 30 dias</h3><ul class="plan">';
+sem.forEach(function(s,i){plano[i].forEach(function(p){html+='<li><b>'+s[0]+':</b> '+p+'</li>';});});
+html+='</ul><div class="kpi" style="margin-top:12px">🎯 <b>KPI norte nesta fase:</b> '+esc(kpiNorte)+'</div></div>';
+$('res').innerHTML=html;
+$('res').scrollIntoView({behavior:'smooth'});}
+
+function exportarMD(){
+if(!ULT){$('res').innerHTML='<div class="vazio">Gera primeiro a tua rota.</div>';return;}
+var L=['# Tração — Rota GTM','Data: '+new Date().toLocaleString('pt-PT'),'','## Canais priorizados'];
+ULT.top3.forEach(function(r,i){var c=CANAIS[r[0]];L.push((i+1)+'. **'+c.n+'** (fit '+r[1]+') — '+c.a);});
+if(ULT.avisos.length){L.push('','## Avisos');ULT.avisos.forEach(function(v){L.push('- '+v);});}
+L.push('','## KPI norte','- '+ULT.kpi);
+var blob=new Blob([L.join('\n')],{type:'text/markdown'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='tracao-gtm.md';a.click();}
+try{var saved=JSON.parse(localStorage.getItem('tracao_ans')||'null');
+if(saved)QS.forEach(function(q){if(saved[q.id])$('q_'+q.id).value=saved[q.id];});}catch(e){}
+</script>
+</body>
+</html>

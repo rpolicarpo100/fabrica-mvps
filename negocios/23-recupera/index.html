@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recupera — transforma pagamentos falhados em receita salva</title>
+<style>
+:root{--bg:#0d1207;--panel:#171f0e;--panel2:#121a0b;--line:#2c441d;--txt:#f2f9ea;--mut:#a9bf95;
+--acc:#a3e635;--ok:#4ade80;--warn:#fde047;--bad:#fb7185;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#2c4a0d,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+input{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:15px inherit;width:100%}
+.gridIn{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:720px){.gridIn{grid-template-columns:1fr 1fr}}
+label.lab{display:block;font-size:.72rem;color:var(--mut);margin:0 0 5px 2px;text-transform:uppercase;letter-spacing:.6px}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#1a2a05;background:linear-gradient(90deg,var(--acc),var(--ok))}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.btnRow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:.78rem;color:var(--mut)}
+.kpi b{display:block;font-size:1.4rem;color:var(--txt)}
+.kpi.big b{color:var(--acc)}
+.dia{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.dia .cab{padding:12px 15px;background:var(--panel2);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.dia .cab b{font-size:.92rem}
+.dia .cab span{font-size:.75rem;color:var(--mut)}
+.dia .corpo{padding:0 15px 14px;display:none}
+.dia.aberto .corpo{display:block}
+.dia pre{white-space:pre-wrap;background:#0d1207;border:1px solid var(--line);border-radius:9px;padding:12px;margin-top:10px;font:13px/1.6 ui-monospace,Consolas,monospace;color:#dfead3}
+.tip{background:linear-gradient(90deg,rgba(163,230,53,.09),transparent);border-left:3px solid var(--acc);border-radius:10px;padding:11px 14px;font-size:.87rem;color:#e3f0d4}
+.vazio{color:var(--mut);text-align:center;padding:16px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>Recupera</em> 💸<small>pagamentos falhados ≠ clientes perdidos · clone do nicho dunning (Churnkey-class, 2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Os teus números de subscrição</h3>
+<div class="gridIn">
+<div><label class="lab">Subscritores</label><input type="number" id="subs" value="120"></div>
+<div><label class="lab">Preço médio (€/mês)</label><input type="number" id="preco" value="15"></div>
+<div><label class="lab">Churn mensal (%)</label><input type="number" id="churn" value="5"></div>
+<div><label class="lab">Falha de pagamento (%)</label><input type="number" id="falha" value="3"></div>
+</div>
+<div class="btnRow"><button onclick="calcular()">💸 Calcular receita recuperável</button></div>
+<div class="note">Benchmark do setor: 2–5% dos pagamentos falham por mês (cartão expirado, saldo, banco); uma sequência de dunning bem feita recupera 40–70%. Usamos 55% como base.</div>
+</div>
+
+<div id="res"><div class="vazio">Calcula para veres quanto estás a perder — e os 4 emails prontos a enviar.</div></div>
+
+<footer>Recupera — MVP reconstruído pela Fábrica 2026 · implementação original · offline</footer>
+</div>
+
+<script>
+var LS='recupera_v1';var VALOR=0;
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fmt(n){return '€'+Math.round(n).toLocaleString('pt-PT');}
+function guardarLocal(){try{localStorage.setItem(LS,JSON.stringify({s:$('subs').value,p:$('preco').value,c:$('churn').value,f:$('falha').value}));}catch(e){}}
+var EMAILS=[
+{dia:'Dia 0 · amigável',ass:'Ups — o teu pagamento não passou 🙂',
+corpo:['Olá {nome},','','Tentámos cobrar a tua subscrição ({valor}/mês) mas o banco recusou — acontece muito com cartões renovados ou dados antigos.','','Resolve-se em 30 segundos: {link}','','A tua conta continua 100% ativa, sem qualquer perda de dados.','','Obrigado,','{equipa}']},
+{dia:'Dia 2 · valor',ass:'{nome}, o que perdes se o pagamento não se resolver',
+corpo:['Olá {nome},','','Ainda não conseguimos processar o pagamento. Enquanto isso, continua tudo a funcionar — mas lembra-te do que fica de fora se a conta pausar:','','• [benefício 1 que o cliente mais usa]','• [benefício 2]','• o teu histórico/dados acumulados','','Atualizar dados ({valor}/mês): {link}','','{equipa}']},
+{dia:'Dia 5 · urgência',ass:'A tua conta pausa em 48 horas',
+corpo:['{nome},','','Último aviso: se o pagamento não for regularizado em 48h, a conta passa a modo leitura.','','Nada se perde — mas as [funcionalidade-chave] deixam de atualizar.','','Regularizar agora (2 min): {link}','','Se precisares de mais tempo ou de falar connosco, responde a este email.','','{equipa}']},
+{dia:'Dia 7 · última chamada',ass:'Última chamada — e uma proposta',
+corpo:['{nome},','','Hoje é o último dia antes da pausa. Não queremos perder-te por um cartão expirado.','','Se o timing é mau, há opções sem cancelar:','• Pausar 1 mês (manténs tudo)','• Plano anual com -10% (resolve o débito de uma vez)','','Escolhe aqui: {link}','','Seja como for: obrigado por teres estado connosco.','','{equipa}']}];
+function calcular(){
+guardarLocal();
+var subs=parseFloat($('subs').value)||0,preco=parseFloat($('preco').value)||0;
+var churn=parseFloat($('churn').value)||0,falha=parseFloat($('falha').value)||0;
+var mrr=subs*preco;
+var falhMes=subs*(falha/100)*preco;
+var recMes=falhMes*0.55;
+var recAno=recMes*12;
+var churnAno=subs*(churn/100)*preco*12;
+VALOR=preco;
+var html='<div class="kpis">'+
+'<div class="kpi"><b>'+fmt(mrr)+'</b>MRR</div>'+
+'<div class="kpi"><b>'+fmt(falhMes)+'</b>falhado por mês<small style="color:var(--mut)">'+falha+'% de '+subs+' clientes</small></div>'+
+'<div class="kpi"><b style="color:var(--ok)">'+fmt(recMes)+'</b>recuperável /mês<small style="color:var(--mut)">benchmark 55%</small></div>'+
+'<div class="kpi big"><b>'+fmt(recAno)+'</b>ARR salvo por ano 🎯</div>'+
+'</div>';
+html+='<div class="card"><h3 class="painel">2 · A sequência (copia para o teu sistema de email)</h3>';
+EMAILS.forEach(function(e,i){
+html+='<div class="dia"><div class="cab" onclick="this.parentNode.classList.toggle(\'aberto\')"><b>'+e.dia+'</b><span>'+esc(e.ass.slice(0,42))+'…</span></div>'+
+'<div class="corpo"><div class="btnRow" style="margin:0 0 4px"><button class="ghost" style="padding:6px 13px;font-size:.76rem" onclick="copiar('+i+')">📋 copiar email</button></div><pre id="em'+i+'">'+esc('Assunto: '+e.ass+'\n\n'+e.corpo.join('\n'))+'</pre></div></div>';});
+html+='<div class="tip" style="margin-top:12px">⚙ <b>Smart retries também ajudam:</b> para além dos emails, faz retry da cobrança nos dias 3 e 5 (muitos bancos libertam saldo no início do mês) — e pede novo cartão só no dia 5+. Os emails acima complementam os retries, não os substituem.</div></div>';
+$('res').innerHTML=html;}
+function copiar(i){var t=document.getElementById('em'+i);if(t&&navigator.clipboard)navigator.clipboard.writeText(t.innerText);}
+try{var d=JSON.parse(localStorage.getItem(LS)||'null');if(d){$('subs').value=d.s;$('preco').value=d.p;$('churn').value=d.c;$('falha').value=d.f;}}catch(e){}
+</script>
+</body>
+</html>

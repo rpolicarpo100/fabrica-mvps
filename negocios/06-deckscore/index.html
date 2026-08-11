@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeckScore — o teu pitch avaliado como se fosses investidor</title>
+<style>
+:root{--bg:#0d0a08;--panel:#1a1410;--panel2:#140f0c;--line:#332418;--txt:#f5efe8;--mut:#b3a48f;
+--acc:#f6a93b;--ok:#5fd68b;--warn:#f6d13b;--bad:#fb6f6f;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#3a2410,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--warn));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+textarea{width:100%;min-height:180px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);
+border-radius:10px;padding:12px;font:14px/1.6 inherit}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#3a2200;background:linear-gradient(90deg,var(--acc),var(--warn))}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.rowBtns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.scoreBig{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.numGrande{font-size:3.4rem;font-weight:900;line-height:1}
+.veredito{font-size:1rem;max-width:520px}
+.veredito b{color:var(--acc)}
+.barras{display:grid;gap:9px;margin-top:6px}
+.barraL{display:grid;grid-template-columns:150px 1fr 44px;gap:10px;align-items:center;font-size:.82rem}
+.barraL .bb{height:10px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.barraL .bb i{display:block;height:100%;border-radius:99px}
+.barraL .n{text-align:right;color:var(--mut);font-variant-numeric:tabular-nums}
+.sug{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--acc);
+border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.88rem}
+.bz{display:inline-block;background:rgba(251,111,111,.12);color:var(--bad);border:1px solid rgba(251,111,111,.3);border-radius:999px;padding:3px 12px;margin:3px;font-size:.78rem}
+.metricas{display:inline-block;background:rgba(95,214,139,.1);color:var(--ok);border:1px solid rgba(95,214,139,.3);border-radius:999px;padding:3px 12px;margin:3px;font-size:.78rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.vazio{color:var(--mut);text-align:center;padding:20px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+.note{font-size:.76rem;color:var(--mut);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>DeckScore</em> 🏆<small>o teu pitch avaliado por framework de investidor · clone do conceito Fundraisly/VC Boom (PH jun-2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Cola o teu pitch (texto do deck, resumo ou narrativa)</h3>
+<textarea id="pitch" placeholder="Cola aqui o texto dos teus slides ou o resumo do negócio…"></textarea>
+<div class="rowBtns">
+<button onclick="analisar()">🏆 Avaliar pitch</button>
+<button class="ghost" onclick="exemplo()">Carregar exemplo</button>
+<button class="ghost" onclick="exportarMD()">⬇ Exportar relatório (.md)</button>
+</div>
+<div class="note">Dica: inclui números (mercado, tração, receita, o pedido) — investidores pontuam evidência, não adjetivos.</div>
+</div>
+
+<div id="resultado"><div class="vazio">O veredito aparece aqui: score global, 10 secções do framework, métricas detetadas e sugestões.</div></div>
+
+<footer>DeckScore — MVP reconstruído pela Fábrica 2026 · implementação original · nenhum texto sai do teu browser</footer>
+</div>
+
+<script>
+var ULTIMO=null;
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+var SECCOES=[
+{id:'problema',nome:'Problema / Dor',kw:['problema','dor','dores','custa','perdem','perde','frustra','ineficiente','demoram','difícil','dificil','caro','caros','problem','pain']},
+{id:'solucao',nome:'Solução / Produto',kw:['solução','solucao','resolvemos','resolv','a nossa plataforma','o nosso produto','permite','automatiza','app','ferramenta','solution']},
+{id:'mercado',nome:'Mercado (TAM/SAM)',kw:['mercado','tam','sam','som','bilião','bilhão','milhões','milhoes','segmento','indústria','industria','addressable']},
+{id:'modelo',nome:'Modelo de negócio',kw:['subscrição','subscricao','€/mês','mrr','arr','preço','preco','comissão','comissao','freemium','licença','margem','receita recorrente','preços','pricing','revenue']},
+{id:'tracao',nome:'Tração / Validação',kw:['utilizadores','usuários','usuarios','clientes','crescemos','crescimento','piloto','parceria','receita de','vendemos','% ao mês','waitlist','traction','users','customers']},
+{id:'concorrencia',nome:'Concorrência',kw:['concorrente','concorrência','concorrencia','alternativa','ao contrário de','diferente de','vs ','competidor','versus']},
+{id:'vantagem',nome:'Vantagem competitiva',kw:['único','unico','patente','proprietário','proprietario','exclusivo','moat','vantagem','barreira','dados próprios','algoritmo','proprietary']},
+{id:'equipa',nome:'Equipa',kw:['fundador','fundadora','cofundador','co-founder','equipa','team','engenheiro','engenheira','ex-','anos de experiência','doutorado','phd','ceo','cto']},
+{id:'financas',nome:'Finanças / Projeções',kw:['projeção','projecao','projeções','projecoes','runway','breakeven','burn','forecast','ebitda','lucro','prejuízo','custo de aquisição','cac','ltv']},
+{id:'pedido',nome:'Pedido (o Ask)',kw:['procuramos','ronda','seed','pré-seed','pre-seed','série a','investimento de','levantar','angariação','angariamos','raising','ask','€ para']}];
+
+var BUZZ=['revolucionário','revolucionaria','disruptivo','disruptiva','sinergia','game-changer','de ponta','únicos no mundo','único no mundo','garantido','exponencial','melhor do mundo','sem concorrência','todos vão usar','está na moda','unicórnio garantido'];
+
+function analisar(){
+var txt=$('pitch').value;
+if(txt.trim().length<50){$('resultado').innerHTML='<div class="vazio">Cola pelo menos algumas frases do pitch (mín. ~50 caracteres).</div>';return;}
+var low=' '+txt.toLowerCase()+' ';
+var porSec=SECCOES.map(function(s){
+var hits=s.kw.filter(function(k){return low.indexOf(k)>=0;});
+var score=hits.length===0?0:(hits.length===1?55:(hits.length===2?80:100));
+return{nome:s.nome,score:score,hits:hits};
+});
+var numeros=(txt.match(/€\s?[\d.,]+[kKmM]?|\d[\d.,]*\s?%|\d+x|\d[\d.,]*\s?(milhões|milhoes|mil|MRR|ARR|users|utilizadores|usuários|usuarios|clientes)/gi)||[]);
+var numsUnicos=[];numeros.forEach(function(n){if(numsUnicos.indexOf(n)<0)numsUnicos.push(n);});
+numsUnicos=numsUnicos.slice(0,12);
+var qs=(txt.match(/\?|\!/g)||[]).length;
+var buzz=BUZZ.filter(function(b){return low.indexOf(b)>=0;});
+var pals=txt.split(/\s+/).filter(Boolean).length;
+var mediaSec=porSec.reduce(function(a,s){return a+s.score;},0)/porSec.length;
+var bonusNum=Math.min(10,numsUnicos.length*1.5);
+var penalBuz=Math.min(12,buzz.length*3);
+var penalTam=pals<220?Math.round((220-pals)/22):0;
+var total=Math.max(2,Math.min(100,Math.round(mediaSec*0.9+bonusNum-penalBuz-penalTam)));
+var verd,vcor;
+if(total>=80){verd='<b>Investor-ready.</b> O pitch cobre o essencial do framework com evidência. Polindo número a número e com datas concretas para o pedido, está pronto para cold outreach a business angels e micro-VCs.';vcor='var(--ok)';}
+else if(total>=60){verd='<b>Sólido, com lacunas.</b> A narrativa existe mas faltam blocos que investidores usam para filtrar. Preenche as secções em falta abaixo e reforça as métricas.';vcor='var(--warn)';}
+else if(total>=40){verd='<b>Ainda cedo.</b> Lê-se mais como descrição de produto do que como tese de investimento. Começa pelo Problema (quem sofre, quanto custa) e pela Tração (provas reais).';vcor='var(--acc)';}
+else{verd='<b>Regressa à base.</b> Falta a maior parte do framework. Escreve primeiro 10 frases — uma por secção — e volta a testar.';vcor='var(--bad)';}
+ULTIMO={total:total,porSec:porSec,nums:numsUnicos,buzz:buzz,pals:pals,verd:verd};
+renderTotal(total,vcor,verd,porSec,numsUnicos,buzz,pals);
+try{localStorage.setItem('deckscore_ultimo',txt);}catch(e){}}
+
+function corScore(s){return s>=80?'var(--ok)':(s>=45?'var(--warn)':'var(--bad)');}
+function renderTotal(total,vcor,verd,porSec,nums,buzz,pals){
+var html='<div class="card"><h3 class="painel">2 · Veredito</h3><div class="scoreBig">'+
+'<div class="numGrande" style="color:'+vcor+'">'+total+'<span style="font-size:1.2rem;color:var(--mut)">/100</span></div>'+
+'<div class="veredito">'+verd+'<div class="note">'+pals+' palavras analisadas · 10 secções · heurística local (Palavras-chave PT/EN) — sem envio a servidores</div></div></div></div>';
+html+='<div class="grid2"><div class="card"><h3 class="painel">Framework do investidor</h3><div class="barras">';
+porSec.forEach(function(s){
+html+='<div class="barraL"><span>'+s.nome+'</span><span class="bb"><i style="width:'+s.score+'%;background:'+corScore(s.score)+'"></i></span><span class="n">'+s.score+'</span></div>';});
+html+='</div></div><div class="card"><h3 class="painel">Evidência & ruído</h3>';
+html+= nums.length? '<div style="margin-bottom:10px"><b style="color:var(--ok);font-size:.82rem">Métricas detetadas ('+nums.length+')</b><div style="margin-top:6px">'+nums.map(function(n){return '<span class="metricas">'+esc(n)+'</span>';}).join('')+'</div></div>'
+: '<div class="sug">⚠️ <div><b>Zero métricas concretas.</b><small>Junta números: mercado em €, nº de clientes, crescimento %, o pedido exato.</small></div></div>';
+html+= buzz.length? '<div><b style="color:var(--bad);font-size:.82rem">BS meter 🎈 ('+buzz.length+' buzzword'+(buzz.length>1?'s':'')+')</b><div style="margin-top:6px">'+buzz.map(function(b){return '<span class="bz">'+esc(b)+'</span>';}).join('')+'</div><div class="note">Cada buzzword troca evidência por adjectivo. Substitui por um número.</div></div>'
+: '<div style="color:var(--ok);font-size:.88rem;margin-top:6px">✅ BS meter limpo — zero buzzwords detetadas.</div>';
+html+='</div></div>';
+var faltam=porSec.filter(function(s){return s.score===0;});
+var fracos=porSec.filter(function(s){return s.score===55;});
+if(faltam.length||fracos.length){
+html+='<div class="card"><h3 class="painel">3 · O que falta (por prioridade)</h3>';
+faltam.forEach(function(s){html+='<div class="sug">🎯 <div><b>'+s.nome+' — em falta.</b><small>'+dica(s.nome)+'</small></div></div>';});
+fracos.forEach(function(s){html+='<div class="sug">🔧 <div><b>'+s.nome+' — fraca.</b><small>'+dica(s.nome)+'</small></div></div>';});
+html+='</div>';}
+$('resultado').innerHTML=html;}
+
+function dica(nome){
+var D={'Problema / Dor':'Responde: quem sofre, com que frequência e quanto lhes custa por mês.',
+'Solução / Produto':'Descreve em 1 frase o que o produto faz + mostra o antes/depois.',
+'Mercado (TAM/SAM)':'Quantifica: TAM em €, SAM acessível em 3 anos, e a fonte.',
+'Modelo de negócio':'Diz como cobras: preço, frequência, margem bruta aproximada.',
+'Tração / Validação':'Clientes, MRR, crescimento %, pilotos — qualquer prova real conta mais que adjetivos.',
+'Concorrência':'Nomeia 2-3 alternativas reais e explica em 1 linha a diferença.',
+'Vantagem competitiva':'O que tens que não se copia em 6 meses? Dados, rede, licenças, know-how.',
+'Equipa':'Quem executa? Relevância direta para este problema > CV genérico.',
+'Finanças / Projeções':'Uso dos fundos, runway objetivo, e o marco a que a ronda destrava.',
+'Pedido (o Ask)':'Quanto, em que instrumento, e para quê exatamente. O ask ausente = reunião sem próximo passo.'};
+return D[nome]||'Reforça esta secção com uma frase concreta e um número.';}
+
+function exportarMD(){
+if(!ULTIMO){$('resultado').innerHTML='<div class="vazio">Analisa primeiro um pitch.</div>';return;}
+var L=['# DeckScore — Relatório de pitch','Data: '+new Date().toLocaleString('pt-PT'),'','## Score global: '+ULTIMO.total+'/100','',
+'## Framework (10 secções)','| Secção | Score |','|---|---|'];
+ULTIMO.porSec.forEach(function(s){L.push('| '+s.nome+' | '+s.score+' |');});
+L.push('','## Métricas detetadas');
+ULTIMO.nums.forEach(function(n){L.push('- '+n);});
+if(ULTIMO.buzz.length){L.push('','## Buzzwords a eliminar');ULTIMO.buzz.forEach(function(b){L.push('- '+b);});}
+var tmp=document.createElement('div');tmp.innerHTML=ULTIMO.verd;
+L.push('','## Veredito','',tmp.textContent);
+var blob=new Blob([L.join('\n')],{type:'text/markdown'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='deckscore-relatorio.md';a.click();}
+
+function exemplo(){$('pitch').value=['A PetNova resolve um problema que custa tempo e dinheiro a 2,3 milhões de donos de cães em Portugal: ração de qualidade inconsistente e cara.','',
+'A nossa solução é uma plataforma de subscrição (29€/mês) de ração natural produzida localmente, com entrega em 48h. O mercado pet em Portugal vale 1,4 mil milhões €/ano e o segmento natural cresce 18% ao ano.','',
+'Tração: 412 subscritores ativos, MRR de 9.800€, crescimento de 22% ao mês nos últimos 5 meses, churn de 4%. Parceria-piloto com 14 clínicas veterinárias.','',
+'Concorrência: as grandes marcas internacionais são genéricas; as pequenas lojas não têm subscrição nem dados. A nossa vantagem: base de dados nutricional própria e relação direta B2C.','',
+'Equipa: Marta (CEO, ex-Nestlé Purina, 8 anos), Rui (CTO, engenheiro de software), +1 veterinária nutricionista.','',
+'Finanças: breakeven aos 1.500 subscritores (previsão Q3 2027). CAC de 21€, LTV de 310€.','',
+'O pedido: ronda seed de 350.000€ para marketing (45%), produção (35%) e contratações (20%), com runway de 18 meses.'].join('\n');}
+try{var u=localStorage.getItem('deckscore_ultimo');if(u)$('pitch').value=u;}catch(e){}
+</script>
+</body>
+</html>

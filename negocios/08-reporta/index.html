@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reporta — do CSV ao relatório em 5 segundos</title>
+<style>
+:root{--bg:#0a0714;--panel:#151024;--panel2:#110c1d;--line:#2b2144;--txt:#f0ecf8;--mut:#a094c0;
+--acc:#c084fc;--ok:#6ee7b7;--warn:#fcd34d;--bad:#fca5a5;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#2d1a4a,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),#818cf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+textarea{width:100%;min-height:150px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);
+border-radius:10px;padding:12px;font:13px/1.5 ui-monospace,Consolas,monospace}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#2a0f45;background:linear-gradient(90deg,var(--acc),#a78bfa)}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.rowBtns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:.78rem;color:var(--mut)}
+.kpi b{display:block;font-size:1.5rem;color:var(--txt)}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th{text-align:left;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.6px;padding:8px;border-bottom:1px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.insight{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--acc);
+border-radius:10px;padding:11px 13px;margin-bottom:9px;font-size:.9rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:780px){.grid2{grid-template-columns:1fr}}
+svg.chart{width:100%;height:auto;display:block}
+.vazio{color:var(--mut);text-align:center;padding:20px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+.badgeTipo{font-size:.68rem;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+.badgeTipo.n{color:var(--ok)} .badgeTipo.d{color:var(--warn)} .badgeTipo.c{color:var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>Reporta</em> 📈<small>do CSV ao relatório pronto a partilhar · clone do conceito Migma AI (PH jul-2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Cola o teu CSV</h3>
+<textarea id="csv" placeholder="mes,categoria,vendas,unidades"></textarea>
+<div class="rowBtns">
+<button onclick="analisar()">📈 Gerar relatório</button>
+<button class="ghost" onclick="exemplo()">Carregar exemplo</button>
+<button class="ghost" onclick="exportarMD()">⬇ MD</button>
+<button class="ghost" onclick="exportarHTML()">⬇ Dashboard HTML</button>
+</div>
+</div>
+
+<div id="rel"><div class="vazio">O relatório aparece aqui: KPIs, estatísticas, gráficos e insights automáticos — tudo processado localmente.</div></div>
+
+<footer>Reporta — MVP reconstruído pela Fábrica 2026 · implementação original · os teus dados nunca saem do browser</footer>
+</div>
+
+<script>
+var ULT=null;
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fmt(n,d){if(d===undefined)d=0;if(Math.abs(n)>=1000&&!Number.isInteger(n))d=1;
+return n.toLocaleString('pt-PT',{minimumFractionDigits:0,maximumFractionDigits:Math.max(d,1)});}
+function parseNum(v){if(v==null)return null;var s=String(v).trim().replace(/[€%\s]/g,'');
+if(/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(s))s=s.replace(/\./g,'').replace(',','.');
+else s=s.replace(',','.');
+if(s===''||isNaN(Number(s)))return null;return Number(s);}
+function eData(v){v=String(v||'').trim();return /^\d{4}-\d{2}-\d{2}$/.test(v)||/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(v);}
+function chaveMes(v){v=String(v).trim();
+if(/^\d{4}-\d{2}-\d{2}$/.test(v))return v.slice(0,7);
+var m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);if(m)return m[3]+'-'+('0'+m[2]).slice(-2);
+return null;}
+
+function parseCSV(txt){
+var linhas=txt.trim().split(/\r?\n/).filter(function(l){return l.trim();});
+if(linhas.length<2)return null;
+var sep=';';
+if(linhas[0].split(';').length>=linhas[0].split(',').length&&linhas[0].split(';').length>=linhas[0].split('\t').length)sep=';';
+else if(linhas[0].split('\t').length>linhas[0].split(',').length)sep='\t';
+else sep=',';
+function corta(l){var out=[],cur='',ap=false;
+for(var i=0;i<l.length;i++){var c=l[i];
+if(c==='"'){ap=!ap;continue;}if(c===sep&&!ap){out.push(cur.trim());cur='';continue;}cur+=c;}
+out.push(cur.trim());return out;}
+var cab=corta(linhas[0]);
+var linhas2=linhas.slice(1).map(corta);
+return{cab:cab,linhas:linhas2};}
+
+function classificar(d){
+var cols=d.cab.map(function(nome,ci){
+var vals=d.linhas.map(function(l){return l[ci];});
+var preench=vals.filter(function(v){return v!==undefined&&String(v).trim()!=='';});
+var vazios=vals.length-preench.length;
+var nNum=preench.filter(function(v){return parseNum(v)!==null;}).length;
+var nDat=preench.filter(eData).length;
+var tipo='categoria';
+if(preench.length&&nDat/preench.length>=0.7)tipo='data';
+else if(preench.length&&nNum/preench.length>=0.7)tipo='numero';
+var unicos={};preench.forEach(function(v){unicos[v]=1;});
+return{nome:nome||('col'+(ci+1)),tipo:tipo,vals:vals,preench:preench.length,vazios:vazios,nUnicos:Object.keys(unicos).length};});
+return cols;}
+
+function stats(col){
+var nums=col.vals.map(parseNum).filter(function(v){return v!==null;}).sort(function(a,b){return a-b;});
+if(!nums.length)return null;
+var soma=nums.reduce(function(a,b){return a+b;},0);
+var n=nums.length,media=soma/n;
+var med=n%2?nums[(n-1)/2]:(nums[n/2-1]+nums[n/2])/2;
+var var_=nums.reduce(function(a,b){return a+(b-media)*(b-media);},0)/n;
+return{n:n,soma:soma,media:media,mediana:med,min:nums[0],max:nums[n-1],desvio:Math.sqrt(var_),nums:nums};}
+
+function barChart(titulo,pairs,unid){
+var max=Math.max.apply(null,pairs.map(function(p){return p[1];}).concat([1]));
+var W=420,H=pairs.length*34+26,bh=22;
+var s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
+s+='<text x="0" y="14" fill="#a094c0" font-size="11" font-family="system-ui">'+esc(titulo)+'</text>';
+pairs.forEach(function(p,i){
+var y=22+i*34,w=Math.max(2,(W-160)*p[1]/max);
+s+='<text x="0" y="'+(y+15)+'" fill="#f0ecf8" font-size="11" font-family="system-ui">'+esc(String(p[0]).slice(0,18))+'</text>';
+s+='<rect x="150" y="'+y+'" width="'+w+'" height="'+bh+'" rx="5" fill="#c084fc" opacity="'+(0.95-i*0.1)+'"></rect>';
+s+='<text x="'+(155+w)+'" y="'+(y+15)+'" fill="#a094c0" font-size="11" font-family="system-ui">'+fmt(p[1])+(unid||'')+'</text>';});
+return s+'</svg>';}
+
+function lineChart(titulo,pairs){
+if(pairs.length<2)return '';
+var W=420,H=190,pad=30;
+var vals=pairs.map(function(p){return p[1];});
+var max=Math.max.apply(null,vals.concat([1])),min=Math.min.apply(null,vals.concat([0]));
+var span=max-min||1;
+function X(i){return pad+i*(W-2*pad)/(pairs.length-1);}
+function Y(v){return H-pad-((v-min)/span)*(H-2*pad);}
+var pts=pairs.map(function(p,i){return X(i).toFixed(1)+','+Y(p[1]).toFixed(1);}).join(' ');
+var area=pad+','+(H-pad)+' '+pts+' '+(W-pad)+','+(H-pad);
+var s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
+s+='<text x="4" y="14" fill="#a094c0" font-size="11" font-family="system-ui">'+esc(titulo)+'</text>';
+s+='<polygon points="'+area+'" fill="#c084fc" opacity="0.15"></polygon>';
+s+='<polyline points="'+pts+'" fill="none" stroke="#c084fc" stroke-width="2.5" stroke-linejoin="round"></polyline>';
+pairs.forEach(function(p,i){
+s+='<circle cx="'+X(i)+'" cy="'+Y(p[1])+'" r="3.4" fill="#a78bfa"></circle>';
+if(pairs.length<=14||i%Math.ceil(pairs.length/14)===0)
+s+='<text x="'+X(i)+'" y="'+(H-8)+'" fill="#a094c0" font-size="9" text-anchor="middle" font-family="system-ui">'+esc(p[0].slice(2))+'</text>';});
+return s+'</svg>';}
+
+function analisar(){
+var d=parseCSV($('csv').value);
+if(!d){$('rel').innerHTML='<div class="vazio">Não consegui ler o CSV. Preciso de cabeçalho + pelo menos 1 linha. Separadores aceites: vírgula, ponto-e-vírgula, tab.</div>';return;}
+var cols=classificar(d);
+var celTot=d.linhas.length*d.cab.length;
+var celVaz=cols.reduce(function(a,c){return a+c.vazios;},0);
+var pctVaz=celTot?celVaz/celTot*100:0;
+var nums=cols.filter(function(c){return c.tipo==='numero';});
+var datas=cols.filter(function(c){return c.tipo==='data';});
+var cats=cols.filter(function(c){return c.tipo==='categoria'&&c.nUnicos<=Math.max(30,d.linhas.length*0.4);});
+var R={kpis:{linhas:d.linhas.length,colunas:d.cab.length,vazias:Math.round(pctVaz*10)/10},
+tipos:cols.map(function(c){return[nome=c.nome,tipo=c.tipo];}),insights:[],tabela:[],chartCat:'',chartLinha:'',série:null};
+
+/* tabela de colunas */
+R.tabela=cols.map(function(c){
+var extra='';
+if(c.tipo==='numero'){var st=stats(c);extra=fmt(st.soma)+' total · média '+fmt(st.media,1)+' · min '+fmt(st.min)+' · máx '+fmt(st.max);}
+else if(c.tipo==='data')extra=c.preench+' datas';
+else extra=c.nUnicos+' valores distintos';
+return{nome:c.nome,tipo:c.tipo,extra:extra,vazios:c.vazios};});
+
+/* insights */
+var mesesPT=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+function nomeMes(ym){var p=ym.split('-');return mesesPT[parseInt(p[1],10)-1]+'/'+p[0];}
+if(celTot)R.insights.push('📦 Dataset com '+fmt(d.linhas.length)+' linhas × '+d.cab.length+' colunas; '+(pctVaz>3?'⚠️ ':'')+fmt(pctVaz,1)+'% de células vazias'+(pctVaz>3?' — considera limpar antes de decidir':''));
+if(nums.length){
+var st0=stats(nums[0]);
+R.insights.push('🧮 <b>'+esc(nums[0].nome)+'</b>: total '+fmt(st0.soma)+' · média '+fmt(st0.media,1)+' · mediana '+fmt(st0.mediana,1)+' · desvio '+fmt(st0.desvio,1));
+var q1=st0.nums[Math.floor(st0.n*0.25)],q3=st0.nums[Math.floor(st0.n*0.75)],iqr=q3-q1;
+var outs=st0.nums.filter(function(v){return v<q1-1.5*iqr||v>q3+1.5*iqr;}).length;
+if(outs)R.insights.push(('🔍 '+outs+' valor(es) atípico(s) detetado(s) em <b>'+esc(nums[0].nome)+'</b> (regra IQR) — merecem revisão manual'));}
+if(cats.length&&nums.length){
+var acc={};cats[0].vals.forEach(function(v,i){var nn=parseNum(nums[0].vals[i])||0;acc[v]=(acc[v]||0)+nn;});
+var top=Object.keys(acc).map(function(k){return[k,acc[k]];}).sort(function(a,b){return b[1]-a[1];}).slice(0,6);
+var somaT=top.reduce(function(a,p){return a+p[1];},0);
+if(top.length&&somaT)R.insights.push('🏆 <b>'+esc(top[0][0])+'</b> lidera em '+esc(nums[0].nome)+': '+fmt(top[0][1])+' ('+Math.round(top[0][1]/somaT*100)+'% do total entre as '+top.length+' principais categorias de '+esc(cats[0].nome)+')');
+R.chartCat=barChart(nums[0].nome+' por '+cats[0].nome+' (top '+top.length+')',top);}
+else if(cats.length){
+var acc2={};cats[0].vals.forEach(function(v){if(String(v).trim())acc2[v]=(acc2[v]||0)+1;});
+var top2=Object.keys(acc2).map(function(k){return[k,acc2[k]];}).sort(function(a,b){return b[1]-a[1];}).slice(0,6);
+if(top2.length)R.insights.push('🏆 Valor mais frequente de <b>'+esc(cats[0].nome)+'</b>: <b>'+esc(top2[0][0])+'</b> ('+top2[0][1]+'×)');
+R.chartCat=barChart('Contagem por '+cats[0].nome,top2);}
+if(datas.length&&nums.length){
+var porMes={};
+for(var i=0;i<datas[0].vals.length;i++){var k=chaveMes(datas[0].vals[i]);if(!k)continue;
+porMes[k]=(porMes[k]||0)+(parseNum(nums[0].vals[i])||0);}
+var chaves=Object.keys(porMes).sort();
+if(chaves.length>=2){
+var série=chaves.map(function(k){return[k,porMes[k]];});
+R.série=série;
+R.chartLinha=lineChart(nums[0].nome+' por mês',série);
+var pri=série[0],ult=série[série.length-1];
+var melhor=série.slice().sort(function(a,b){return b[1]-a[1];})[0];
+R.insights.push('🥇 Melhor período: <b>'+nomeMes(melhor[0])+'</b> com '+fmt(melhor[1])+' em '+esc(nums[0].nome));
+if(pri[1]){var dif=(ult[1]-pri[1])/pri[1]*100;
+R.insights.push((dif>=0?'📈':'📉')+' Evolução: '+(dif>=0?'+':'')+Math.round(dif)+'% entre '+nomeMes(pri[0])+' e '+nomeMes(ult[0])+'.');}}
+else R.insights.push('🗓 Coluna de datas detetada mas sem meses suficientes para tendência.');}
+if(!nums.length)R.insights.push('ℹ️ Sem colunas numéricas — o relatório fica-se pela estrutura e contagens.');
+
+ULT={R:R,d:d};
+renderRel();
+try{localStorage.setItem('reporta_ultimo',$('csv').value);}catch(e){}}
+
+function renderRel(){
+var R=ULT.R;
+var html='<div class="kpis">'+
+'<div class="kpi"><b>'+R.kpis.linhas+'</b>linhas</div>'+
+'<div class="kpi"><b>'+R.kpis.colunas+'</b>colunas</div>'+
+'<div class="kpi"><b>'+R.kpis.vazias+'%</b>células vazias</div>'+
+'<div class="kpi"><b>'+R.tabela.filter(function(t){return t.tipo==="numero";}).length+'</b>métricas detetadas</div></div>';
+if(R.chartLinha||R.chartCat){
+html+='<div class="grid2">';
+if(R.chartLinha)html+='<div class="card">'+R.chartLinha+'</div>';
+if(R.chartCat)html+='<div class="card">'+R.chartCat+'</div>';
+html+='</div>';}
+html+='<div class="card"><h3 class="painel">💡 Insights automáticos</h3>'+R.insights.map(function(i){return '<div class="insight">'+i+'</div>';}).join('')+'</div>';
+html+='<div class="card"><h3 class="painel">Estrutura do dataset</h3><table><tr><th>Coluna</th><th>Tipo</th><th>Resumo</th><th>Vazios</th></tr>'+
+R.tabela.map(function(t){return '<tr><td><b>'+esc(t.nome)+'</b></td><td>'+esc(t.tipo)+'</td><td>'+esc(t.extra)+'</td><td>'+t.vazios+'</td></tr>';}).join('')+'</table></div>';
+$('rel').innerHTML=html;}
+
+function corpoMD(){
+var R=ULT.R;
+var L=['# Reporta — Relatório automático','Data: '+new Date().toLocaleString('pt-PT'),'',
+'## KPIs','- Linhas: '+R.kpis.linhas,'- Colunas: '+R.kpis.colunas,'- Células vazias: '+R.kpis.vazias+'%','','## Insights'];
+var tmp=document.createElement('div');
+R.insights.forEach(function(i){tmp.innerHTML=i;L.push('- '+tmp.textContent.replace(/\s+/g,' ').trim());});
+L.push('','## Estrutura','| Coluna | Tipo | Resumo | Vazios |','|---|---|---|---|');
+R.tabela.forEach(function(t){L.push('| '+t.nome+' | '+t.tipo+' | '+t.extra+' | '+t.vazios+' |');});
+return L.join('\n');}
+function exportarMD(){
+if(!ULT){$('rel').innerHTML='<div class="vazio">Gera primeiro um relatório.</div>';return;}
+var blob=new Blob([corpoMD()],{type:'text/markdown'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='reporta.md';a.click();}
+function exportarHTML(){
+if(!ULT){$('rel').innerHTML='<div class="vazio">Gera primeiro um relatório.</div>';return;}
+var html='<!DOCTYPE html><html lang="pt"><head><meta charset="utf-8"><title>Reporta — dashboard</title>'+
+'<style>body{background:#0a0714;color:#f0ecf8;font:15px/1.6 system-ui;padding:24px;max-width:900px;margin:auto}'+
+'.card{background:#151024;border:1px solid #2b2144;border-radius:14px;padding:18px;margin-bottom:14px}'+
+'h3{font-size:.8rem;text-transform:uppercase;color:#a094c0;margin-bottom:10px}'+
+'.insight{background:#110c1d;border-left:3px solid #c084fc;border-radius:10px;padding:10px 12px;margin-bottom:8px}'+
+'svg.chart{width:100%;height:auto}h1{font-size:1.4rem}</style></head><body>'+
+'<h1>📈 Dashboard Reporta</h1><div class="card"><h3>Insights</h3>'+
+ULT.R.insights.map(function(i){return '<div class="insight">'+i+'</div>';}).join('')+'</div>'+
+(ULT.R.chartLinha?'<div class="card">'+ULT.R.chartLinha+'</div>':'')+
+(ULT.R.chartCat?'<div class="card">'+ULT.R.chartCat+'</div>':'')+
+'</body></html>';
+var blob=new Blob([html],{type:'text/html'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='reporta-dashboard.html';a.click();}
+
+function exemplo(){$('csv').value=['mes,categoria,vendas,unidades',
+'2026-01,Cafés,4200,861','2026-01,Brunch,3100,402','2026-01,Take-away,1450,587',
+'2026-02,Cafés,4380,905','2026-02,Brunch,3690,455','2026-02,Take-away,1520,601',
+'2026-03,Cafés,4510,918','2026-03,Brunch,3840,471','2026-03,Take-away,1680,640',
+'2026-04,Cafés,4470,930','2026-04,Brunch,4120,503','2026-04,Take-away,1710,655',
+'2026-05,Cafés,4720,954','2026-05,Brunch,4610,548','2026-05,Take-away,1890,702',
+'2026-06,Cafés,4680,941','2026-06,Brunch,4890,561','2026-06,Take-away,2040,733',
+'2026-07,Cafés,4810,968','2026-07,Brunch,5340,598','2026-07,Take-away,2290,758'].join('\n');}
+try{var u=localStorage.getItem('reporta_ultimo');if(u)$('csv').value=u;}catch(e){}
+</script>
+</body>
+</html>

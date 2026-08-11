@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClipRadar — um vídeo longo, uma semana de Shorts</title>
+<style>
+:root{--bg:#100608;--panel:#1d0c11;--panel2:#170a0e;--line:#3a1521;--txt:#fceef2;--mut:#cd9eae;
+--acc:#fb7185;--ok:#4ade80;--warn:#fbbf24;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#4a0f22,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--warn));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+input,textarea{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:15px inherit;width:100%}
+textarea{min-height:130px;font-size:14px}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#3d0a12;background:linear-gradient(90deg,var(--acc),var(--warn))}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.btnRow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.clip{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:15px;margin-bottom:12px}
+.clip h4{font-size:.95rem;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.clip h4 .dur{background:var(--acc);color:#3d0a12;border-radius:999px;padding:2px 12px;font-size:.7rem;font-weight:800;white-space:nowrap}
+.kv{margin-top:9px;font-size:.87rem}
+.kv b{display:inline-block;min-width:86px;font-size:.7rem;text-transform:uppercase;letter-spacing:.6px;color:var(--warn)}
+.tags{color:var(--acc);font-size:.82rem}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>ClipRadar</em> 🎬<small>um episódio longo → uma semana de Shorts/Reels · clone do conceito AutoShorts/PassiveShorts (2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · O teu conteúdo longo</h3>
+<input id="titulo" placeholder="Tema/episódio — Ex.: Podcast #12: como a Marta lançou a sua loja online">
+<textarea id="momentos" style="margin-top:10px" placeholder="Momentos-chave, 1 por linha — frases fortes, histórias, números, conselhos…"></textarea>
+<div class="btnRow">
+<button onclick="gerar()">🎬 Gerar plano de clips</button>
+<button class="ghost" onclick="exemplo()">Exemplo</button>
+<button class="ghost" onclick="baixar()">⬇ plano .md</button>
+</div>
+</div>
+
+<div id="clips"><div class="vazio">Os clips aparecem aqui: hook, duração, corte, caption e hashtags — prontos para Shorts, Reels e TikTok.</div></div>
+
+<footer>ClipRadar — MVP reconstruído pela Fábrica 2026 · implementação original · tudo local</footer>
+</div>
+
+<script>
+var LS='clipradar_v1';var ULT=null;
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var HOOKS=['Ninguém te conta esta parte:','O momento em que tudo mudou:','Isto resume tudo em segundos:','A frase que ficou na cabeça:','3 segundos e percebes logo:','A parte que o algoritmo adora:'];
+var CORTES=['Corta a entrada — começa já a meio da ação','Zoom no orador nos primeiros 3s','Legendas grandes nas 1.ªs 2 linhas; palavra-chave destacada','Corta cada pausa >0,4s; ritmo é retenção','Termina sem "conclusão" — deixa no alto, o loop faz o resto'];
+var NICHOS=[
+{re:/(market|vend|cliente|loja|negó|negoc|empreend|marca|pitch)/i,tags:['#marketing','#negocios','#empreendedorismo','#vendas','#portugal']},
+{re:/(treino|fitness|gym|corrida|saúde|saude|dieta)/i,tags:['#fitness','#saude','#treino','#lifestyle','#gym']},
+{re:/(dinheiro|poupa|invest|€|salário|finan)/i,tags:['#dinheiro','#poupar','#investir','#financaspessoais']},
+{re:/(código|codigo|dev\b|program|software|ia\b|tech)/i,tags:['#tech','#programacao','#dev','#ia']},
+{re:/(receita|comida|cozinha|restaurante)/i,tags:['#comida','#receitas','#food']},
+{re:/(aprend|curso|estud|aula|escola)/i,tags:['#educacao','#aprender','#estudo']}];
+function duracao(linha){var w=linha.split(/\s+/).filter(Boolean).length;
+var s=Math.round(w/2.4);return Math.min(45,Math.max(18,s+8))+'s';}
+function tagsPara(txt){
+var tk=['#shorts','#reels'];
+NICHOS.some(function(n){if(n.re.test(txt)){tk=n.tags.concat(tk);return true;}});
+return tk.slice(0,6).join(' ');}
+function gerar(){
+var tit=$('titulo').value.trim()||'Episódio sem título';
+var linhas=$('momentos').value.split(/\r?\n/).map(function(l){return l.trim();}).filter(function(l){return l.length>15;}).slice(0,8);
+if(!linhas.length){$('clips').innerHTML='<div class="vazio">Cola momentos-chave (1 por linha, frases com 15+ caracteres).</div>';return;}
+try{localStorage.setItem(LS,JSON.stringify({t:$('titulo').value,m:$('momentos').value}));}catch(e){}
+var clips=linhas.map(function(l,i){
+var hook=HOOKS[i%HOOKS.length];
+var mm=l.length>90?l.slice(0,87)+'…':l;
+return{n:i+1,hook:hook,momento:l,dur:duracao(l),corte:CORTES[i%CORTES.length],
+caption:'"'+mm+'" 🔥 '+tagsPara(l+' '+tit)};});
+ULT={tit:tit,clips:clips};
+var html='';
+clips.forEach(function(c){
+html+='<div class="clip"><h4>Clip #'+c.n+' <span class="dur">⏱ '+c.dur+' · 9:16</span> <button class="ghost" style="padding:5px 12px;font-size:.75rem" onclick="copiarClip('+c.n+')">📋</button></h4>'+
+'<div class="kv"><b>Hook</b>'+esc(c.hook)+' '+esc(c.momento.slice(0,60).toLowerCase())+'…</div>'+
+'<div class="kv"><b>Momento</b>'+esc(c.momento)+'</div>'+
+'<div class="kv"><b>Corte</b>'+esc(c.corte)+'</div>'+
+'<div class="kv"><b>Caption</b><span id="cap'+c.n+'">'+esc(c.caption)+'</span></div></div>';});
+html+='<div class="vazio" style="padding-top:4px">💡 Publica 1/dia. O mesmo ficheiro serve para Shorts, Reels e TikTok — exporta uma vez em 1080×1920.</div>';
+$('clips').innerHTML=html;}
+function copiarClip(n){var c=ULT.clips[n-1];
+var t='CLIP #'+n+' ('+c.dur+', 9:16)\nHook: '+c.hook+' '+c.momento.slice(0,60).toLowerCase()+'…\nMomento: '+c.momento+'\nCorte: '+c.corte+'\nCaption: '+c.caption;
+if(navigator.clipboard)navigator.clipboard.writeText(t);}
+function baixar(){if(!ULT){$('clips').innerHTML='<div class="vazio">Gera primeiro o plano.</div>';return;}
+var L=['# ClipRadar — plano de clips','Episódio: '+ULT.tit,''];
+ULT.clips.forEach(function(c){L.push('## Clip #'+c.n+' — '+c.dur+' (9:16)','- Hook: '+c.hook+' '+c.momento.slice(0,60).toLowerCase()+'…','- Momento: '+c.momento,'- Corte: '+c.corte,'- Caption: '+c.caption,'');});
+var blob=new Blob([L.join('\n')],{type:'text/markdown'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='clipradar-plano.md';a.click();}
+function exemplo(){$('titulo').value='Podcast #12: como a Marta lançou a sua loja online';
+$('momentos').value=['Passei 6 meses a polir o site e vendi zero — depois mudei 1 coisa e vendi 40 num mês',
+'O primeiro cliente comprou por causa de um comentário que deixei num fórum, não de anúncios',
+'Se ganhasse 1€ por cada pessoa que disse "vai falhar", hoje não precisava da loja',
+'Quanto cobras não importa nada; importa para quem estás a resolver o problema',
+'O meu maior erro foi copiar o que as grandes marcas faziam com o orçamento que eu não tinha',
+'E eis a parte incrível: 60% das vendas vieram de 3 parcerias com micro-influencers'].join('\n');}
+try{var d=JSON.parse(localStorage.getItem(LS)||'null');if(d){$('titulo').value=d.t||'';$('momentos').value=d.m||'';}}catch(e){}
+</script>
+</body>
+</html>

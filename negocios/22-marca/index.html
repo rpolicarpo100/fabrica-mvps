@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marca — a tua página de marcações, sem subscrição</title>
+<style>
+:root{--bg:#071208;--panel:#0e1f12;--panel2:#0b180e;--line:#1c3d24;--txt:#edf8f0;--mut:#97bda3;
+--acc:#4ade80;--ok:#4ade80;--warn:#fde047;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#0d3a1c,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),#a3e635);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+input,textarea,select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:15px inherit;width:100%}
+textarea{min-height:100px;font-size:14px}
+input[type=checkbox]{width:auto;accent-color:var(--acc)}
+input[type=time]{width:auto}
+.gridIn{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:640px){.gridIn{grid-template-columns:1fr}}
+label.lab{display:block;font-size:.72rem;color:var(--mut);margin:0 0 5px 2px;text-transform:uppercase;letter-spacing:.6px}
+.dias{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.dias label{font-size:.83rem;display:flex;gap:5px;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:5px 13px;cursor:pointer}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#052e16;background:linear-gradient(90deg,var(--acc),#a3e635)}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.btnRow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:.78rem;color:var(--mut)}
+.kpi b{display:block;font-size:1.35rem;color:var(--txt)}
+.kpi small{font-size:.68rem}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+.note{font-size:.78rem;color:var(--mut);margin-top:8px}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+.horas{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>Marca</em> 📅<small>a tua página de marcações sem mensalidade Calendly · clone do nicho scheduling vertical (2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · O teu negócio</h3>
+<div class="gridIn">
+<div><label class="lab">Nome do negócio</label><input id="neg" placeholder="Estúdio Lisboa Ink"></div>
+<div><label class="lab">Email que recebe as marcações</label><input type="email" id="email" placeholder="marca@estudio.pt"></div>
+<div><label class="lab">Início do dia</label><input type="time" id="ini" value="09:00"></div>
+<div><label class="lab">Fim do dia</label><input type="time" id="fim" value="18:00"></div>
+</div>
+<div style="margin-top:12px"><label class="lab">Dias de trabalho</label>
+<div class="dias" id="dias"></div></div>
+<div style="margin-top:12px"><label class="lab">Serviços (1 por linha: Nome | minutos | preço €)</label>
+<textarea id="servs">Tattoo pequena | 60 | 80
+Tattoo média | 120 | 150
+Sessão de aconselhamento | 30 | 0</textarea></div>
+<div class="btnRow">
+<button onclick="calcular()">📊 Calcular capacidade</button>
+<button class="ghost" onclick="exportar()">⬇ Exportar página de marcação</button>
+</div>
+<div class="note">A página exportada lista os próximos 14 dias úteis com os teus slots; cada slot abre um email pré-preenchido para o teu endereço — simples e sem servidor.</div>
+</div>
+
+<div id="res"><div class="vazio">Calcula a capacidade para veres slots/semana e receita potencial.</div></div>
+
+<footer>Marca — MVP reconstruído pela Fábrica 2026 · implementação original · offline</footer>
+</div>
+
+<script>
+var LS='marca_v1';var CFG=null;
+var DIAS=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+var MESES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+(function(){
+var h='';DIAS.forEach(function(d,i){h+='<label><input type="checkbox" id="d'+i+'" '+(i>=1&&i<=5?'checked':'')+'> '+d+'</label>';});
+$('dias').innerHTML=h;})();
+function hm(s){var p=s.split(':');return parseInt(p[0],10)*60+(parseInt(p[1],10)||0);}
+function fhm(m){return ('0'+Math.floor(m/60)).slice(-2)+':'+('0'+(m%60)).slice(-2);}
+function lerServs(){
+return $('servs').value.split(/\r?\n/).map(function(l){return l.trim();}).filter(Boolean).map(function(l){
+var p=l.split('|').map(function(x){return x.trim();});
+return{nome:p[0]||'Serviço',min:Math.max(15,parseInt(p[1],10)||60),eur:Math.max(0,parseFloat(p[2])||0)};});}
+function lerDiasAtivos(){var a=[];for(var i=0;i<7;i++)if($('d'+i).checked)a.push(i);return a;}
+function guardarLocal(){try{localStorage.setItem(LS,JSON.stringify({
+neg:$('neg').value,email:$('email').value,ini:$('ini').value,fim:$('fim').value,servs:$('servs').value,
+dias:lerDiasAtivos()}));}catch(e){}}
+function calcular(){
+guardarLocal();
+var servs=lerServs();
+if(!servs.length){$('res').innerHTML='<div class="vazio">Define pelo menos 1 serviço.</div>';return;}
+var diasAtivos=lerDiasAtivos();
+if(!diasAtivos.length){$('res').innerHTML='<div class="vazio">Escolhe pelo menos 1 dia de trabalho.</div>';return;}
+var minDia=hm($('fim').value)-hm($('ini').value);
+if(minDia<60){$('res').innerHTML='<div class="vazio">Horário inválido.</div>';return;}
+var durMedia=servs.reduce(function(a,s){return a+s.min;},0)/servs.length;
+var precoMedio=servs.reduce(function(a,s){return a+s.eur;},0)/servs.length;
+var slotsDia=Math.floor(minDia/durMedia);
+var slotsSemana=slotsDia*diasAtivos.length;
+var potencial=Math.round(slotsSemana*precoMedio);
+var realista=Math.round(potencial*0.6);
+CFG={servs:servs,diasAtivos:diasAtivos,ini:hm($('ini').value),fim:hm($('fim').value),durMedia:durMedia,
+neg:$('neg').value.trim()||'O Meu Negócio',email:$('email').value.trim()};
+$('res').innerHTML='<div class="kpis">'+
+'<div class="kpi"><b>'+slotsSemana+'</b>slots por semana<small>'+slotsDia+'/dia · duração média '+Math.round(durMedia)+'min</small></div>'+
+'<div class="kpi"><b>€'+potencial.toLocaleString('pt-PT')+'</b>receita potencial/semana<small>100% ocupação</small></div>'+
+'<div class="kpi"><b>€'+realista.toLocaleString('pt-PT')+'</b>cenário realista<small>60% de ocupação</small></div>'+
+'<div class="kpi"><b>'+servs.length+'</b>serviços ativos</div></div>'+
+'<div class="note">Tip anti-faltas: pede confirmação ou sinal de 20% nas marcações — reduz no-shows até 70%. Implementado na página exportada como nota ao cliente.</div>';}
+function diasProximos(ativos){
+var out=[];var d=new Date();d.setDate(d.getDate()+1);
+while(out.length<14){if(ativos.indexOf(d.getDay())>=0)out.push(new Date(d));d.setDate(d.getDate()+1);}
+return out;}
+function exportar(){
+if(!CFG)calcular();
+if(!CFG||!CFG.email){if(!CFG)return;alert('Preenche o email que recebe as marcações (é para lá que vão os pedidos).');return;}
+var dias=diasProximos(CFG.diasAtivos);
+var servBtns=CFG.servs.map(function(s){return '<button class="sv" data-sv="'+esc(s.nome)+'">'+esc(s.nome)+' · '+s.min+'min · '+(s.eur?'€'+s.eur:'grátis')+'</button>';}).join('');
+var grelha=dias.map(function(d){
+var label=DIAS[d.getDay()]+' '+d.getDate()+' '+MESES[d.getMonth()];
+var slots='';var t=CFG.ini;
+var passo=Math.min(120,Math.max(30,Math.round(CFG.durMedia/15)*15));
+var n=0;
+while(t+CFG.durMedia<=CFG.fim&&n<8){slots+='<button class="sl" data-d="'+label+'" data-h="'+fhm(t)+'">'+fhm(t)+'</button>';t+=passo;n++;}
+return '<div class="dia"><h4>'+label+'</h4><div class="slots">'+slots+'</div></div>';}).join('');
+var html='<!DOCTYPE html><html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'+
+'<title>Marcações — '+esc(CFG.neg)+'</title>'+
+'<style>*{box-sizing:border-box;margin:0}body{background:#0b180e;color:#edf8f0;font:16px/1.6 system-ui,sans-serif;padding:30px 16px}'+
+'.w{max-width:640px;margin:auto}h1{font-size:1.5rem}.sub{color:#97bda3;margin:4px 0 22px}'+
+'.sv{display:block;width:100%;text-align:left;background:#0e1f12;border:1px solid #1c3d24;color:#edf8f0;border-radius:12px;padding:13px 16px;margin-bottom:10px;font:700 15px inherit;cursor:pointer}'+
+'.sv.sel{border-color:#4ade80;background:#12301a}'+
+'.dia{margin-bottom:18px}h4{color:#a3e635;font-size:.85rem;margin-bottom:8px;text-transform:capitalize}'+
+'.slots{display:flex;gap:8px;flex-wrap:wrap}.sl{background:#0e1f12;border:1px solid #1c3d24;color:#edf8f0;border-radius:9px;padding:9px 14px;font:15px inherit;cursor:pointer}'+
+'.sl:hover{border-color:#4ade80}.note{color:#97bda3;font-size:.8rem;margin-top:18px}'+
+'h2{font-size:1rem;margin:24px 0 12px;color:#edf8f0}</style></head><body><div class="w">'+
+'<h1>📅 '+esc(CFG.neg)+'</h1><div class="sub">Escolhe o serviço, o dia e a hora — a marcação chega-nos por email e confirmamos.</div>'+
+'<h2>1 · Serviço</h2>'+servBtns+
+'<h2>2 · Dia e hora (próximos 14 dias úteis)</h2>'+grelha+
+'<div class="note">💡 Evita faltar sem avisar — guardamos o teu lugar só para ti. Cancelamentos até 24h antes.</div>'+
+'</div><script>var SV=null;'+
+'document.querySelectorAll(".sv").forEach(function(b){b.onclick=function(){SV=b.getAttribute("data-sv");'+
+'document.querySelectorAll(".sv").forEach(function(x){x.classList.remove("sel")});b.classList.add("sel");};});'+
+'document.querySelectorAll(".sl").forEach(function(b){b.onclick=function(){'+
+'if(!SV){alert("Escolhe primeiro o serviço.");return;}'+
+'var s="Marcação: "+SV+" — "+b.getAttribute("data-d")+" "+b.getAttribute("data-h");'+
+'var c="Olá! Quero marcar: "+SV+" para "+b.getAttribute("data-d")+" às "+b.getAttribute("data-h")+". \\nNome: \\nTelefone: ";'+
+'location.href="mailto:'+esc(CFG.email)+'?subject="+encodeURIComponent(s)+"&body="+encodeURIComponent(c);};});'+
+'</scr'+'ipt></body></html>';
+var blob=new Blob([html],{type:'text/html'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='marcacoes.html';a.click();}
+try{var d=JSON.parse(localStorage.getItem(LS)||'null');
+if(d){$('neg').value=d.neg||'';$('email').value=d.email||'';$('ini').value=d.ini||'09:00';$('fim').value=d.fim||'18:00';
+if(d.servs)$('servs').value=d.servs;
+if(d.dias){for(var i=0;i<7;i++)$('d'+i).checked=d.dias.indexOf(i)>=0;}}}catch(e){}
+</script>
+</body>
+</html>

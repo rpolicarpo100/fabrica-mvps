@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeadForge — aquece os teus prospects antes do outreach</title>
+<style>
+:root{--bg:#0c0a14;--panel:#161224;--panel2:#120f1d;--line:#2a2144;--txt:#efecf7;--mut:#9b92b8;
+--acc:#a78bfa;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#2a1a4a,transparent),var(--bg);color:var(--txt);
+font:15px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+textarea{width:100%;min-height:110px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);
+border-radius:10px;padding:12px;font:13px/1.5 ui-monospace,Consolas,monospace}
+button{border:0;border-radius:10px;padding:10px 18px;font:700 14px inherit;cursor:pointer;color:#1e1145;background:linear-gradient(90deg,var(--acc),#8b7cf6)}
+button:hover{filter:brightness(1.12)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+button.mini{padding:5px 12px;font-size:.76rem;border-radius:8px}
+.rowBtns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th{text-align:left;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.6px;padding:8px;border-bottom:1px solid var(--line)}
+td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:hover td{background:rgba(167,139,250,.05)}
+.tier{font-size:.7rem;padding:3px 10px;border-radius:999px;font-weight:700}
+.tier.q{background:rgba(52,211,153,.14);color:var(--ok)}
+.tier.m{background:rgba(251,191,36,.13);color:var(--warn)}
+.tier.f{background:rgba(251,113,133,.13);color:var(--bad)}
+.barra{width:90px;height:7px;background:var(--panel2);border-radius:99px;overflow:hidden;display:inline-block;vertical-align:middle}
+.barra i{display:block;height:100%;border-radius:99px}
+select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.78rem}
+.msgG{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:12px}
+.msgG h4{color:var(--acc);font-size:.85rem;margin-bottom:8px}
+.msgG pre{white-space:pre-wrap;font:13px/1.6 inherit;color:#ddd6f3}
+.msgTabs{display:flex;gap:8px;margin-bottom:8px}
+.msgTabs button{font-size:.75rem;padding:6px 12px}
+.vazio{color:var(--mut);text-align:center;padding:24px;font-size:.9rem}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:.8rem;color:var(--mut)}
+.kpi b{display:block;font-size:1.3rem;color:var(--txt)}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+.breakdown{font-size:.72rem;color:var(--mut);margin-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>LeadForge</em> ⚒<small>aquece prospects antes do outreach · clone do conceito Fuzzy AI (PH jul-2026)</small></div>
+</header>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="card">
+<h3 class="painel">1 · Importar leads (CSV)</h3>
+<textarea id="csv" placeholder="nome,email,empresa,cargo,website,notas"></textarea>
+<div class="rowBtns">
+<button onclick="importar()">⚒ Analisar leads</button>
+<button class="ghost" onclick="exemplo()">Carregar exemplo</button>
+<button class="ghost" onclick="limpar()">Apagar tudo</button>
+</div>
+</div>
+
+<div class="card">
+<h3 class="painel">2 · Pipeline priorizado</h3>
+<div id="tabela"><div class="vazio">Importa um CSV para veres os leads pontuados e ordenados por prioridade.</div></div>
+</div>
+
+<div class="card" id="cardMsg" style="display:none">
+<h3 class="painel">3 · Primeira mensagem (gerada)</h3>
+<div id="msgOut"></div>
+</div>
+
+<footer>LeadForge — MVP reconstruído pela Fábrica 2026 · implementação original · os leads ficam guardados no teu browser</footer>
+</div>
+
+<script>
+var LS='leadforge_v1';
+var LEADS=[];
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function guardar(){try{localStorage.setItem(LS,JSON.stringify(LEADS));}catch(e){}}
+function carregar(){try{LEADS=JSON.parse(localStorage.getItem(LS)||'[]');}catch(e){LEADS=[];}}
+
+/* ---- parsing CSV (aceita ; ou ,) ---- */
+function parseCSV(txt){
+var linhas=txt.trim().split(/\r?\n/).filter(function(l){return l.trim();});
+if(!linhas.length)return[];
+var sep=linhas[0].indexOf(';')>linhas[0].indexOf(',')&&linhas[0].indexOf(',')<0?';':(linhas[0].split(';').length>linhas[0].split(',').length?';':',');
+function corta(l){var out=[],cur='',aspas=false;
+for(var i=0;i<l.length;i++){var c=l[i];
+if(c==='"'){aspas=!aspas;continue;}
+if(c===sep&&!aspas){out.push(cur);cur='';continue;}
+cur+=c;}
+out.push(cur);return out.map(function(s){return s.trim();});}
+var cab=corta(linhas[0]).map(function(h){return h.toLowerCase();});
+var mapa={nome:-1,email:-1,empresa:-1,cargo:-1,website:-1,notas:-1};
+cab.forEach(function(h,i){
+if(/nome|name|contact|contacto/.test(h))mapa.nome=i;
+else if(/mail/.test(h))mapa.email=i;
+else if(/empresa|company|org/.test(h))mapa.empresa=i;
+else if(/cargo|role|title|posi|fun/.test(h))mapa.cargo=i;
+else if(/site|url|web/.test(h))mapa.website=i;
+else if(/nota|obs|coment|tag/.test(h))mapa.notas=i;});
+var linhasDados=/nome|email|empresa/.test(cab.join(' '))?linhas.slice(1):linhas;
+return linhasDados.map(function(l){var c=corta(l);
+function g(k,pos){return mapa[k]>=0?(c[mapa[k]]||''):(c[pos]||'');}
+return{nome:g('nome',0),email:g('email',1),empresa:g('empresa',2),cargo:g('cargo',3),website:g('website',4),notas:g('notas',5),estado:'Novo'};})
+.filter(function(x){return x.nome||x.email;});}
+
+/* ---- scoring ---- */
+var FREE=['gmail.','hotmail.','outlook.','yahoo.','sapo.','icloud.'];
+var SENIOR=[['c-level',/ceo|cto|cmo|cfo|coo|fundador|founder|co-founder|dono|sócio|socio|presidente/i,30],
+['direção',/diretor|director|head|vp|vice/i,22],
+['gestão',/manager|gerente|coordenador|lead|responsável/i,15],
+['especialista',/especialista|consultor|analyst|analista|developer|designer/i,8]];
+var COMPRA=/orçamento|orcamento|budget|urgente|interessad|comprar|contratar|proposta|demo|reunião|reuniao/i;
+function pontuar(l){
+var p=0,raz=[];
+if(/^\S+@\S+\.\S+$/.test(l.email)){p+=10;raz.push('email válido +10');
+var dom=l.email.split('@')[1]||'';var free=FREE.some(function(f){return dom.indexOf(f)===0;});
+if(!free){p+=15;raz.push('domínio corporativo +15');}else raz.push('email gratuito +0');}
+else if(l.email){raz.push('email suspeito +0');}
+if(l.cargo){var m='';SENIOR.forEach(function(s){if(!m&&s[1].test(l.cargo))m=s;});
+if(m){p+=m[2];raz.push('cargo: '+m[0]+' +'+m[2]);}else{p+=4;raz.push('cargo identificado +4');}}
+if(l.empresa){p+=10;raz.push('empresa conhecida +10');}
+if(l.website){p+=10;raz.push('website +10');}
+if(l.notas){if(COMPRA.test(l.notas)){p+=20;raz.push('sinais de compra +20');}else{p+=5;raz.push('notas +5');}}
+l.score=Math.min(100,p);l.razoes=raz;
+l.tier=l.score>=70?'q':(l.score>=45?'m':'f');}
+function tierLabel(t){return t==='q'?'🔥 Quente':(t==='m'?'🌤 Morno':'❄ Frio');}
+function primeiroNome(n){return (n||'').trim().split(/\s+/)[0]||'olá';}
+
+/* ---- mensagens ---- */
+var MSG_EMAIL={
+q:['Assunto: {empresa} — vale 15 minutos esta semana?','','Olá {nome},','','Vi que estás à frente de {cargo} na {empresa} e, pelo contexto que partilháste, temos exatamente o que procuras.','','Em concreto: ajudámos empresas do vosso segmento a [resultado mensurável] em [prazo]. Sem discurso de vendas — só números.','','Tens 15 minutos na {dia}? Mando convite.','','Abraço,','[o teu nome]'],
+m:['Assunto: uma ideia para a {empresa}','','Olá {nome},','','Estive a ver o trabalho da {empresa} e reparei que [observação específica].','','Normalmente, {cargo} nesta fase lida com [dor comum]. Temos uma forma simples de resolver isso — posso mostrar em 10 minutos.','','Faz sentido trocar umas mensagens?','','Cumprimentos,','[o teu nome]'],
+f:['Assunto: rápido — {empresa}','','Olá {nome},','','Trabalho com [área] e achei o perfil da {empresa} interessante.','','Sem compromisso: posso enviar-te um resumo de 1 página sobre como ajudamos equipas como a tua? Se não fizer sentido, ignoras sem culpa. 🙂','','Obrigado,','[o teu nome]']};
+var MSG_LI={
+q:'Olá {nome}! Vi o teu papel como {cargo} na {empresa} e o contexto mostra fit direto com o que fazemos. 15 min esta semana?',
+m:'Olá {nome}! Acompanho a {empresa} há algum tempo — tenho uma ideia concreta que pode interessar a alguém em {cargo}. Posso partilhar?',
+f:'Olá {nome}! Trabalho na área de [área] e gosto do posicionamento da {empresa}. Faz sentido ligarmo-nos por aqui?'};
+function gerarMsg(i,canal){
+var l=LEADS[i];var dia=new Date(Date.now()+2*864e5).toLocaleDateString('pt-PT',{weekday:'long'});
+function interp(s){return s.replace(/\{nome\}/g,primeiroNome(l.nome)).replace(/\{empresa\}/g,l.empresa||'a tua empresa').replace(/\{cargo\}/g,l.cargo||'decisor').replace(/\{dia\}/g,dia);}
+var corpo=canal==='li'?interp(MSG_LI[l.tier]):MSG_EMAIL[l.tier].map(interp).join('\n');
+$('msgOut').innerHTML='<div class="msgTabs"><button class="ghost mini" onclick="gerarMsg('+i+',\'email\')">✉ Email</button>'+
+'<button class="ghost mini" onclick="gerarMsg('+i+',\'li\')">💼 LinkedIn</button>'+
+'<button class="ghost mini" onclick="copiarMsg()">📋 Copiar</button></div>'+
+'<div class="msgG"><h4>'+tierLabel(l.tier)+' · '+esc(l.nome)+' · score '+l.score+'</h4><pre id="msgPre">'+esc(corpo)+'</pre>'+
+'<div class="breakdown">Scoring: '+l.razoes.join(' · ')+'</div></div>';
+$('cardMsg').style.display='block';
+$('cardMsg').scrollIntoView({behavior:'smooth'});}
+function copiarMsg(){var t=document.getElementById('msgPre');if(t&&navigator.clipboard)navigator.clipboard.writeText(t.innerText);}
+
+/* ---- ações ---- */
+function importar(){
+var novos=parseCSV($('csv').value);
+if(!novos.length){$('tabela').innerHTML='<div class="vazio">Não consegui ler leads. Usa o formato: nome,email,empresa,cargo,website,notas</div>';return;}
+novos.forEach(pontuar);
+LEADS=novos;guardar();render();
+var q=LEADS.filter(function(l){return l.tier==='q';}).length;
+$('msgOut').innerHTML='';$('cardMsg').style.display='none';
+if(q){/* foco no topo */}}
+function exemplo(){$('csv').value=['nome,email,empresa,cargo,website,notas',
+'Marta Silva,marta@petnova.pt,PetNova,CEO,petnova.pt,"pediu proposta, orçamento aprovado"',
+'João Ribeiro,joao.ribeiro@gmail.com,,Freelancer designer,,respondeu no LinkedIn',
+'Ana Costa,ana.costa@grupocuropa.com,Grupo Curopa,Head of Marketing,curopa.com,interessada em demo',
+'Tiago Neves,tiago@startupx.io,StartupX,Co-founder,startupx.io,conheceu-nos na Web Summit',
+'Carla Mendes,carla.mendes,Sem empresa,,,contacto frio de lista',
+'Rui Pinto,rui@construtora-omega.pt,Construtora Omega,Diretor Geral,omega.pt,"urgente: precisa de solução até setembro"'].join('\n');}
+function limpar(){LEADS=[];guardar();render();$('csv').value='';$('cardMsg').style.display='none';}
+function setEstado(i,v){LEADS[i].estado=v;guardar();render();}
+
+/* ---- render ---- */
+function render(){
+var q=LEADS.filter(function(l){return l.tier==='q';}).length;
+var m=LEADS.filter(function(l){return l.tier==='m';}).length;
+var reun=LEADS.filter(function(l){return l.estado==='Reunião';}).length;
+$('kpis').innerHTML='<div class="kpi"><b>'+LEADS.length+'</b>leads</div>'+
+'<div class="kpi"><b style="color:var(--ok)">'+q+'</b>quentes</div>'+
+'<div class="kpi"><b style="color:var(--warn)">'+m+'</b>mornos</div>'+
+'<div class="kpi"><b>'+reun+'</b>reuniões</div>';
+if(!LEADS.length){$('tabela').innerHTML='<div class="vazio">Importa um CSV para veres os leads pontuados e ordenados por prioridade.</div>';return;}
+var ord=LEADS.map(function(l,i){l.__i=i;return l;}).sort(function(a,b){return b.score-a.score;});
+var html='<table><tr><th>Lead</th><th>Cargo · Empresa</th><th>Score</th><th>Tier</th><th>Estado</th><th></th></tr>';
+ord.forEach(function(l){
+var i=l.__i;var cor=l.tier==='q'?'var(--ok)':(l.tier==='m'?'var(--warn)':'var(--bad)');
+html+='<tr><td><b>'+esc(l.nome||'—')+'</b><div class="breakdown">'+esc(l.email)+'</div></td>'+
+'<td>'+esc(l.cargo||'—')+(l.empresa?' · '+esc(l.empresa):'')+'</td>'+
+'<td><span class="barra"><i style="width:'+l.score+'%;background:'+cor+'"></i></span> '+l.score+'</td>'+
+'<td><span class="tier '+l.tier+'">'+tierLabel(l.tier)+'</span></td>'+
+'<td><select onchange="setEstado('+i+',this.value)">'+
+['Novo','Contactado','Respondeu','Reunião','Perdido'].map(function(o){return '<option'+(l.estado===o?' selected':'')+'>'+o+'</option>';}).join('')+
+'</select></td>'+
+'<td><button class="mini" onclick="gerarMsg('+i+',\'email\')">✉ mensagem</button></td></tr>';});
+$('tabela').innerHTML=html+'</table>';}
+carregar();render();
+</script>
+</body>
+</html>

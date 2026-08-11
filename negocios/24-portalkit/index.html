@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PortalKit — Client portals p/ agências ($30-400K ARR)</title>
+<style>
+:root{--bg:#0b0e14;--card:#141a26;--txt:#e6e9f0;--mut:#8b93a7;--acc:#6c8cff;--acc2:#38d9a9;}
+*{box-sizing:border-box;margin:0}
+body{background:radial-gradient(1200px 600px at 80% -10%,#1b2440,transparent),var(--bg);color:var(--txt);font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif;padding:24px}
+.wrap{max-width:860px;margin:0 auto}
+header{text-align:center;padding:48px 16px 32px}
+header h1{font-size:2.4rem;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mut);margin-top:8px}
+.card{background:var(--card);border:1px solid #232c40;border-radius:14px;padding:20px;margin:16px 0}
+textarea{width:100%;min-height:140px;background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:10px;padding:12px;font:inherit}
+button{background:linear-gradient(90deg,var(--acc),#4f6ef0);color:#fff;border:0;border-radius:10px;padding:12px 22px;font:600 15px inherit;cursor:pointer;margin-top:12px}
+button:hover{filter:brightness(1.1)}
+.post pre{white-space:pre-wrap;background:#0d1220;border-radius:8px;padding:12px;margin:8px 0;font:14px/1.5 inherit}
+.post h3 span{color:var(--mut);font-weight:400;font-size:.8rem}
+.aviso{color:#f4bf75}
+.slide{display:none;flex-direction:column;justify-content:center;min-height:320px;background:#101828;border:1px solid #232c40;border-radius:14px;padding:40px}
+.slide.capa h1{font-size:2.2rem}
+.slide ul{margin-top:12px;color:var(--mut)}
+.nav{text-align:center;margin-top:14px}
+footer{text-align:center;color:var(--mut);font-size:.85rem;padding:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:24px 0}
+.grid .card{margin:0}
+.grid h3{color:var(--acc2);font-size:1rem}
+.grid p{color:var(--mut);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>PortalKit</h1>
+<p>Linhas 'Entregável | estado | prazo' → relatório de progresso profissional, pronto a enviar ao cliente.</p>
+</header>
+<div class="card">
+<textarea id="entrada" placeholder="Identidade visual | feito | 02/08\nSite v1 | em curso | 15/08\nConteúdos | pendente | 30/08\nIntegração pagamentos | atraso | 10/08"></textarea>
+<div style="margin-top:10px;color:var(--mut);font-size:.85rem">Projeto: <input id="proj" value="Website + loja online — Fase 1" style="background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:8px;padding:8px 10px;width:340px;font:inherit"></div>
+<button onclick="gerarEstado()">🗂 Gerar relatório de estado</button>
+</div>
+<div id="saida"></div>
+<div class="grid">
+<div class="card"><h3>⚡ Rápido</h3><p>Do conteúdo ao resultado em segundos, sem registos nem servidores.</p></div>
+<div class="card"><h3>🔒 Privado</h3><p>Tudo corre no teu browser. Os teus textos nunca saem daqui.</p></div>
+<div class="card"><h3>💸 Modelo 2026</h3><p>Freemium: grátis até N usos/mês, Pro desbloqueia histórico e marca.</p></div>
+</div>
+<footer>Recriado pelo Agente Fábrica 2026 · inspiração: Client portals p/ agências ($30-400K ARR) · implementação original</footer>
+</div>
+<script>
+function gerarEstado(){
+var pj=document.getElementById('proj');
+var proj=(pj&&pj.value.trim())||'Projeto do cliente';
+var out=document.getElementById('saida');
+var linhas=document.getElementById('entrada').value.split(/\n+/).map(function(l){return l.trim();}).filter(Boolean);
+if(!linhas.length){out.innerHTML='<p class="aviso">Linhas no formato: Entregável | estado | prazo</p>';return;}
+function est(e){e=(e||'').toLowerCase();
+if(/(feito|conclu|done|pronto)/.test(e))return{ic:'✅',n:'feito'};
+if(/(curso|andamento|fazendo|progresso)/.test(e))return{ic:'🔨',n:'curso'};
+if(/(atras)/.test(e))return{ic:'⚠️',n:'atraso'};
+return{ic:'⏳',n:'pendente'};}
+var rows=linhas.map(function(l){
+var p=l.split('|').map(function(x){return x.trim();});
+return{item:p[0],est:est(p[1]||''),prazo:p[2]||''};});
+var feitos=rows.filter(function(r){return r.est.n==='feito';}).length;
+var atrasos=rows.filter(function(r){return r.est.n==='atraso';}).length;
+var pct=Math.round(feitos/rows.length*100);
+var bar='';for(var i=0;i<10;i++)bar+=i<Math.round(pct/10)?'█':'░';
+var txt='ESTADO DO PROJETO — '+proj+'\n'+new Date().toLocaleDateString('pt-PT')+'\n\n';
+txt+='Progresso: '+pct+'% '+bar+'\n\n';
+rows.forEach(function(r){txt+=r.est.ic+' '+r.item+(r.prazo?' — '+r.prazo:'' )+'\n';});
+var cursando=rows.filter(function(r){return r.est.n==='curso';}).length;
+var pend=rows.length-feitos-cursando-atrasos;
+txt+='\nResumo: '+feitos+' feitos · '+cursando+' em curso · '+pend+' pendentes'+(atrasos?' · ⚠️ '+atrasos+' em atraso':'')+'\n';
+txt+='Próxima atualização: [data]\n';
+out.innerHTML='<div class="post"><h3>🗂 Relatório pronto a colar no email</h3><pre>'+txt.replace(/</g,'&lt;')+'</pre><button onclick="copiarEstado(this)">Copiar relatório</button></div>';
+}
+function copiarEstado(btn){var t=btn.parentNode.querySelector('pre').innerText;if(navigator.clipboard){navigator.clipboard.writeText(t);}btn.innerText='Copiado ✓';setTimeout(function(){btn.innerText='Copiar relatório';},1500);}
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PostPilot — StoryShort.ai / AutoShorts.ai</title>
+<style>
+:root{--bg:#0b0e14;--card:#141a26;--txt:#e6e9f0;--mut:#8b93a7;--acc:#6c8cff;--acc2:#38d9a9;}
+*{box-sizing:border-box;margin:0}
+body{background:radial-gradient(1200px 600px at 80% -10%,#1b2440,transparent),var(--bg);color:var(--txt);font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif;padding:24px}
+.wrap{max-width:860px;margin:0 auto}
+header{text-align:center;padding:48px 16px 32px}
+header h1{font-size:2.4rem;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mut);margin-top:8px}
+.card{background:var(--card);border:1px solid #232c40;border-radius:14px;padding:20px;margin:16px 0}
+textarea{width:100%;min-height:140px;background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:10px;padding:12px;font:inherit}
+button{background:linear-gradient(90deg,var(--acc),#4f6ef0);color:#fff;border:0;border-radius:10px;padding:12px 22px;font:600 15px inherit;cursor:pointer;margin-top:12px}
+button:hover{filter:brightness(1.1)}
+.post pre{white-space:pre-wrap;background:#0d1220;border-radius:8px;padding:12px;margin:8px 0;font:14px/1.5 inherit}
+.post h3 span{color:var(--mut);font-weight:400;font-size:.8rem}
+.aviso{color:#f4bf75}
+.slide{display:none;flex-direction:column;justify-content:center;min-height:320px;background:#101828;border:1px solid #232c40;border-radius:14px;padding:40px}
+.slide.capa h1{font-size:2.2rem}
+.slide ul{margin-top:12px;color:var(--mut)}
+.nav{text-align:center;margin-top:14px}
+footer{text-align:center;color:var(--mut);font-size:.85rem;padding:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:24px 0}
+.grid .card{margin:0}
+.grid h3{color:var(--acc2);font-size:1rem}
+.grid p{color:var(--mut);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>PostPilot</h1>
+<p>Cola um texto longo → recebe variações prontas para X, LinkedIn e Instagram.</p>
+</header>
+<div class="card">
+<textarea id="entrada" placeholder="Cola aqui o teu artigo / guião / notas…"></textarea>
+<button onclick="gerarVariacoes()">Gerar variações</button>
+</div>
+<div id="saida"></div>
+<div class="grid">
+<div class="card"><h3>⚡ Rápido</h3><p>Do conteúdo ao resultado em segundos, sem registos nem servidores.</p></div>
+<div class="card"><h3>🔒 Privado</h3><p>Tudo corre no teu browser. Os teus textos nunca saem daqui.</p></div>
+<div class="card"><h3>💸 Modelo 2026</h3><p>Freemium: grátis até N usos/mês, Pro desbloqueia histórico e marca.</p></div>
+</div>
+<footer>Recriado pelo Agente Fábrica 2026 · inspiração: StoryShort.ai / AutoShorts.ai — repurposing de conteúdo ($20k/mês indie) · implementação original</footer>
+</div>
+<script>
+function gerarVariacoes(){
+  var txt=document.getElementById('entrada').value.trim();
+  var out=document.getElementById('saida');
+  if(!txt){out.innerHTML='<p class="aviso">Cola primeiro um texto.</p>';return;}
+  var frases=txt.split(/[.!?\n]+/).map(function(s){return s.trim();}).filter(function(s){return s.length>20;});
+  var ideia=frases[0]||txt.slice(0,120);
+  var hooks=['Ninguém te diz isto sobre','Erro nº1 em','A verdade sobre','Em 30 segundos:'];
+  var plats={'X / Twitter':280,'LinkedIn':1300,'Instagram':2200};
+  var html='';
+  Object.keys(plats).forEach(function(p){
+    var limite=plats[p];
+    var hook=hooks[Math.floor(Math.random()*hooks.length)]+' '+ideia.toLowerCase();
+    var corpo=frases.slice(0,3).join('. ');
+    var post=(hook+'\n\n'+corpo).slice(0,limite);
+    post+='\n\n'+['#dica','#2026','#conteudo'].join(' ');
+    html+='<div class="post"><h3>'+p+' <span>'+post.length+'/'+limite+'</span></h3><pre>'+post.replace(/</g,'&lt;')+'</pre><button onclick="copiar(this)">Copiar</button></div>';
+  });
+  out.innerHTML=html;
+}
+function copiar(btn){var t=btn.parentNode.querySelector('pre').innerText;if(navigator.clipboard){navigator.clipboard.writeText(t);}btn.innerText='Copiado ✓';setTimeout(function(){btn.innerText='Copiar';},1500);}
+</script>
+</body>
+</html>

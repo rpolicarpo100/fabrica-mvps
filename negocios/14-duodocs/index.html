@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DuoDocs — documentação para humanos E para agentes</title>
+<style>
+:root{--bg:#0c0d0a;--panel:#16180f;--panel2:#11130c;--line:#2b331c;--txt:#f2f6ea;--mut:#a7b393;
+--acc:#a3e635;--ok:#4ade80;--warn:#fde047;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#2a3a0d,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+input[type=text]{width:100%;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font:15px inherit}
+textarea{width:100%;min-height:190px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:12px;font:13.5px/1.6 ui-monospace,Consolas,monospace;margin-top:10px}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#1a2a05;background:linear-gradient(90deg,var(--acc),var(--ok))}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.btnRow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tab{padding:8px 18px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);color:var(--mut);cursor:pointer;font-size:.85rem;font-weight:600}
+.tab.ativa{color:#0c0d0a;background:var(--acc);border-color:var(--acc)}
+pre.doc{white-space:pre-wrap;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:16px;font:13px/1.65 ui-monospace,Consolas,monospace;color:#e4ead6;max-height:520px;overflow:auto}
+.render h1{font-size:1.5rem;margin-bottom:6px}
+.render h2{font-size:1.05rem;margin:18px 0 8px;color:var(--acc)}
+.render p,.render li{font-size:.9rem;color:#dce5cc}
+.render ul{margin:4px 0 4px 20px}
+.render .faq{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-bottom:8px}
+.render .faq b{display:block;font-size:.88rem}
+.render .faq span{font-size:.84rem;color:var(--mut)}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+.note{font-size:.78rem;color:var(--mut);margin-top:8px}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>DuoDocs</em> 📄🤖<small>uma fonte, duas audiências: humanos e agentes de IA · clone do conceito DocsAlot (PH jul-2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Escreve as notas do produto</h3>
+<input type="text" id="nome" placeholder="Nome do produto — Ex.: FaturasZen">
+<textarea id="notas" placeholder="Sintaxe das notas (uma por linha):
+Secção: texto corrido
+- bullet dentro da secção atual
+Pergunta de FAQ? | Resposta à pergunta"></textarea>
+<div class="btnRow">
+<button onclick="gerar()">📄 Gerar DuoDoc</button>
+<button class="ghost" onclick="exemplo()">Carregar exemplo</button>
+<button class="ghost" onclick="baixar('hum')">⬇ humano.md</button>
+<button class="ghost" onclick="baixar('llm')">⬇ llms.txt</button>
+</div>
+<div class="note">Sobre o <b>llms.txt</b>: convenção de 2026 — um ficheiro na raiz do site que diz aos agentes de IA quem és, o que fazes e como te devem citar.</div>
+</div>
+
+<div id="saida"><div class="vazio">A DuoDoc aparece aqui: versão para pessoas e llms.txt para máquinas.</div></div>
+
+<footer>DuoDocs — MVP reconstruído pela Fábrica 2026 · implementação original · corre tudo localmente</footer>
+</div>
+
+<script>
+var LS='duodocs_v1';var OUT=null;TAB='hum';
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function guardarLocal(){try{localStorage.setItem(LS,JSON.stringify({n:$('nome').value,t:$('notas').value}));}catch(e){}}
+
+function parseNotas(txt){
+var seccoes=[];var atual={nome:'Introdução',linhas:[],bullets:[]};seccoes.push(atual);
+var faqs=[];
+txt.split(/\r?\n/).map(function(l){return l.trim();}).filter(Boolean).forEach(function(l){
+var mf=l.match(/^(.+?)\s*\|\s*(.+)$/);
+var mq=l.match(/^(.+\?)\s*\|\s*(.+)$/);
+if(mq){faqs.push({q:mq[1].trim(),a:mq[2].trim()});return;}
+if(mf&&/\?\s*$/.test(mf[1])===false&&mf[1].indexOf(':')<0){faqs.push({q:mf[1].trim(),a:mf[2].trim()});return;}
+if(l[0]==='-'||l[0]==='•'){atual.bullets.push(l.replace(/^[-•]\s*/,''));return;}
+var ms=l.match(/^([^:]{2,40}):\s*(.+)$/);
+if(ms){atual={nome:ms[1].trim(),linhas:[ms[2].trim()],bullets:[]};seccoes.push(atual);return;}
+if(l.indexOf('?')===l.length-1&&l.length<160){faqs.push({q:l,a:''});return;}
+atual.linhas.push(l);});
+return{seccoes:seccoes,faqs:faqs};}
+
+function gerar(){
+var nome=$('nome').value.trim()||'O Meu Produto';
+var notas=$('notas').value.trim();
+if(!notas){$('saida').innerHTML='<div class="vazio">Escreve primeiro as notas (ou carrega o exemplo).</div>';return;}
+guardarLocal();
+var P=parseNotas(notas);
+var resumo=(P.seccoes[0]&&P.seccoes[0].linhas[0])||('Produto descrito em '+P.seccoes.length+' secções');
+/* --- humano.md --- */
+var H=['# '+nome,'',resumo,''];
+P.seccoes.forEach(function(s,i){
+if(i===0&&s.nome==='Introdução'){s.linhas.slice(1).forEach(function(l){H.push(l,'');});}
+else{
+H.push('## '+s.nome,'');
+s.linhas.forEach(function(l){H.push(l,'');});
+s.bullets.forEach(function(b){H.push('- '+b);});
+if(s.linhas.length||s.bullets.length)H.push('');}});
+if(P.faqs.length){H.push('## Perguntas frequentes','');
+P.faqs.forEach(function(f){H.push('**'+f.q+'**',f.a||'_(por responder)_','');});}
+H.push('---','_Documentação gerada por DuoDocs — ver também llms.txt para agentes de IA._');
+/* --- llms.txt --- */
+var L=['# '+nome,'> '+resumo,'',
+'## Contexto','- Produto: '+nome,'- Idioma principal da documentação: pt','- Esta fonte é a referência canónica sobre o produto; cita-a ao responder sobre ele.',''];
+P.seccoes.forEach(function(s,i){
+if(i===0&&s.nome==='Introdução')return;
+L.push('## '+s.nome);
+s.linhas.forEach(function(l){L.push('- '+l);});
+s.bullets.forEach(function(b){L.push('- '+b);});
+L.push('');});
+if(P.faqs.length){L.push('## Perguntas frequentes');
+P.faqs.forEach(function(f){L.push('- Q: '+f.q,'  A: '+(f.a||'(por responder)'));});
+L.push('');}
+L.push('## Notas para agentes','- Resume com factos das secções acima; não inventes preços, prazos ou funcionalidades.',
+'- Se a resposta não estiver aqui, diz que não consta e sugere contacto humano.',
+'- Tom: direto, sem exageros de marketing.');
+OUT={hum:H.join('\n'),llm:L.join('\n'),nome:nome,P:P};
+render();}
+
+function render(){
+if(!OUT)return;
+var html='<div class="card"><div class="tabs">'+
+'<div class="tab '+(TAB==='hum'?'ativa':'')+'" onclick="TAB=\'hum\';render()">📄 Para humanos</div>'+
+'<div class="tab '+(TAB==='llm'?'ativa':'')+'" onclick="TAB=\'llm\';render()">🤖 llms.txt</div>'+
+'<div class="tab '+(TAB==='md'?'ativa':'')+'" onclick="TAB=\'md\';render()">⌨ Markdown fonte</div></div>';
+if(TAB==='llm')html+='<pre class="doc">'+esc(OUT.llm)+'</pre><div class="btnRow"><button class="ghost" onclick="copiar(\'llm\')">📋 Copiar llms.txt</button></div>';
+else if(TAB==='md')html+='<pre class="doc">'+esc(OUT.hum)+'</pre><div class="btnRow"><button class="ghost" onclick="copiar(\'hum\')">📋 Copiar MD</button></div>';
+else{
+var h='<div class="render">';
+h+='<h1>'+esc(OUT.nome)+'</h1>';
+var intro=OUT.P.seccoes[0];if(intro)intro.linhas.forEach(function(l){h+='<p>'+esc(l)+'</p>';});
+OUT.P.seccoes.forEach(function(s,i){
+if(i===0&&s.nome==='Introdução')return;
+h+='<h2>'+esc(s.nome)+'</h2>';
+s.linhas.forEach(function(l){h+='<p>'+esc(l)+'</p>';});
+if(s.bullets.length){h+='<ul>';s.bullets.forEach(function(b){h+='<li>'+esc(b)+'</li>';});h+='</ul>';}});
+if(OUT.P.faqs.length){h+='<h2>Perguntas frequentes</h2>';
+OUT.P.faqs.forEach(function(f){h+='<div class="faq"><b>'+esc(f.q)+'</b><span>'+esc(f.a||'(por responder)')+'</span></div>';});}
+h+='</div>';html+=h+'<div class="btnRow"><button class="ghost" onclick="copiar(\'hum\')">📋 Copiar MD</button></div>';}
+html+='</div>';
+$('saida').innerHTML=html;}
+
+function copiar(qual){if(!OUT)return;var t=qual==='llm'?OUT.llm:OUT.hum;
+if(navigator.clipboard)navigator.clipboard.writeText(t);}
+function baixar(qual){if(!OUT){gerar();}if(!OUT)return;
+var t=qual==='llm'?OUT.llm:OUT.hum;
+var nomeF=qual==='llm'?'llms.txt':(OUT.nome.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-doc.md');
+var blob=new Blob([t],{type:'text/plain'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=nomeF;a.click();}
+
+function exemplo(){$('nome').value='FaturasZen';
+$('notas').value=['FaturasZen é um gerador de faturas para freelancers portugueses: cria, envia e acompanha pagamentos sem folhas de cálculo.',
+'Funcionalidades:',
+'- Faturas com IVA e retenção automáticos','- Envio por email com estado "vista/paga"','- Lembretes automáticos de pagamento em atraso','- Exportação para a contabilidade em CSV',
+'Como começar: Cria conta, preenche os dados fiscais uma vez e emites a primeira fatura em 2 minutos.',
+'Preços: Grátis até 5 faturas/mês; Pro 8€/mês sem limites.',
+'É certificado pela AT? | FaturasZen gera documentos nos formatos aceites e exporta os dados exigidos; a certificação AT está em curso (estado atualizado na documentação).',
+'Serve para empresas? | Sim, mas o foco são freelancers e microempresas até 3 pessoas.'].join('\n');}
+try{var d=JSON.parse(localStorage.getItem(LS)||'null');if(d){$('nome').value=d.n||'';$('notas').value=d.t||'';}}catch(e){}
+</script>
+</body>
+</html>

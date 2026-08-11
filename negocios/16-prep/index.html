@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prep — LeetDesign</title>
+<style>
+:root{--bg:#0b0e14;--card:#141a26;--txt:#e6e9f0;--mut:#8b93a7;--acc:#6c8cff;--acc2:#38d9a9;}
+*{box-sizing:border-box;margin:0}
+body{background:radial-gradient(1200px 600px at 80% -10%,#1b2440,transparent),var(--bg);color:var(--txt);font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif;padding:24px}
+.wrap{max-width:860px;margin:0 auto}
+header{text-align:center;padding:48px 16px 32px}
+header h1{font-size:2.4rem;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mut);margin-top:8px}
+.card{background:var(--card);border:1px solid #232c40;border-radius:14px;padding:20px;margin:16px 0}
+textarea{width:100%;min-height:140px;background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:10px;padding:12px;font:inherit}
+button{background:linear-gradient(90deg,var(--acc),#4f6ef0);color:#fff;border:0;border-radius:10px;padding:12px 22px;font:600 15px inherit;cursor:pointer;margin-top:12px}
+button:hover{filter:brightness(1.1)}
+.post pre{white-space:pre-wrap;background:#0d1220;border-radius:8px;padding:12px;margin:8px 0;font:14px/1.5 inherit}
+.post h3 span{color:var(--mut);font-weight:400;font-size:.8rem}
+.aviso{color:#f4bf75}
+.slide{display:none;flex-direction:column;justify-content:center;min-height:320px;background:#101828;border:1px solid #232c40;border-radius:14px;padding:40px}
+.slide.capa h1{font-size:2.2rem}
+.slide ul{margin-top:12px;color:var(--mut)}
+.nav{text-align:center;margin-top:14px}
+footer{text-align:center;color:var(--mut);font-size:.85rem;padding:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:24px 0}
+.grid .card{margin:0}
+.grid h3{color:var(--acc2);font-size:1rem}
+.grid p{color:var(--mut);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Prep</h1>
+<p>Treino de system design: caso aleatório → esboça no campo → compara com resposta modelo e rubrica.</p>
+</header>
+<div class="card">
+<textarea id="entrada" placeholder="Esboça aqui o teu design: requisitos → estimativas → APIs → dados → escala/gargalos → falhas…"></textarea>
+
+<button onclick="gerarCaso()">🎲 Novo caso</button>
+</div>
+<div id="saida"></div>
+<div class="grid">
+<div class="card"><h3>⚡ Rápido</h3><p>Do conteúdo ao resultado em segundos, sem registos nem servidores.</p></div>
+<div class="card"><h3>🔒 Privado</h3><p>Tudo corre no teu browser. Os teus textos nunca saem daqui.</p></div>
+<div class="card"><h3>💸 Modelo 2026</h3><p>Freemium: grátis até N usos/mês, Pro desbloqueia histórico e marca.</p></div>
+</div>
+<footer>Recriado pelo Agente Fábrica 2026 · inspiração: LeetDesign — entrevistador de system design · implementação original</footer>
+</div>
+<script>
+var CASOS=[
+{t:'Encurtador de URLs',r:['100M URLs criados por mês','Redirecionamento em menos de 10ms','Analytics simples por link'],
+m:['API: POST /shorten devolve código base62; GET /{codigo} faz 301','ID: contador incremental convertido a base62 (curto e único sem colisões)','Leitura: cache em memória à frente da BD; escrita append na BD','Escala: particionar por intervalo de IDs; réplicas de leitura','Falhas: réplica síncrona p/ não perder IDs; monitorizar taxa de miss de cache']},
+{t:'Feed de rede social',r:['Utilizadores seguem até ~1000 contas','Feed ordenado por relevância temporal','Pico de leitura muito acima do de escrita'],
+m:['Fan-out on write: ao publicar, escrever no feed (KV) dos seguidores','Fan-out on read apenas para contas enormes (híbrido)','Paginação por cursor (timestamp+id), nunca OFFSET','Cache do top-N por utilizador; ranking simples primeiro, ML depois','Falhas: fila de fan-out com retry; feed reconstruível a partir dos posts']},
+{t:'Chat em tempo real',r:['Mensagens 1:1 e grupos pequenos','Entrega garantida, ordem por conversa','Presença online/offline'],
+m:['Gateway WebSocket com heartbeat; ligação por utilizador mapeada a servidor','Entrega: ack do cliente + retry; fila por utilizador offline','Ordem: sequência por conversa (id monotónico por chat)','Armazenamento: mensagens particionadas por conversa, ordenadas','Falhas: servidor de gateway cai -> cliente religa a outro; dedupe no cliente por id']},
+{t:'Rate limiter de API',r:['100 req/min por cliente','Distribuído (vários servidores de API)','Resposta 429 imediata'],
+m:['Algoritmo: token bucket por cliente','Estado em store partilhada rápida (KV) com operações atómicas','Alternativa barata: limites locais + agregação difusa','Resposta antecipada: headers de quota restante','Falhas: store em baixo -> fail-open com limite local mais estrito']},
+{t:'Sistema de reservas',r:['Vagas limitadas por horário','Duplo clique não pode duplicar reserva','Cancelamentos libertam vaga'],
+m:['Invariante: uma vaga = uma linha por horário; constraint única na BD','Reserva: transação que marca a vaga; idempotency-key no pedido','Hold temporário com expiração para checkout','Concorrência: lock pessimista na vaga (é barato porque é fino)','Falhas: job que expira holds abandonados; emails são idempotentes']},
+{t:'Pipeline de métricas',r:['10k eventos/segundo','Consultas por hora/dia','Custos controlados'],
+m:['Ingestão append-only numa fila; consumidores processam em batch','Agregações por janelas (min->hora->dia) em rollups','Dados quentes vs frios com retenção diferente','Cuidado com cardinalidade: ids de utilizador não são dimensão de agregação','Falhas: backpressure; reprocessar janelas a partir da fila com offsets']}];
+var RUBRICA=['Requisitos e estimativas ANTES de desenhar (QPS, GB/dia)','Contratos de API claros','Modelo de dados + índices','Um gargalo identificado e plano de escala','Falhas: retries, duplicados, dados perdidos'];
+var LAST=-1,U_OK=[];
+function gerarCaso(){
+var out=document.getElementById('saida');
+var i;do{i=Math.floor(Math.random()*CASOS.length);}while(i===LAST&&CASOS.length>1);
+LAST=i;U_OK=RUBRICA.map(function(){return false;});
+var c=CASOS[i];
+var html='<div class="post"><h3>🧪 Caso: '+c.t+'</h3><pre>Requisitos:\n'+c.r.map(function(x){return '• '+x;}).join('\n')+'</pre>';
+html+='<p style="color:#8b93a7;font-size:.85rem;margin:8px 0">1) Esboça a tua solução no campo acima. 2) Depois revela o modelo.</p>';
+html+='<button onclick="revelar()" id="btnRev">👁 Revelar resposta modelo</button>';
+html+='<div id="modeloBox" style="display:none"><pre style="margin-top:10px">'+c.m.map(function(x,j){return (j+1)+'. '+x;}).join('\n')+'</pre>';
+html+='<h3 style="margin-top:14px">Auto-avaliação</h3><div id="rubrica">';
+RUBRICA.forEach(function(r,j){html+='<label style="display:block;margin:7px 0;font-size:.88rem;cursor:pointer"><input type="checkbox" onchange="tickR('+j+')" style="accent-color:#6c8cff;margin-right:8px">'+r+'</label>';});
+html+='</div><div id="notaRub" style="margin-top:10px;font-weight:700"></div></div></div>';
+out.innerHTML=html;}
+function revelar(){document.getElementById('modeloBox').style.display='block';document.getElementById('btnRev').style.display='none';}
+function tickR(j){U_OK[j]=!U_OK[j];var n=U_OK.filter(Boolean).length;
+var el=document.getElementById('notaRub');
+el.innerText=n+'/'+RUBRICA.length+' — '+(n<=2?'continua a treinar a estrutura':(n<=4?'sólido, afina os detalhes':'resposta de aprovado ✅'));}
+</script>
+</body>
+</html>

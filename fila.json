@@ -1,0 +1,266 @@
+{
+  "versao": 2,
+  "atualizado": "2026-08-11",
+  "ronda": 6,
+  "fila": [
+    {
+      "id": "01",
+      "slug": "executare",
+      "nome": "Executare",
+      "inspiracao": "Bond (PH #4 jun-2026)",
+      "template": "executare",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "To-do list com agente executor"
+    },
+    {
+      "id": "02",
+      "slug": "seolens",
+      "nome": "SEOLens",
+      "inspiracao": "OpenSEO (PH #3 jul-2026)",
+      "template": "seolens",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Auditoria SEO+GEO local"
+    },
+    {
+      "id": "03",
+      "slug": "leadforge",
+      "nome": "LeadForge",
+      "inspiracao": "Fuzzy AI (PH #7 jul-2026)",
+      "template": "leadforge",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Scoring de leads + mensagens"
+    },
+    {
+      "id": "04",
+      "slug": "postpilot",
+      "nome": "PostPilot",
+      "inspiracao": "StoryShort.ai / AutoShorts.ai",
+      "template": "generico",
+      "status": "concluido",
+      "construido_por": "agente.py",
+      "brief": "Repurposing de conteúdo"
+    },
+    {
+      "id": "05",
+      "slug": "deckforge",
+      "nome": "DeckForge",
+      "inspiracao": "Gamma ($100M ARR)",
+      "template": "generico",
+      "status": "concluido",
+      "construido_por": "agente.py",
+      "brief": "Outline → deck de slides"
+    },
+    {
+      "id": "06",
+      "slug": "deckscore",
+      "nome": "DeckScore",
+      "inspiracao": "Fundraisly / VC Boom (PH #1 mês jun-2026)",
+      "template": "deckscore",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Pitch → score investor-readiness por framework de 10 secções + buzzword meter + relatório MD",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "07",
+      "slug": "rumo",
+      "nome": "Rumo",
+      "inspiracao": "Paradigm (PH jul-2026)",
+      "template": "rumo",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Objetivo+nível+tempo → trajeto de aprendizagem por fases com progresso",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "08",
+      "slug": "reporta",
+      "nome": "Reporta",
+      "inspiracao": "Migma AI (PH jul-2026)",
+      "template": "reporta",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "CSV → relatório com gráficos SVG e insights automáticos",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "09",
+      "slug": "timbre",
+      "nome": "Timbre",
+      "inspiracao": "Goldfish (PH #2 jun-2026) — responde como tu",
+      "template": "timbre",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Perfil estilométrico via amostras + gerador de respostas no teu tom",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "10",
+      "slug": "tracao",
+      "nome": "Tração",
+      "inspiracao": "Elentaria (PH top-10 jun-2026) — GTM diagnóstico→execução",
+      "template": "tracao",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Questionário → motor de regras → top-3 canais + plano 30 dias + KPI norte",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "11",
+      "slug": "provafogo",
+      "nome": "ProvaFogo",
+      "inspiracao": "Replay QA (PH jul-2026)",
+      "template": "provafogo",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "HTML → QA/a11y: links quebrados, ids duplicados, labels, alt, severidades, score de risco",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "12",
+      "slug": "pauta",
+      "nome": "Pauta",
+      "inspiracao": "Mina Meeting Assistant + trend voz local-first (ago-2026)",
+      "template": "pauta",
+      "status": "concluido",
+      "construido_por": "agente.py",
+      "brief": "Tópicos '~15m | dono' → pauta cronometrada para copiar",
+      "concluido_em": "2026-08-11 16:42"
+    },
+    {
+      "id": "13",
+      "slug": "freio",
+      "nome": "Freio",
+      "inspiracao": "Impause (Best SaaS Tools 2026)",
+      "template": "freio",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Anti-impulso: intenção de compra → cooldown → decisão consciente → total poupado",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "14",
+      "slug": "duodocs",
+      "nome": "DuoDocs",
+      "inspiracao": "DocsAlot (PH #1 dia 05-07-2026)",
+      "template": "duodocs",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Notas → doc humana (README) + llms.txt para agentes IA",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "15",
+      "slug": "anuncia",
+      "nome": "Anuncia",
+      "inspiracao": "AdAnt AI (PH #1 agosto-2026)",
+      "template": "anuncia",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Copy de anúncios por framework AIDA/PAS/H-O-P com limites por plataforma",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "16",
+      "slug": "prep",
+      "nome": "Prep",
+      "inspiracao": "LeetDesign — entrevistador de system design",
+      "template": "prep",
+      "status": "concluido",
+      "construido_por": "agente.py",
+      "brief": "Banco de casos system design PT + esboço + resposta modelo + rubrica",
+      "concluido_em": "2026-08-11 17:03"
+    },
+    {
+      "id": "17",
+      "slug": "gancho",
+      "nome": "Gancho",
+      "inspiracao": "Pikzels/ThumbnailTest — packaging YouTube 2026",
+      "template": "gancho",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Grader CTR de títulos/hooks + variantes geradas",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "18",
+      "slug": "clica",
+      "nome": "Clica",
+      "inspiracao": "YourSitee (PH top ago-2026) — bio link",
+      "template": "clica",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Bio builder com preview + export de página HTML standalone",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "19",
+      "slug": "clipradar",
+      "nome": "ClipRadar",
+      "inspiracao": "AutoShorts/PassiveShorts — repurposing clips",
+      "template": "clipradar",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Momentos → conceitos de Shorts/Reels com hook, duração, caption, hashtags",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "20",
+      "slug": "scripter",
+      "nome": "Scripter",
+      "inspiracao": "Creator AI — guiões para criadores",
+      "template": "scripter",
+      "status": "concluido",
+      "construido_por": "agente.py",
+      "brief": "Tema → guião de Short 30s estruturado (hook/setup/payoff/CTA)",
+      "concluido_em": "2026-08-11 17:27"
+    },
+    {
+      "id": "21",
+      "slug": "provasocial",
+      "nome": "ProvaSocial",
+      "inspiracao": "Senja/Famewall — testemunhos (2026)",
+      "template": "provasocial",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Testemunhos → moderação → Wall of Love exportável",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "22",
+      "slug": "marca",
+      "nome": "Marca",
+      "inspiracao": "Scheduling por nicho ($35-450K ARR)",
+      "template": "marca",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Disponibilidade+serviços → página de marcação exportável + calculadora receita",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "23",
+      "slug": "recupera",
+      "nome": "Recupera",
+      "inspiracao": "Churnkey-class dunning ($20-360K ARR)",
+      "template": "recupera",
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "ROI de recuperação + sequência 4 emails PT",
+      "concluido_em": "2026-08-11"
+    },
+    {
+      "id": "24",
+      "slug": "portalkit",
+      "nome": "PortalKit",
+      "inspiracao": "Client portals p/ agências ($30-400K ARR)",
+      "template": "portalkit",
+      "status": "concluido",
+      "construido_por": "agente.py",
+      "brief": "Entregáveis → relatório de estado com barra de progresso",
+      "concluido_em": "2026-08-11 18:01"
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Timbre — responde como tu</title>
+<style>
+:root{--bg:#0b0812;--panel:#171026;--panel2:#120c1d;--line:#2d2046;--txt:#f2edfa;--mut:#a295c4;
+--acc:#e879f9;--ok:#7dd3fc;--warn:#fbbf24;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#33104a,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+textarea{width:100%;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:12px;font:14px/1.6 inherit}
+#amostras{min-height:150px}#pontos{min-height:100px}
+input[type=text]{width:100%;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font:14px inherit}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#3d0f4d;background:linear-gradient(90deg,var(--acc),#c084fc)}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.rowBtns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.chip{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:5px 13px;margin:3px;font-size:.8rem}
+.chip b{color:var(--acc);font-weight:700}
+.msgG{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:16px;margin-top:12px}
+.msgG pre{white-space:pre-wrap;font:14px/1.7 inherit;color:#e9e2f8}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+label.lab{display:block;font-size:.76rem;color:var(--mut);margin:10px 0 5px;text-transform:uppercase;letter-spacing:.6px}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>Timbre</em> 🎙<small>ensina-me como escreves → respondo como tu · clone do conceito Goldfish (PH jun-2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Amostras do teu timbre</h3>
+<textarea id="amostras" placeholder="Cola aqui 2-5 emails/mensagens que escreveste (quanto mais, melhor fico a soar a ti)…"></textarea>
+<div class="rowBtns">
+<button onclick="aprender()">🎙 Aprender o meu estilo</button>
+<button class="ghost" onclick="exemploEstilo()">Exemplo de estilo</button>
+</div>
+<div id="perfil" style="margin-top:12px"></div>
+</div>
+
+<div class="card">
+<h3 class="painel">2 · Escreve no meu lugar</h3>
+<label class="lab" for="dest">Destinatário</label>
+<input type="text" id="dest" placeholder="Ex.: Carla">
+<label class="lab" for="pontos">O que transmitir (1 ponto por linha)</label>
+<textarea id="pontos" placeholder="recebi a proposta&#10;quero reagendar a reunião para sexta&#10;pedir anexos em falta"></textarea>
+<div class="rowBtns">
+<button onclick="gerar()">✍ Gerar mensagem no meu tom</button>
+<button class="ghost" onclick="copiar()">📋 Copiar</button>
+</div>
+<div id="out"></div>
+</div>
+
+<footer>Timbre — MVP reconstruído pela Fábrica 2026 · implementação original · o teu estilo nunca sai do browser</footer>
+</div>
+
+<script>
+var LS='timbre_v1';
+var P=null;
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var STOP=['de','a','o','que','e','do','da','em','um','para','é','com','uma','os','no','se','na','por','mais','as','dos','como','mas','foi','ao','das','tem','à','seu','sua','ou','ser','muito','há','nos','já','eu','também','só','até','isso','ela','ele','entre','sem','mesmo','aos','ter','está','vou','vamos','isso','este','esta','ainda','aqui','quando','assim','era','já'].reduce(function(o,w){o[w]=1;return o;},{});
+var FORMAL=['exmo','exma','caro senhor','cara senhora','prezado','prezada','dr.','dra.','atenciosamente','melhores cumprimentos','com os melhores cumprimentos','venho por este meio','na sequência','cordialmente'];
+var INFORMAL=['olá','ola','oi','hey','abraço','um abraço','beijinhos','estamos juntos','fixe','bora','ya ','valeu','ok!',';)','haha'];
+var SAUD={'olá':'Olá','bom dia':'Bom dia','boa tarde':'Boa tarde','boa noite':'Boa noite','hey':'Hey','oii':'Oi','caro':'Caro(a)','exmo':'Exmo.(a) Senhor(a)'};
+
+function aprender(){
+var txt=$('amostras').value.trim();
+var blocos=txt.split(/\n\s*\n+/).filter(function(b){return b.trim().length>20;});
+if(blocos.length<1||txt.length<80){$('perfil').innerHTML='<div class="vazio">Cola pelo menos umas mensagens tuas (~80+ caracteres) para eu aprender o timbre.</div>';return;}
+var low=txt.toLowerCase();
+var frases=txt.split(/[.!?…]+/).map(function(s){return s.trim();}).filter(function(s){return s.length>3;});
+var palavras=txt.split(/\s+/).filter(Boolean);
+var avg=frases.length?palavras.length/frases.length:12;
+var excl=(txt.match(/\!/g)||[]).length/palavras.length*100;
+var perg=(txt.match(/\?/g)||[]).length/palavras.length*100;
+var emojis=(txt.match(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu)||[]).length;
+var f=0,i=0;FORMAL.forEach(function(w){if(low.indexOf(w)>=0)f++;});INFORMAL.forEach(function(w){if(low.indexOf(w)>=0)i++;});
+var formalScore=f+i?Math.round(f/(f+i)*100):50;
+var saud='Olá';Object.keys(SAUD).forEach(function(k){if(low.indexOf(k)>=0&&low.indexOf(k)<60)saud=SAUD[k];});
+var desp=null;var freq={};
+blocos.forEach(function(b){var ls=b.trim().split(/\n/).map(function(x){return x.trim().toLowerCase();}).filter(Boolean);
+if(ls.length>1){var last=ls[ls.length-1];
+if(last.length<40&&!/\?$/.test(last)&&!/^(de|a|para|com )/.test(last)){freq[last]=(freq[last]||0)+1;}}});
+var best='';Object.keys(freq).forEach(function(k){if(freq[k]>(freq[best]||0))best=k;});
+if(best)desp=best.replace(/^[a-zà-ÿ]+/,function(m){return m.charAt(0).toUpperCase()+m.slice(1);});
+var freqW={};palavras.forEach(function(w){var c=w.toLowerCase().replace(/[^a-zà-ÿ]/g,'');
+if(c.length>3&&!STOP[c])freqW[c]=(freqW[c]||0)+1;});
+var assin=Object.keys(freqW).filter(function(k){return freqW[k]>=3;}).sort(function(a,b){return freqW[b]-freqW[a];}).slice(0,5);
+P={avg:avg,excl:excl,perg:perg,emojis:emojis,formal:formalScore,saud:saud,desp:desp,assin:assin,retic:/…|\.\.\./.test(txt)};
+try{localStorage.setItem(LS,JSON.stringify({txt:txt,P:P}));}catch(e){}
+var chips='<span class="chip">Registo: <b>'+(P.formal>=65?'formal':(P.formal<=35?'descontraído':'intermédio'))+'</b></span>'
++'<span class="chip">Frases: <b>'+(avg<11?'curtas e diretas':(avg>18?'longas e fluidas':'equilibradas'))+'</b> ('+avg.toFixed(1)+' pal.)</span>'
++'<span class="chip">Emojis: <b>'+(emojis>=3?'usas muito':(emojis>=1?'uso pontual':'quase nunca'))+'</b></span>'
++'<span class="chip">Entusiasmo: <b>'+(excl>=2?'alto (!)':'contido')+'</b></span>'
++'<span class="chip">Curiosidade: <b>'+(perg>=1.5?'fazes muitas perguntas':'afirmativo')+'</b></span>'
++'<span class="chip">Saudação típica: <b>'+esc(P.saud)+'</b></span>'
++(P.desp?'<span class="chip">Despedida típica: <b>'+esc(P.desp)+'</b></span>':'')
++(P.retic?'<span class="chip">Gostas de <b>reticências…</b></span>':'')
++(assin.length?'<span class="chip">Palavras-assinatura: <b>'+assin.map(esc).join(', ')+'</b></span>':'');
+$('perfil').innerHTML='<div>'+chips+'</div><div style="color:var(--ok);font-size:.82rem;margin-top:8px">✅ Timbre aprendido — já posso escrever como tu.</div>';}
+
+function gerar(){
+if(!P){aprender();}
+if(!P){return;}
+var dest=$('dest').value.trim()||'';
+var pontos=$('pontos').value.split(/\n+/).map(function(s){return s.trim();}).filter(Boolean);
+if(!pontos.length){$('out').innerHTML='<div class="vazio">Escreve pelo menos um ponto a transmitir.</div>';return;}
+var L=[];
+var saud=P.saud.replace('(a)','').replace('(as)','');
+L.push(dest?saud+' '+dest+',':saud+',');
+L.push('');
+var linhas;
+if(P.avg<12){
+linhas=pontos.map(function(p){var s=p.replace(/\.+$/,'');s=s.charAt(0).toUpperCase()+s.slice(1)+'.';return s;});
+}else{
+linhas=[];for(var i=0;i<pontos.length;i+=2){
+var a=pontos[i].replace(/\.+$/,'');var b=pontos[i+1]?pontos[i].replace(/\.+$/,''):'';
+if(pontos[i+1]){b=pontos[i+1].replace(/\.+$/,'');
+linhas.push(a.charAt(0).toUpperCase()+a.slice(1)+(i%4===0?' e, aliás, ':'; aliás, ')+b+'.');}
+else linhas.push(a.charAt(0).toUpperCase()+a.slice(1)+'.');}}
+if(P.excl>=2&&linhas.length)linhas[0]=linhas[0].replace(/\.$/,'!');
+if(P.emojis>=3)linhas[0]+=' 🙂';
+if(P.retic&&linhas.length>1)linhas[linhas.length-1]=linhas[linhas.length-1].replace(/\.$/,'…');
+L=L.concat(linhas);
+if(P.perg>=1.5)L.push('Faz sentido assim?');
+L.push('');
+L.push(P.desp||(P.formal>=65?'Com os melhores cumprimentos':'Um abraço'));
+$('out').innerHTML='<div class="msgG"><pre id="msgFinal">'+esc(L.join('\n'))+'</pre></div>';}
+
+function copiar(){var t=document.getElementById('msgFinal');if(t&&navigator.clipboard)navigator.clipboard.writeText(t.innerText);}
+function exemploEstilo(){$('amostras').value=['Olá Rui,',
+'Recebi o teu email, obrigado! Parece-me muito bem o plano — só mudava a data da entrega, se possível. Um abraço',
+'','Hey Carla! Adorei a apresentação de ontem 🙂 Acho que vamos mesmo avançar. Falamos sexta? Um abraço',
+'','Oi João, confirma-me só os valores da fatura, por favor? Tenho reunião com a contabilidade amanhã! Abraço'].join('\n');}
+try{var d=JSON.parse(localStorage.getItem(LS)||'null');if(d){$('amostras').value=d.txt;P=d.P;}}catch(e){}
+</script>
+</body>
+</html>

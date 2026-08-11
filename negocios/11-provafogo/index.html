@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProvaFogo — apanha o que está partido antes dos teus utilizadores</title>
+<style>
+:root{--bg:#120805;--panel:#1f120b;--panel2:#190e08;--line:#3c2314;--txt:#faf1ea;--mut:#c4a692;
+--acc:#fb923c;--ok:#4ade80;--warn:#facc15;--bad:#f87171;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#4a1d08,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--bad));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+textarea{width:100%;min-height:170px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);
+border-radius:10px;padding:12px;font:13px/1.5 ui-monospace,Consolas,monospace}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#431407;background:linear-gradient(90deg,var(--acc),var(--warn))}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.rowBtns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.scoreBig{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.numGrande{font-size:3.2rem;font-weight:900;line-height:1}
+.enums{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.enum{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:.8rem;color:var(--mut)}
+.enum b{display:block;font-size:1.1rem;color:var(--txt)}
+.ach{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.88rem}
+.ach.crit{border-left:3px solid var(--bad)} .ach.avis{border-left:3px solid var(--warn)} .ach.refi{border-left:3px solid var(--ok)}
+.ach small{color:var(--mut);display:block}
+.ach .sev{font-size:.68rem;font-weight:800;border-radius:99px;padding:2px 10px;white-space:nowrap}
+.crit .sev{background:rgba(248,113,113,.15);color:var(--bad)}
+.avis .sev{background:rgba(250,204,21,.13);color:var(--warn)}
+.refi .sev{background:rgba(74,222,128,.12);color:var(--ok)}
+.vazio{color:var(--mut);text-align:center;padding:18px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>ProvaFogo</em> 🔥<small>apanha o que está partido antes dos teus utilizadores · clone do conceito Replay QA (PH jul-2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Cola o HTML da página a testar</h3>
+<textarea id="html" placeholder="Cola aqui o código-fonte da página…"></textarea>
+<div class="rowBtns">
+<button onclick="testar()">🔥 Testar página</button>
+<button class="ghost" onclick="exemplo()">Carregar exemplo com problemas</button>
+</div>
+</div>
+
+<div id="res"><div class="vazio">O relatório aparece aqui: score de risco, achados por severidade e correção de cada problema.</div></div>
+
+<footer>ProvaFogo — MVP reconstruído pela Fábrica 2026 · implementação original · análise 100% local</footer>
+</div>
+
+<script>
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function testar(){
+var raw=$('html').value;
+if(!raw.trim()){$('res').innerHTML='<div class="vazio">Cola primeiro o HTML.</div>';return;}
+var doc=new DOMParser().parseFromString(raw,'text/html');
+var ach=[]; /* [severidade, titulo, fix] */
+function add(sev,tit,fix){ach.push([sev,tit,fix]);}
+
+/* links internos */
+var ids={};doc.querySelectorAll('[id]').forEach(function(n){var i=n.id;ids[i]=(ids[i]||0)+1;});
+var dupIds=Object.keys(ids).filter(function(k){return ids[k]>1;});
+if(dupIds.length)add('crit',dupIds.length+' ID(s) duplicado(s): '+dupIds.slice(0,5).map(function(x){return '#'+x;}).join(', '),'IDs únicos — âncoras, ARIA e getElementById partem com duplicados.');
+var links=doc.querySelectorAll('a[href]');
+var quebr=[],vaz=[];links.forEach(function(a){var h=a.getAttribute('href')||'';
+if(h.length>1&&h[0]==='#'){if(!ids[h.slice(1)])quebr.push(h);}
+else if(h==='#'||h.trim()==='')vaz.push(a.textContent.trim().slice(0,24));});
+if(quebr.length)add('crit',quebr.length+' link(s) interno(s) quebrado(s): '+quebr.slice(0,5).join(', '),'Corrige o alvo ou cria a secção com esse id.');
+if(vaz.length)add('avis',vaz.length+' link(s) com destino vazio (#)','Ou é botão (usa <button>) ou precisa de href real.');
+var clicks=[];links.forEach(function(a){var t=a.textContent.trim().toLowerCase();
+if(/^(clica aqui|click here|aqui|saber mais)$/.test(t))clicks.push(t);});
+if(clicks.length)add('refi',clicks.length+' link(s) com texto genérico ("'+clicks[0]+'")','Texto de link deve descrever o destino (SEO + leitores de ecrã).');
+var blank=Array.prototype.filter.call(links,function(a){return a.getAttribute('target')==='_blank'&&!(a.getAttribute('rel')||'').match(/noopener|noreferrer/);}).length;
+if(blank)add('avis',blank+' link(s) target="_blank" sem rel="noopener"','Janela nova sem noopener = risco de tabnabbing e perda de performance.');
+
+/* media */
+var imgs=doc.querySelectorAll('img');
+var semAlt=0,altVazio=0,semDim=0;
+imgs.forEach(function(i){var a=i.getAttribute('alt');
+if(a===null)semAlt++;else if(!a.trim())altVazio++;
+if(!i.getAttribute('width')||!i.getAttribute('height'))semDim++;});
+if(semAlt)add('crit',semAlt+' imagem(ns) sem atributo alt','Decorativa? alt="". Conteúdo? descreve-a.');
+if(altVazio)add('avis',altVazio+' imagem(ns) com alt vazio','Ok se decorativas; senão, descreve o conteúdo.');
+if(semDim)add('refi',semDim+' imagem(ns) sem width/height','Define dimensões para evitar saltos de layout (CLS).');
+var autop=doc.querySelectorAll('video[autoplay],audio[autoplay]').length;
+if(autop)add('avis',autop+' elemento(s) com autoplay','Autoplay irrita e falha em muitos browsers — usa clique do utilizador.');
+
+/* formulários */
+var ctrls=doc.querySelectorAll('input,select,textarea');
+var semLabel=0;
+ctrls.forEach(function(c){var t=(c.getAttribute('type')||'').toLowerCase();
+if(['hidden','submit','button','reset','image'].indexOf(t)>=0)return;
+var id=c.id;var okLab=id&&doc.querySelector('label[for="'+id+'"]');
+var wrap=c.closest('label');var aria=c.getAttribute('aria-label')||c.getAttribute('aria-labelledby');
+if(!okLab&&!wrap&&!aria)semLabel++;});
+if(semLabel)add('crit',semLabel+' campo(s) de formulário sem label associado','Leitores de ecrã anunciam "campo de texto" e nada mais. Usa <label for> ou aria-label.');
+var forms=doc.querySelectorAll('form');var semAction=0;
+forms.forEach(function(f){if(!f.getAttribute('action')&&!f.getAttribute('onsubmit')&&!f.getAttribute('data-js'))semAction++;});
+if(semAction)add('avis',semAction+' <form> sem action','Confirma que é tratado por JS; se não, o submit vai para o próprio URL.');
+var btns=doc.querySelectorAll('button,input[type=submit],input[type=button]');var btnVazio=0;
+btns.forEach(function(b){var t=(b.textContent||b.value||'').trim();var aria=b.getAttribute('aria-label');
+if(!t&&!aria)btnVazio++;});
+if(btnVazio)add('crit',btnVazio+' botão(ões) sem texto/rótulo','Botões invisíveis não se clicam. Texto ou aria-label.');
+
+/* estrutura/meta */
+if(!doc.documentElement.getAttribute('lang'))add('avis','Atributo lang em falta no <html>','Ajuda motores de busca, leitores de ecrã e tradução automática.');
+if(!doc.querySelector('meta[name="viewport"]'))add('avis','meta viewport em falta','Sem viewport, mobile renderiza "desktop encolhido".');
+var ti=(doc.querySelector('title')||{}).textContent||'';
+if(!ti.trim())add('avis','<title> vazio','O separador e o Google ficam sem nome próprio.');
+var tabs=doc.querySelectorAll('table');var semTh=0;
+tabs.forEach(function(t){if(!t.querySelector('th'))semTh++;});
+if(semTh)add('avis',semTh+' tabela(s) sem <th>','Cabeçalhos de célula dão estrutura e acessibilidade.');
+var prev=0,skips=0;
+doc.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(function(h){var n=parseInt(h.tagName[1],10);
+if(prev&&n>prev+1)skips++;prev=n;});
+var h1c=doc.querySelectorAll('h1').length;
+if(h1c!==1)add('avis',h1c===0?'Sem <h1>':h1c+' <h1> na página','Exatamente um H1 por página.');
+if(skips)add('refi',skips+' salto(s) na hierarquia de headings','Não saltes de H2 para H4.');
+var inline=doc.querySelectorAll('[style]').length;
+if(inline>10)add('refi',inline+' elementos com estilo inline','Move para classes/CSS — manutenção obrigada a agradecer.');
+var ifr=doc.querySelectorAll('iframe').length;
+doc.querySelectorAll('iframe').forEach(function(f){if(!f.getAttribute('title'))add('avis','<iframe> sem title','Leitores de ecrã precisam de saber o que é o frame.');});
+
+/* score */
+var nc=ach.filter(function(a){return a[0]==='crit';}).length;
+var na=ach.filter(function(a){return a[0]==='avis';}).length;
+var nr=ach.filter(function(a){return a[0]==='refi';}).length;
+var score=Math.max(0,100-nc*12-na*5-nr*1);
+var cor=score>=85?'var(--ok)':(score>=60?'var(--warn)':'var(--bad)');
+var ver=score>=85?'Aprovado na prova de fogo. Publica com confiança.':(score>=60?'Aguenta, mas arde em partes — corrige os críticos antes do deploy.':'Reprovado na prova de fogo. Os teus utilizadores agradecem que tenhas testado aqui primeiro.');
+var html='<div class="card"><h3 class="painel">2 · Resultado</h3><div class="scoreBig">'+
+'<div class="numGrande" style="color:'+cor+'">'+score+'<span style="font-size:1.1rem;color:var(--mut)">/100</span></div>'+
+'<div style="max-width:520px"><b>'+ver+'</b><div class="enums">'+
+'<div class="enum"><b style="color:var(--bad)">'+nc+'</b>críticos</div>'+
+'<div class="enum"><b style="color:var(--warn)">'+na+'</b>avisos</div>'+
+'<div class="enum"><b style="color:var(--ok)">'+nr+'</b>refinamentos</div></div></div></div></div>';
+html+='<div class="card"><h3 class="painel">Achados ('+ach.length+')</h3>';
+if(!ach.length)html+='<div class="vazio">Zero achados — página limpa. 🧼</div>';
+var sevNome={crit:'CRÍTICO',avis:'aviso',refi:'refinar'};
+ach.forEach(function(a){html+='<div class="ach '+a[0]+'"><span class="sev">'+sevNome[a[0]]+'</span><div><b>'+a[1]+'</b><small>🔧 '+a[2]+'</small></div></div>';});
+html+='</div><div class="vazio" style="padding-top:0">Corrige, volta a colar aqui o HTML e testa outra vez — objetivo: 100/100.</div>';
+$('res').innerHTML=html;
+try{localStorage.setItem('provafogo_ultimo',raw);}catch(e){}}
+
+function exemplo(){$('html').value=['<!DOCTYPE html><html><head><title></title></head><body>',
+'<h1>Ótica Vision</h1>','<h3>Serviços</h3>','<a href="#precos">Ver preços</a>',
+'<a href="#">clica aqui</a>','<img src="equipa.jpg">','<img src="fachada.jpg" alt="">',
+'<form action="/contacto">','<input type="text" name="nome" placeholder="O teu nome">',
+'<input type="email" id="e"><label for="e">Email</label>','<button></button>','</form>',
+'<table><tr><td>Lisboa</td><td>40€</td></tr></table>',
+'<a href="www.parceiro.pt" target="_blank">Parceiro</a>',
+'<div id="x"></div><span id="x">duplicado</span>','</body></html>'].join('\n');}
+try{var u=localStorage.getItem('provafogo_ultimo');if(u)$('html').value=u;}catch(e){}
+</script>
+</body>
+</html>

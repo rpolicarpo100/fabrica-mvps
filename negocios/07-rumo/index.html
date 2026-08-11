@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumo — qualquer objetivo vira um trajeto de aprendizagem</title>
+<style>
+:root{--bg:#070d0b;--panel:#0f1a15;--panel2:#0c150f;--line:#1e3a2b;--txt:#eef7f1;--mut:#93b3a0;
+--acc:#4ade80;--ok:#4ade80;--warn:#facc15;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 480px at 80% -10%,#0d3321,transparent),var(--bg);color:var(--txt);
+font:15px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:22px}
+header{padding:14px 0 18px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--acc),#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:.78rem;color:var(--mut);font-weight:400}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h3.painel{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:12px}
+input[type=text]{width:100%;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:15px inherit}
+input:focus{outline:2px solid var(--acc)}
+select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:14px inherit}
+.fila{display:grid;grid-template-columns:1fr 170px 170px;gap:10px;margin-top:10px}
+@media(max-width:680px){.fila{grid-template-columns:1fr}}
+button{border:0;border-radius:10px;padding:11px 20px;font:700 14px inherit;cursor:pointer;color:#06301a;background:linear-gradient(90deg,var(--acc),#34d399)}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-weight:600}
+.rowBtns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.progwrap{height:12px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.progwrap i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),#22d3ee);border-radius:99px;transition:width .4s}
+.progmeta{display:flex;justify-content:space-between;font-size:.78rem;color:var(--mut);margin-top:6px}
+.sessao{background:linear-gradient(90deg,rgba(74,222,128,.12),transparent);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:12px;padding:12px 14px;font-size:.9rem}
+.fase{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.fase .cab{padding:13px 16px;display:flex;justify-content:space-between;align-items:center;background:var(--panel2);cursor:pointer}
+.fase .cab b{font-size:.95rem}
+.fase .cab .w{font-size:.72rem;color:var(--mut)}
+.fase .corpo{padding:6px 16px 14px;display:none}
+.fase.aberta .corpo{display:block}
+.fase .cab .seta{transition:.2s;color:var(--mut)}
+.fase.aberta .cab .seta{transform:rotate(90deg)}
+.marco{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:.88rem}
+.marco input{margin-top:4px;accent-color:var(--acc);width:16px;height:16px;cursor:pointer}
+.marco.feito span{text-decoration:line-through;opacity:.55}
+.marco small{color:var(--mut);display:block;font-size:.74rem}
+.vazio{color:var(--mut);text-align:center;padding:20px;font-size:.9rem}
+footer{color:var(--mut);font-size:.75rem;text-align:center;padding:26px 0 10px}
+.pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin:3px;font-size:.75rem;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><em>Rumo</em> 🧭<small>qualquer objetivo vira um trajeto de aprendizagem adaptativo · clone do conceito Paradigm (PH jul-2026)</small></div>
+</header>
+
+<div class="card">
+<h3 class="painel">1 · Define o teu objetivo</h3>
+<input type="text" id="obj" placeholder="Ex.: aprender Python para análise de dados">
+<div class="fila">
+<div></div>
+<select id="nivel"><option value="ini">Nível: Iniciante</option><option value="int">Nível: Intermédio</option><option value="ava">Nível: Avançado</option></select>
+<select id="horas"><option value="2">2h/semana</option><option value="5" selected>5h/semana</option><option value="10">10h/semana</option></select>
+</div>
+<div class="rowBtns">
+<button onclick="gerar()">🧭 Gerar o meu Rumo</button>
+<button class="ghost" onclick="repor()">Reiniciar</button>
+</div>
+</div>
+
+<div id="plano"><div class="vazio">O teu trajeto aparece aqui — fases, marcos e a sessão de hoje. O progresso fica guardado neste browser.</div></div>
+
+<footer>Rumo — MVP reconstruído pela Fábrica 2026 · implementação original · funciona offline</footer>
+</div>
+
+<script>
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var LS='rumo_v1';
+var S={obj:null,nivel:'ini',horas:5,fases:[],aberta:0};
+function guardar(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
+function carregar(){try{var d=JSON.parse(localStorage.getItem(LS)||'null');if(d&&d.obj)S=d;return !!d;}catch(e){return false;}}
+
+/* ---- currículos por domínio ---- */
+function marcos(m){return m;}
+function fase(n,w,mm){return{nome:n,semanas:w,marcos:mm,saltada:false};}
+var DOM=[
+{re:/(python|program|código|codigo|dev\b|software|java|javascript)/i,f:function(o){return[
+fase('Fundamentos',3,marcos([['Sintaxe essencial: variáveis, listas, dicionários','Exercita 20 min/dia até fluência'],['Controlo de fluxo e funções','Reescreve 3 exercícios teus de formas diferentes'],['Erros e debugging','Aprende a ler tracebacks sem medo']])),
+fase('Programação prática',3,marcos([['Ficheiros, módulos e ambiente virtual','Organiza o teu primeiro projeto real'],['Bibliotecas do ecossistema','pandas e requests, se o objetivo for dados'],['Estilo: PEP8 e funções pequenas','Code review ao teu próprio código']])),
+fase('Projeto guiado',4,marcos([['Define um mini-projeto ligado a "'+o+'"','Uma página de objetivos medíveis'],['Constrói v1: feio mas funcional','Sem perfeccionismo'],['Testa com 2 pessoas reais','Anota 5 falhas e corrige']])),
+fase('Portefólio e fluência',4,marcos([['Refatora o projeto com testes','Publica com README claro'],['Contribui para um projeto open-source','1 pull request modesto chega'],['Simula 3 desafios de entrevista','Cronometrado, em voz alta']]))];}},
+{re:/(dados|data|excel|an[áa]lise|bi\b|sql|estat)/i,f:function(o){return[
+fase('Base de dados e tabelas',2,marcos([['Tabelas, tipos e limpeza básica','Importa um CSV público'],['Fórmulas essenciais / SELECT básico','Reproduz 3 análises simples']])),
+fase('Análise exploratória',3,marcos([['Médias, medianas, distribuições','Descreve um dataset em 5 linhas'],['Visualização: a regra dos 3 gráficos','Barras, linhas, dispersão — quando usar cada'],['Encontra 1 insight verdadeiro','Num dataset público do teu interesse']])),
+fase('Projeto de análise',4,marcos([['Escolhe uma pergunta de negócio real','Ligada a "'+o+'"'],['Do bruto ao relatório final','Notebook ou folha documentada'],['Apresenta a alguém em 5 minutos','Grava-te e revê']]))];}},
+{re:/(marketing|seo|anúncios|anuncios|social|conteúdo|conteudo|insta|tiktok)/i,f:function(o){return[
+fase('Fundamentos de procura',2,marcos([['Intenção de pesquisa e persona','Entrevista 3 clientes ideais'],['Palavras-chave: cauda longa primeiro','Lista 20 termos do teu nicho']])),
+fase('Conteúdo que rankeia',4,marcos([['Estrutura: problema→resposta→prova→CTA','Escreve 3 peças completas'],['Distribuição: 1 peça = 5 formatos','Reutiliza para redes'],['Medição básica (sem vanity metrics)','Define 1 KPI semanal']])),
+fase('Projeto real',4,marcos([['Escolhe uma página/produto real','Ligado a "'+o+'"'],['Publica 8 conteúdos em 4 semanas','Consistência > perfeição'],['Analisa: o que cresceu e porquê','Relatório de 1 página']]))];}},
+{re:/(design|figma|ux|ui\b|web\s?design)/i,f:function(o){return[
+fase('Olho treinado',2,marcos([['Hierarquia visual, grelhas, espaçamento','Analisa 5 sites bons e diz porquê'],['Tipografia: 2 fontes chegam','Monta um mini-guia de estilo']])),
+fase('Ferramenta e componentes',3,marcos([['Figma: frames, auto-layout, componentes','Recria 3 ecrãs conhecidos'],['Sistema de cores e estados','Botões, inputs, hover, erro']])),
+fase('Projeto: 3 ecrãs originais',4,marcos([['Brief auto-imposto ligado a "'+o+'"','Uma folha de requisitos'],['Desenha, testa com 3 pessoas','Itera 2 vezes'],['Publica no portefólio','Com descrição do processo']]))];}},
+{re:/(ingl[êe]s|franc[êe]s|espanhol|língua|lingua|idioma)/i,f:function(o){return[
+fase('Input massivo',3,marcos([['500 palavras núcleo com repetição espaçada','15 min/dia religiosos'],['Escuta diária (podcast lento/série)','Sempre com objetivo, nunca de fundo']])),
+fase('Produção guiada',3,marcos([['Falar 3x/semana (shadowing ou parceria)','Grava-te e compara'],['Escrever 1 texto curto por semana','Correção com italki/tandem/amigo']])),
+fase('Imersão no teu contexto',4,marcos([['Vocabulário do TEU mundo: "'+o+'"','Glossário pessoal de 100 termos'],['Simula situações reais','Reunião, apresentação, small talk'],['Teste de nivelamento','Marca o progresso com 1 exame simulado']]))];}},
+{re:/(finan|invest|dinheiro|poupan|etf|bolsa|cripto|crypto)/i,f:function(o){return[
+fase('Fundamentos pessoais',2,marcos([['Mapa das tuas finanças atuais','Receitas, custos, dívidas, 1 folha'],['Fundo de emergência: quanto e onde','Automatiza a transferência']])),
+fase('Investir sem mitos',4,marcos([['Juro composto e horizonte temporal','Simula 3 cenários'],['ETFs diversificados vs stock picking','Lê 1 metodologia de índice'],['Custos, impostos e erros comuns','Faz as contas do TEU caso']])),
+fase('Plano próprio',3,marcos([['Define regras escritas (IPS simples)','Quanto, onde, quando reequilibrar'],['Automatiza as contribuições','Retira a emoção do processo'],['Revisão trimestral de 30 minutos','Agenda já as 4 datas']]))];}},
+{re:/(vendas|vender|comercial|negoci|cold|prospe)/i,f:function(o){return[
+fase('Fundamentos de conversa',2,marcos([['Descoberta > discurso: 5 perguntas-chave','Ensaia com gravação'],['Escuta ativa e silêncio','Role-play 3x por semana']])),
+fase('Pipeline simples',3,marcos([['ICP e mensagem de valor em 1 frase','Para "'+o+'"'],['Sequência de contacto de 4 toques','Email, LinkedIn, chamada, follow-up'],['Regista tudo (mini-CRM)','Até uma folha serve']])),
+fase('Conversas reais',4,marcos([['10 conversas com prospects reais','Meta: aprender, não vender'],['Analisa objeções recorrentes','Documenta e prepara respostas'],['Fecha 1 piloto/venda','Celebra e extrai a lição']]))];}}];
+function genericFix(o){return[
+fase('Mapear o terreno',3,marcos([['O que é preciso saber para "'+o+'"?','Lista 10 tópicos; ordena por impacto'],['Encontra 2 fontes de qualidade','Um curso/livro + uma comunidade'],['Define o resultado final medível','"Sei X quando consigo Y" — escreve Y']])),
+fase('Prática deliberada',4,marcos([['Sessões de 45 min focadas','3-5x/semana conforme o teu tempo'],['Regista dúvidas específicas','Cada dúvida = próxima sessão'],['Ensina o que aprendeste','Explicar a alguém revela lacunas']])),
+fase('Projeto com bordas',4,marcos([['Projeto pequeno mas completo','Feito em 2-4 semanas, relacionado com "'+o+'"'],['Feedback de quem sabe mais','1 revisão vale 10 horas a sós'],['Itera e documenta','O processo é o teu portefólio']])),
+fase('Consolidação',3,marcos([['Revisita os 10 tópicos iniciais','Quais dominas? Quais faltam?'],['Próximo nível: especializa ou alarga','Escolhe consciente'],['Mantém o hábito mínimo','30 min/semana para não regredir']]))];}
+
+function planoPara(obj){
+var low=obj.toLowerCase();
+for(var i=0;i<DOM.length;i++)if(DOM[i].re.test(low))return DOM[i].f(obj);
+return genericFix(obj);}
+
+/* ---- geração ---- */
+function gerar(){
+var obj=$('obj').value.trim();
+if(obj.length<3){$('plano').innerHTML='<div class="vazio">Escreve primeiro um objetivo (ex.: "aprender Python para dados").</div>';return;}
+var nivel=$('nivel').value,horas=parseInt($('horas').value,10);
+var fases=planoPara(obj).map(function(f){return JSON.parse(JSON.stringify(f));});
+if(nivel==='ava'&&fases.length>3){fases[0].saltada=true;}
+if(nivel==='int'&&fases.length>3){fases[0].semanas=Math.max(1,fases[0].semanas-1);}
+var mult=horas<=2?1.6:(horas>=10?0.7:1);
+fases.forEach(function(f){f.semanas=Math.max(1,Math.round(f.semanas*mult));
+f.marcos=f.marcos.map(function(m){return{nome:m[0],dica:m[1],feito:false};});});
+S={obj:obj,nivel:nivel,horas:horas,fases:fases,aberta:0};
+guardar();render();}
+function repor(){S={obj:null,nivel:'ini',horas:5,fases:[],aberta:0};guardar();$('plano').innerHTML='<div class="vazio">Objetivo limpo — define um novo Rumo acima. 🧭</div>';}
+function toggleFase(i){S.aberta=(S.aberta===i?-1:i);guardar();render();}
+function toggleMarco(fi,mi){S.fases[fi].marcos[mi].feito=!S.fases[fi].marcos[mi].feito;guardar();render();}
+
+/* ---- render ---- */
+function render(){
+if(!S.obj){$('plano').innerHTML='<div class="vazio">O teu trajeto aparece aqui — fases, marcos e a sessão de hoje. O progresso fica guardado neste browser.</div>';return;}
+var todos=0,feitos=0,prox=null;
+S.fases.forEach(function(f){if(f.saltada)return;
+f.marcos.forEach(function(m,mi){todos++;if(m.feito)feitos++;else if(!prox)prox={m:m,f:f};});});
+var pct=todos?Math.round(feitos/todos*100):0;
+var semT=S.fases.reduce(function(a,f){return a+(f.saltada?0:f.semanas);},0);
+var html='<div class="card"><h3 class="painel">2 · O teu trajeto — '+esc(S.obj)+'</h3>';
+html+='<div class="pill">📅 ~'+semT+' semanas</div><div class="pill">⏱ '+S.horas+'h/semana</div><div class="pill">🎯 nível '+(S.nivel==='ini'?'iniciante':(S.nivel==='int'?'intermédio':'avançado'))+'</div>';
+html+='<div style="margin-top:12px" class="progwrap"><i style="width:'+pct+'%"></i></div><div class="progmeta"><span>'+feitos+' de '+todos+' marcos</span><span>'+pct+'%</span></div>';
+if(prox){html+='<div class="sessao" style="margin-top:12px">📌 <b>Sessão de hoje:</b> '+esc(prox.m.nome)+' <small style="color:var(--mut)">(fase: '+esc(prox.f.nome)+')</small></div>';}
+else if(todos){html+='<div class="sessao" style="margin-top:12px">🏆 <b>Trajeto completo!</b> Repete o ciclo com um objetivo mais ambicioso.</div>';}
+html+='</div>';
+S.fases.forEach(function(f,fi){
+if(f.saltada){html+='<div class="fase" style="opacity:.45"><div class="cab"><b>⏭ '+esc(f.nome)+'</b><span class="w">saltada — nível avançado</span></div></div>';return;}
+html+='<div class="fase '+(S.aberta===fi?'aberta':'')+'"><div class="cab" onclick="toggleFase('+fi+')"><b><span class="seta">▸</span> '+esc(f.nome)+'</b><span class="w">'+f.semanas+' sem · '+f.marcos.filter(function(m){return m.feito;}).length+'/'+f.marcos.length+'</span></div><div class="corpo">';
+f.marcos.forEach(function(m,mi){
+html+='<label class="marco '+(m.feito?'feito':'')+'"><input type="checkbox" '+(m.feito?'checked':'')+' onchange="toggleMarco('+fi+','+mi+')"><span>'+esc(m.nome)+(m.dica?'<small>'+esc(m.dica)+'</small>':'')+'</span></label>';});
+html+='</div></div>';});
+$('plano').innerHTML=html;}
+if(carregar()){render();}
+document.getElementById('obj').addEventListener('keydown',function(e){if(e.key==='Enter')gerar();});
+</script>
+</body>
+</html>
