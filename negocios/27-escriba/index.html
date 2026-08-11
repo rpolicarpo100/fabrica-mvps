@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escriba — da conversa à nota clínica, sem sair do computador</title>
+<style>
+:root{--bg:#080b12;--panel:#11182a;--panel2:#0d1424;--line:#202c46;--txt:#e9edf6;--mut:#8d97ad;--acc:#6c8cff;--ok:#38d9a9;--warn:#f4bf75;--bad:#ff7d92}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1100px 600px at 85% -10%,#132036 0%,var(--bg) 55%);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding:22px}
+main{max-width:920px;margin:0 auto}
+header.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:10px}
+.logo{font-weight:800;font-size:1.15rem}
+.logo span{color:var(--acc)}
+.tag{font-size:.72rem;color:var(--ok);border:1px solid #38d9a945;border-radius:999px;padding:4px 10px}
+h1{font-size:1.6rem;margin-bottom:6px}
+.sub{color:var(--mut);margin-bottom:16px;max-width:640px}
+.priv{background:#38d9a910;border:1px solid #38d9a935;color:var(--ok);border-radius:12px;padding:12px 14px;font-size:.85rem;margin-bottom:16px}
+.priv b{display:block;margin-bottom:2px}
+.wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+@media(max-width:820px){.wrap{grid-template-columns:1fr}}
+label{font-size:.75rem;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:8px}
+textarea{width:100%;min-height:230px;background:#0a0f1c;border:1px solid var(--line);border-radius:12px;color:var(--txt);padding:12px;font:inherit;font-size:.9rem;resize:vertical}
+textarea:focus,input:focus{outline:1px solid var(--acc)}
+input[type=text]{width:100%;background:#0a0f1c;border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:9px 12px;font:inherit;font-size:.88rem;margin-bottom:10px}
+.botoes{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+button{cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--txt);padding:10px 16px;font:inherit;font-size:.88rem}
+button:hover{border-color:var(--acc)}
+button.primary{background:var(--acc);border-color:transparent;color:#081020;font-weight:700}
+.soap{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:16px}
+.bloco{margin-bottom:14px}
+.bloco h4{font-size:.85rem;letter-spacing:.6px;margin-bottom:6px}
+.bloco.s h4{color:#7fb2ff}.bloco.o h4{color:var(--ok)}.bloco.a h4{color:var(--warn)}.bloco.p h4{color:#c9a0ff}
+.bloco ul{margin-left:18px}
+.bloco li{font-size:.88rem;line-height:1.5;margin-bottom:3px}
+.none{color:var(--mut);font-size:.82rem;font-style:italic}
+.aviso{color:var(--warn);background:#f4bf7512;border:1px solid #f4bf7540;border-radius:10px;padding:12px 14px;font-size:.9rem}
+h2.sec{font-size:.9rem;margin:26px 0 10px;color:var(--mut);text-transform:uppercase;letter-spacing:1px}
+.histItem{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;background:#0c1322;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:.82rem;margin-top:8px}
+.histItem:hover{border-color:var(--acc)}
+.del{background:none;border:none;color:var(--mut);cursor:pointer}
+.del:hover{color:var(--bad)}
+.vazio{color:var(--mut);font-size:.85rem}
+footer{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:.8rem;color:var(--mut)}
+footer a{color:var(--acc);text-decoration:none;margin-right:14px}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><div class="logo">🩺 <span>Escriba</span></div><span class="tag">🔒 100% local — privacidade por desenho</span></header>
+<h1>Da conversa à nota clínica.<br>Sem sair do computador.</h1>
+<p class="sub">Notas de consulta em texto livre entram à esquerda; sai à direita uma <b>nota SOAP</b> estruturada. Meeting intelligence vertical vale ouro em setores regulados — aqui, tudo processado offline.</p>
+<div class="priv">⚕️ <b>Demonstração educativa</b>Não é um dispositivo médico nem substitui julgamento clínico. Os dados nunca saem do navegador — o princípio que fez a inspiração (HIPAA-compliant) explodir nos EUA.</div>
+<div class="wrap">
+<div>
+<input type="text" id="cod" placeholder="Código do episódio (opcional, ex: C-1042)">
+<label>🎙 Notas / transcrição da consulta</label>
+<textarea id="trans" placeholder="Cola aqui as notas ou a transcrição...&#10;Frases completas funcionam melhor."></textarea>
+<div class="botoes">
+<button class="primary" id="btnGo">⚡ Gerar nota SOAP</button>
+<button id="btnEx">🧪 Exemplo</button>
+<button id="btnClear">🧹 Limpar</button>
+</div>
+</div>
+<div id="saida"><div class="soap"><p class="none">A nota SOAP aparece aqui: <b>S</b>ubjetivo · <b>O</b>bjetivo · <b>A</b>valiação · <b>P</b>lano</p></div></div>
+</div>
+<h2 class="sec">🗂 Notas guardadas (só no teu navegador)</h2>
+<div id="hist"></div>
+<footer>
+🔗 <a href="https://www.producthunt.com/search?q=ClinicFrame" target="_blank" rel="noopener">🎯 Inspiração: ClinicFrame (top-5 PH)</a>
+<a href="https://dashboard.stripe.com/payment-links" target="_blank" rel="noopener">💰 Cobrar: Stripe Payment Links</a>
+<a href="https://www.producthunt.com/posts/new" target="_blank" rel="noopener">🚀 Lançar: Product Hunt</a>
+<br><span style="font-size:.72rem">Os links abrem no site publicado (GitHub Pages/Render); no preview embutido da app podem ser bloqueados.</span>
+</footer>
+</main>
+<script>
+var LAST_TXT="";
+function esc(s){return String(s).replace(/</g,"&lt;");}
+function classificar(frases){
+var S=[],O=[],A=[],P=[];
+frases.forEach(function(f){
+if(/(prescrev|tomar|\btome\b|\d+\s?(mg|g|ml)\b|comprimid|xarope|antibi|paracetamol|ibuprof|analg|repouso|hidrata|análises|analises|hemograma|\bpcr\b|raio|radiograf|ecograf|reavali|retorno|seguimento|encaminh|marcha|marco consulta|baixa médica|baixa medica|vigilância|vigilancia)/i.test(f))P.push(f);
+else if(/(suspeit|diagnós|diagnos|compatív|compativel|prováv|provavel|quadro|impress|síndrome|sindrome|tudo indica|evocador)/i.test(f))A.push(f);
+else if(/(\b\d{2,3}\s?\/\s?\d{2,3}\b|temperatura|\b3[5-9][,.]\d|\bfc\b|\bfr\b|bpm|pulso|spo2|satura|tensão|tensao|\bta\b|peso|altura|\bimc\b|auscult|palpa|observa|exame|hiperemi|exsudado|murmúrio|sopro|edema)/i.test(f))O.push(f);
+else S.push(f);
+});
+return {s:S,o:O,a:A,p:P};
+}
+function textoNota(soap,cod){
+function L(t,it){return t+"\n"+(it.length?it.map(function(x){return "• "+x;}).join("\n"):"—");}
+return "NOTA CLÍNICA — "+new Date().toLocaleString("pt-PT")+(cod?" — Episódio "+cod:"")+"\n\n"+
+L("S — SUBJETIVO (relato do doente)",soap.s)+"\n\n"+L("O — OBJETIVO (exame / medições)",soap.o)+"\n\n"+
+L("A — AVALIAÇÃO",soap.a)+"\n\n"+L("P — PLANO",soap.p);
+}
+function bloco(cls,rotulo,itens){
+return '<div class="bloco '+cls+'"><h4>'+rotulo+'</h4>'+(itens.length?'<ul>'+itens.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul>':'<p class="none">—</p>')+'</div>';
+}
+function gerar(){
+var t=document.getElementById("trans").value.trim(),out=document.getElementById("saida");
+if(t.split(/\s+/).length<10){out.innerHTML='<p class="aviso">Cola as notas da consulta primeiro (frases completas funcionam melhor). Ou carrega o 🧪 Exemplo.</p>';return;}
+var cod=document.getElementById("cod").value.trim();
+var fr=t.split(/[.\n;]+/).map(function(x){return x.trim();}).filter(function(x){return x.length>2;});
+var soap=classificar(fr);
+LAST_TXT=textoNota(soap,cod);
+out.innerHTML='<div class="soap"><h4 style="margin-bottom:10px">📋 Nota SOAP'+(cod?' — '+esc(cod):'')+'</h4>'+
+bloco("s","S — Subjetivo",soap.s)+bloco("o","O — Objetivo",soap.o)+bloco("a","A — Avaliação",soap.a)+bloco("p","P — Plano",soap.p)+
+'<div class="botoes"><button id="btnCopia">📄 Copiar nota</button></div></div>';
+document.getElementById("btnCopia").addEventListener("click",function(){if(navigator.clipboard)navigator.clipboard.writeText(LAST_TXT);this.innerText="Copiada ✓";var b=this;setTimeout(function(){b.innerText="📄 Copiar nota";},1500);});
+gravarHist(cod,soap);
+}
+function gravarHist(cod,soap){var h=[];try{h=JSON.parse(localStorage.getItem("escriba_hist")||"[]");}catch(e){}
+h.unshift({d:new Date().toLocaleString("pt-PT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}),cod:cod||"sem código",soap:soap});
+localStorage.setItem("escriba_hist",JSON.stringify(h.slice(0,6)));renderHist();}
+function renderHist(){var el=document.getElementById("hist");var h=[];try{h=JSON.parse(localStorage.getItem("escriba_hist")||"[]");}catch(e){}
+if(!h.length){el.innerHTML='<p class="vazio">Nenhuma nota guardada ainda.</p>';return;}
+el.innerHTML=h.map(function(x,i){return '<div class="histItem" data-i="'+i+'"><span>📋 '+x.d+' — <b>'+esc(x.cod)+'</b></span><button class="del" data-i="'+i+'" title="apagar">✕</button></div>';}).join("");}
+function exemplo(){document.getElementById("trans").value="Doente refere dor de garganta há 3 dias, com piora ao engolir. Queixa-se de febre à noite e dor de cabeça ligeira. Nega falta de ar ou dor no peito. À observação: orofaringe hiperemiada com exsudado amigdaliano. Temperatura axilar 38,4. FC 92 bpm. Tensão arterial 124/78. Suspeita de amigdalite bacteriana aguda, quadro compatível com infeção estreptocócica. Prescrevo amoxicilina 500 mg, 1 comprimido de 8 em 8 horas durante 8 dias. Paracetamol 1 g se dor ou febre. Hidratação e repouso. Reavaliação em 48 horas se não houver melhoria. Análises: hemograma e PCR se persistir.";document.getElementById("cod").value="C-1042";}
+function limpar(){document.getElementById("trans").value="";document.getElementById("cod").value="";document.getElementById("saida").innerHTML='<div class="soap"><p class="none">A nota SOAP aparece aqui.</p></div>';LAST_TXT="";}
+document.getElementById("btnGo").addEventListener("click",gerar);
+document.getElementById("btnEx").addEventListener("click",exemplo);
+document.getElementById("btnClear").addEventListener("click",limpar);
+document.getElementById("hist").addEventListener("click",function(e){
+var d=e.target.closest(".del");
+var h=[];try{h=JSON.parse(localStorage.getItem("escriba_hist")||"[]");}catch(err){}
+if(d){h.splice(+d.getAttribute("data-i"),1);localStorage.setItem("escriba_hist",JSON.stringify(h));renderHist();return;}
+var it=e.target.closest(".histItem");if(!it)return;
+var x=h[+it.getAttribute("data-i")];if(!x)return;
+var out=document.getElementById("saida");
+out.innerHTML='<div class="soap"><h4 style="margin-bottom:10px">📋 Nota SOAP — '+esc(x.cod)+'</h4>'+
+bloco("s","S — Subjetivo",x.soap.s)+bloco("o","O — Objetivo",x.soap.o)+bloco("a","A — Avaliação",x.soap.a)+bloco("p","P — Plano",x.soap.p)+'<p class="none" style="margin-top:8px">Nota recuperada do histórico local.</p></div>';
+});
+document.addEventListener("DOMContentLoaded",renderHist);
+renderHist();
+</script>
+</body>
+</html>

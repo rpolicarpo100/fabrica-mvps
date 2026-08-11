@@ -74,3 +74,22 @@
 - Deploy efetuado: rpolicarpo100/fabrica-mvps (público) + GitHub Pages → https://rpolicarpo100.github.io/fabrica-mvps/
 - Validação pós-deploy: portal HTTP 200 + MVPs a responder (workflow GitHub Pages: success).
 - Hosting: adicionado render.yaml (Blueprint, static site, auto-deploy do GitHub) — alternativa grátis ao domínio .pt.
+- `2026-08-11 19:49` 🔁 Loop arrancou (modo offline)
+- `2026-08-11 19:49` ✅ **Deriva** concluído (tentativa 1) — `negocios/25-deriva/`
+- `2026-08-11 19:52` 🔁 Loop arrancou (modo offline)
+- `2026-08-11 19:52` ✅ **Medidor** concluído (tentativa 1) — `negocios/28-medidor/`
+
+## 🏁 Ronda 7 — "Economia dos agentes de IA" (2026-08-11, noite)
+
+### Entregue
+- 4 iterações: **25-Deriva**, **26-Emprega**, **27-Escriba** (assistente) + **28-Medidor** (agente.py, novo template `medidor`)
+- Pedido do utilizador implementado: **todos os 28 MVPs têm agora links de monetização** (🎯 inspiração/PH · 💰 Stripe Payment Links · 🚀 lançar no Product Hunt)
+- `smoke.py` refinado: `src=` bloqueado sempre; `href=` externo permitido em `<a>` (era excessivamente estrito)
+- Gate global: **28/28 verde** (re-verificado após todas as alterações)
+
+### Incidentes do processo (transparência total)
+1. **Agente sobrescreveu o 25-Deriva manual** — `agente.py` apanhava o primeiro pendente, mesmo sem template (`template: null` → gerador genérico pior). Detetado, ficheiro restaurado, causa corrigida: `proximo_pendente(dados, usar_llm)` agora **só escolhe slugs com template conhecido** em modo offline (lista `TEMPLATES_OFFLINE`).
+2. **Links injetados dentro de `<script>` em 6 MVPs** (02, 08, 11, 18, 21, 22) — a injeção retroativa usou o primeiro `</body>` possível; nesses ficheiros o JS declara `'</scr'+'ipt>'`/`</body>` em strings de stdout? (não: o bloco foi colado antes do `</script>` por ordem de append simples). Detetado pelo gate global (6 ❌), bloco movido para antes do `</body>` real, validado por smoke individual + global. Lição registada: sempre gate global depois de edições em massa.
+
+### Gate final
+28/28 verde · 28/28 com links de monetização · ronda 7 completa.

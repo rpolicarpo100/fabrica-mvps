@@ -49,10 +49,18 @@ def guardar_fila(dados):
     dados["atualizado"] = f"{datetime.now():%Y-%m-%d}"
     FILA.write_text(json.dumps(dados, ensure_ascii=False, indent=2), encoding="utf-8")
 
-def proximo_pendente(dados):
+# Templates que o agente consegue construir offline com qualidade de "funcional".
+# NUNCA deixar o agente tocar num slug fora desta lista sem LLM: o fallback
+# genérico produziria um MVP morto por cima de trabalho manual (bug ronda 6/7).
+TEMPLATES_OFFLINE = {"postpilot", "deckforge", "pauta", "prep", "scripter", "portalkit", "medidor"}
+
+def proximo_pendente(dados, usar_llm=True):
     for n in dados["fila"]:
-        if n["status"] in ("pendente", "em_curso"):
-            return n
+        if n["status"] not in ("pendente", "em_curso"):
+            continue
+        if not usar_llm and n.get("template") not in TEMPLATES_OFFLINE:
+            continue
+        return n
     return None
 
 # ---------------------------------------------------------------- LLM (opcional)
@@ -225,6 +233,49 @@ out.innerHTML='<div class="post"><h3>🗂 Relatório pronto a colar no email</h3
 function copiarEstado(btn){var t=btn.parentNode.querySelector('pre').innerText;if(navigator.clipboard){navigator.clipboard.writeText(t);}btn.innerText='Copiado ✓';setTimeout(function(){btn.innerText='Copiar relatório';},1500);}
 """
 
+CODIGO_MEDIDOR_JS = """
+var PRECOS=[
+[/opus/i,{i:15,o:75}],
+[/sonnet/i,{i:3,o:15}],
+[/haiku/i,{i:0.8,o:4}],
+[/gpt.?5.*mini/i,{i:0.25,o:2}],
+[/gpt.?5/i,{i:1.25,o:10}],
+[/gemini.*flash/i,{i:0.15,o:0.6}],
+[/gemini/i,{i:1.25,o:10}]
+];
+function pDe(mo){for(var k=0;k<PRECOS.length;k++){if(PRECOS[k][0].test(mo))return PRECOS[k][1];}return {i:3,o:15};}
+function fEur(c){return c<0.01?c.toFixed(4):c.toFixed(2);}
+function fTok(t){return t>=1000000?(t/1000000).toFixed(1)+'M':(t>=1000?Math.round(t/1000)+'k':t);}
+function medirCustos(){
+var out=document.getElementById('saida');
+var linhas=document.getElementById('entrada').value.split(/\\n+/).map(function(l){return l.trim();}).filter(Boolean);
+if(!linhas.length){out.innerHTML='<p class="aviso">Linhas no formato: agente | modelo | tokens entrada | tokens saída</p>';return;}
+var elo=document.getElementById('orc');var orc=elo?(parseFloat(elo.value)||0):0;
+var total=0,porA={},linhasTxt='';
+linhas.forEach(function(l){
+var p=l.split('|').map(function(x){return x.trim();});
+var ag=p[0]||'agente',mo=(p[1]||'sonnet').toLowerCase();
+var ti=parseFloat((p[2]||'0').replace(/[^\\d.]/g,''))||0,to=parseFloat((p[3]||'0').replace(/[^\\d.]/g,''))||0;
+var pr=pDe(mo);
+var c=(ti*pr.i+to*pr.o)/1000000;
+total+=c;porA[ag]=(porA[ag]||0)+c;
+linhasTxt+=ag+'  ('+mo+')  in '+fTok(ti)+' · out '+fTok(to)+'  →  €'+fEur(c)+'\\n';
+});
+var proj=total*30;
+var txt='CUSTO DESTA SESSÃO\\n\\n'+linhasTxt+'\\nTotal: €'+fEur(total)+'\\n';
+txt+='\\nSe isto for 1 dia típico → projeção: ~€'+fEur(proj)+'/mês\\n';
+var nomes=Object.keys(porA).sort(function(a,b){return porA[b]-porA[a];});
+if(nomes.length>1){txt+='\\nPor agente:\\n';nomes.forEach(function(a){var pct=Math.round(porA[a]/total*100);var bar='';for(var i=0;i<10;i++)bar+=i<Math.round(pct/10)?'█':'░';txt+='  '+a+'  €'+fEur(porA[a])+'  '+bar+' '+pct+'%\\n';});}
+if(orc>0){txt+='\\nOrçamento: €'+orc+'/mês → '+(proj>orc?('⚠️ ESTOURO: projeção excede em €'+fEur(proj-orc)):('✅ dentro do orçamento (sobra ~€'+fEur(orc-proj)+')'))+'\\n';}
+txt+='\\nDica: mover chamadas opus→sonnet poupa ~80% na maioria dos fluxos.\\n(Preços indicativos por 1M tokens — ajusta a tabela PRECOS no código.)\\n';
+out.innerHTML='<div class="post"><h3>💶 Medidor de custos de agentes</h3><pre>'+txt.replace(/</g,'&lt;')+'</pre><button onclick="copiarMedidor(this)">Copiar relatório</button></div>';
+gravarMed(total,linhas.length);
+}
+function copiarMedidor(btn){var t=btn.parentNode.querySelector('pre').innerText;if(navigator.clipboard){navigator.clipboard.writeText(t);}btn.innerText='Copiado ✓';setTimeout(function(){btn.innerText='Copiar relatório';},1500);}
+function gravarMed(t,n){var h=[];try{h=JSON.parse(localStorage.getItem('medidor_hist')||'[]');}catch(e){}h.unshift({d:new Date().toLocaleDateString('pt-PT'),t:fEur(t),n:n});localStorage.setItem('medidor_hist',JSON.stringify(h.slice(0,5)));
+var el=document.getElementById('histmed');if(el&&h.length>1)el.innerHTML='<b>Sessões anteriores:</b><br>'+h.slice(1).map(function(x){return x.d+': €'+x.t+' ('+x.n+' linhas)';}).join('<br>');}
+"""
+
 CODIGO_PREP_JS = """
 var CASOS=[
 {t:'Encurtador de URLs',r:['100M URLs criados por mês','Redirecionamento em menos de 10ms','Analytics simples por link'],
@@ -263,7 +314,7 @@ el.innerText=n+'/'+RUBRICA.length+' — '+(n<=2?'continua a treinar a estrutura'
 def html_generico(n):
     """Gera MVP funcional offline para qualquer negócio da fila."""
     slug = n["slug"]
-    ui_js = {"postpilot": CODIGO_POSTPILOT_JS, "deckforge": CODIGO_DECKFORGE_JS, "pauta": CODIGO_PAUTA_JS, "prep": CODIGO_PREP_JS, "scripter": CODIGO_SCRIPT_JS, "portalkit": CODIGO_PORTAL_JS}.get(slug, "")
+    ui_js = {"postpilot": CODIGO_POSTPILOT_JS, "deckforge": CODIGO_DECKFORGE_JS, "pauta": CODIGO_PAUTA_JS, "prep": CODIGO_PREP_JS, "scripter": CODIGO_SCRIPT_JS, "portalkit": CODIGO_PORTAL_JS, "medidor": CODIGO_MEDIDOR_JS}.get(slug, "")
     extras = ""
     if slug == "postpilot":
         hero_sub = "Cola um texto longo → recebe variações prontas para X, LinkedIn e Instagram."
@@ -297,6 +348,12 @@ def html_generico(n):
         botao = "Gerar pauta"
         acao = "gerarPauta()"
         extras = '<div style="margin-top:10px;color:var(--mut);font-size:.85rem">Hora de início: <input id="inicio" value="10:00" style="background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:8px;padding:8px 10px;width:95px;font:inherit"></div>'
+    elif slug == "medidor":
+        hero_sub = "Cola consumos 'agente | modelo | tokens entrada | tokens saída' → custo em €, projeção mensal e alerta de orçamento."
+        entrada = "claude-code | sonnet | 1200000 | 85000"
+        botao = "💶 Medir custos"
+        acao = "medirCustos()"
+        extras = '<div style="margin-top:10px;color:var(--mut);font-size:.85rem">Orçamento mensal (€, opcional): <input id="orc" value="50" style="background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:8px;padding:8px 10px;width:90px;font:inherit"></div><div id="histmed" style="margin-top:12px;color:var(--mut);font-size:.8rem"></div>'
     else:
         hero_sub = n["brief"]
         entrada = "Entrada…"
@@ -351,7 +408,7 @@ footer{{text-align:center;color:var(--mut);font-size:.85rem;padding:32px}}
 <div class="card"><h3>🔒 Privado</h3><p>Tudo corre no teu browser. Os teus textos nunca saem daqui.</p></div>
 <div class="card"><h3>💸 Modelo 2026</h3><p>Freemium: grátis até N usos/mês, Pro desbloqueia histórico e marca.</p></div>
 </div>
-<footer>Recriado pelo Agente Fábrica 2026 · inspiração: {n['inspiracao']} · implementação original</footer>
+<footer>Recriado pelo Agente Fábrica 2026 · inspiração: {n['inspiracao']} · implementação original<br><a href="https://dashboard.stripe.com/payment-links" target="_blank" rel="noopener" style="color:var(--acc)">💰 Cobrar: Stripe Payment Links</a> · <a href="https://www.producthunt.com/posts/new" target="_blank" rel="noopener" style="color:var(--acc)">🚀 Lançar: Product Hunt</a></footer>
 </div>
 <script>{ui_js}</script>
 </body>
@@ -394,7 +451,7 @@ def correcao_estatica(pasta):
 
 # ---------------------------------------------------------------- iteração
 def iteracao(dados, usar_llm):
-    n = proximo_pendente(dados)
+    n = proximo_pendente(dados, usar_llm)
     if not n:
         return None
     log(f"▶ ITERAÇÃO: {n['nome']} — {n['inspiracao']}")

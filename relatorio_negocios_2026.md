@@ -132,3 +132,25 @@ MVP: calculadora de receita recuperável (MRR, churn, taxa falha) + sequência d
 
 ### #24 — Client portal p/ agências → clone: **PortalKit** 🗂 (via agente.py)
 $30K–$400K ARR. MVP: entregáveis+estado+prazo → relatório de progresso com barra e resumo, pronto a colar no email do cliente.
+
+---
+
+## 🔍 Ronda 7 — "Economia dos Agentes de IA + Verticais Aborrecidas" (2026-08-11)
+
+Fontes: Product Hunt Leaderboard diário (29/07/2026), PH mensal julho/2026 (hunted.space), Superframeworks (receitas verificadas de micro-SaaS 2026), BigIdeasDB (8.699 startups).
+
+### Sinais fortes do mercado
+- **Prelint** — 🥇 #1 Product of the Day 29/07/2026: "prevent product drift in AI-written code". Nova categoria inteira: QA da *intenção* em código gerado por IA.
+- **RemoteOK** — $2.5M+ ARR (Pieter Levels, solo): job boards de nicho continuam a ser das máquinas de dinheiro mais "aborrecidas" e fiáveis. Teto reportado no flowjam: $40-500K ARR.
+- **ClinicFrame** — Top 5 PH: "Granola para saúde, HIPAA-compliant". Confirma a tese: meeting intelligence **vertical** (regulada) vale muito mais que a genérica.
+- **AgentQuartz** — trending devtools: medidor de consumo/custo de agentes IA. "A conta de luz dos agentes" — com Claude/Codex omnipresentes, observabilidade de custos explodiu.
+
+### Os 4 escolhidos
+| ID | Slug | Nome | Modelo | Validacao |
+|----|------|------|--------|-----------|
+| 25 | deriva | Deriva | Spec→ texto; checklist contra drift | PH #1 do dia (Prelint) |
+| 26 | emprega | Emprega | Job board vertical (IA em PT) | RemoteOK $2.5M ARR |
+| 27 | escriba | Escriba | Notas clínicas SOAP locais | ClinicFrame top-5 PH |
+| 28 | medidor | Medidor | Custos de agentes IA (tokens→€) | AgentQuartz trending |
+
+Nota ética: como sempre — reimplementações originais do *modelo*, zero marca/código/conteúdo alheio. Dados de demonstração fictícios.

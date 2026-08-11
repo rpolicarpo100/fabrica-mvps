@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "atualizado": "2026-08-11",
-  "ronda": 6,
+  "ronda": 7,
   "fila": [
     {
       "id": "01",
@@ -261,6 +261,50 @@
       "construido_por": "agente.py",
       "brief": "Entregáveis → relatório de estado com barra de progresso",
       "concluido_em": "2026-08-11 18:01"
+    },
+    {
+      "id": "25",
+      "slug": "deriva",
+      "nome": "Deriva",
+      "inspiracao": "Prelint (PH #1 29-jul-2026)",
+      "template": null,
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Spec → checklist de drift: o construído cumpre a spec?",
+      "concluido_em": "2026-08-11 19:52"
+    },
+    {
+      "id": "26",
+      "slug": "emprega",
+      "nome": "Emprega",
+      "inspiracao": "RemoteOK ($2.5M+ ARR)",
+      "template": null,
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Job board vertical: vagas IA em PT + publicar vaga",
+      "concluido_em": "2026-08-11 19:52"
+    },
+    {
+      "id": "27",
+      "slug": "escriba",
+      "nome": "Escriba",
+      "inspiracao": "ClinicFrame (top-5 PH, HIPAA)",
+      "template": null,
+      "status": "concluido",
+      "construido_por": "assistente",
+      "brief": "Transcrição livre → nota clínica SOAP estruturada",
+      "concluido_em": "2026-08-11 19:52"
+    },
+    {
+      "id": "28",
+      "slug": "medidor",
+      "nome": "Medidor",
+      "inspiracao": "AgentQuartz (devtools trending)",
+      "template": "medidor",
+      "status": "concluido",
+      "construido_por": "agente.py",
+      "brief": "Regista consumos de tokens → custo € e previsão mensal",
+      "concluido_em": "2026-08-11 19:52"
     }
   ]
 }

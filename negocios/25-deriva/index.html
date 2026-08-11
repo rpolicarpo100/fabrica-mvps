@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deriva — a spec e o código não voltam a divorciar-se</title>
+<style>
+:root{--bg:#080b12;--panel:#11182a;--panel2:#0d1424;--line:#202c46;--txt:#e9edf6;--mut:#8d97ad;--acc:#6c8cff;--ok:#38d9a9;--warn:#f4bf75;--bad:#ff7d92}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1100px 600px at 85% -10%,#16203a 0%,var(--bg) 55%);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding:22px}
+main{max-width:960px;margin:0 auto}
+header.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.logo{font-weight:800;font-size:1.15rem}
+.logo span{color:var(--acc)}
+.tag{font-size:.72rem;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+h1{font-size:1.7rem;line-height:1.25;margin-bottom:8px}
+.sub{color:var(--mut);margin-bottom:20px;max-width:660px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:780px){.grid2{grid-template-columns:1fr}}
+.panel{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:16px}
+label{font-size:.75rem;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:8px}
+textarea{width:100%;min-height:170px;background:#0a0f1c;border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:12px;font:inherit;font-size:.9rem;resize:vertical}
+textarea:focus{outline:1px solid var(--acc)}
+.botoes{display:flex;gap:10px;margin:16px 0;flex-wrap:wrap}
+button{cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--txt);padding:10px 16px;font:inherit;font-size:.9rem}
+button:hover{border-color:var(--acc)}
+button.primary{background:var(--acc);border-color:transparent;color:#081020;font-weight:700}
+.aviso{color:var(--warn);background:#f4bf7512;border:1px solid #f4bf7540;border-radius:10px;padding:12px 14px;font-size:.9rem}
+.scoreCard{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.ring{width:118px;height:118px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:conic-gradient(var(--c) calc(var(--p)*1%),#1b2740 0)}
+.ringIn{width:90px;height:90px;border-radius:50%;background:var(--panel);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ringIn b{font-size:1.5rem}
+.ringIn small{color:var(--mut);font-size:.68rem}
+.vered{font-size:1.05rem;font-weight:700}
+.vered small{display:block;color:var(--mut);font-weight:400;font-size:.82rem;margin-top:4px}
+.req{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:#0c1322}
+.req .txt{font-size:.9rem;line-height:1.4}
+.chips{margin-top:6px}
+.chip{display:inline-block;font-size:.7rem;background:#ff7d9218;color:var(--bad);border:1px solid #ff7d9235;border-radius:999px;padding:2px 8px;margin:2px 4px 0 0}
+h2.sec{font-size:.9rem;margin:26px 0 10px;color:var(--mut);text-transform:uppercase;letter-spacing:1px}
+.histItem{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#0c1322;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.82rem;margin-top:8px}
+.del{background:none;border:none;color:var(--mut);cursor:pointer;padding:2px 6px}
+.del:hover{color:var(--bad)}
+.vazio{color:var(--mut);font-size:.85rem}
+footer{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:.8rem;color:var(--mut)}
+footer a{color:var(--acc);text-decoration:none;margin-right:14px}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><div class="logo">🧭 <span>Deriva</span></div><span class="tag">offline · 100% local</span></header>
+<h1>A IA construiu.<br>Mas construiu o que pediste?</h1>
+<p class="sub">Cola a spec e descreve o que os agentes de IA construíram (ou resume o diff). O Deriva cruza os dois textos e aponta a <b>deriva de produto</b> antes do cliente apontar por ti.</p>
+<div class="grid2">
+<div class="panel"><label>📜 Spec — um requisito por linha</label><textarea id="spec" placeholder="- Deve ter formulário de marcação com data e hora&#10;- Preçário visível com cortes e combos&#10;- Confirmação automática por email"></textarea></div>
+<div class="panel"><label>🛠 O que foi construído</label><textarea id="feito" placeholder="Descreve o que a IA construiu, ou cola o resumo do diff / dos commits..."></textarea></div>
+</div>
+<div class="botoes">
+<button class="primary" id="btnGo">⚡ Analisar drift</button>
+<button id="btnEx">🧪 Ver exemplo</button>
+<button id="btnClear">🧹 Limpar</button>
+</div>
+<div id="saida"></div>
+<h2 class="sec">📈 Histórico de análises</h2>
+<div id="hist"></div>
+<footer>
+🔗 <a href="https://www.producthunt.com/search?q=Prelint" target="_blank" rel="noopener">🎯 Inspiração: Prelint (PH #1 do dia, 29/07/2026)</a>
+<a href="https://dashboard.stripe.com/payment-links" target="_blank" rel="noopener">💰 Cobrar: Stripe Payment Links</a>
+<a href="https://www.producthunt.com/posts/new" target="_blank" rel="noopener">🚀 Lançar: Product Hunt</a>
+<br><span style="font-size:.72rem">Os links abrem no site publicado (GitHub Pages/Render); no preview embutido da app podem ser bloqueados.</span>
+</footer>
+</main>
+<script>
+var STOP=("a o os as um uma uns umas de do da dos das em no na nos nas num numa por pelo pela com sem sob sobre ate até desde para ao à aos às e ou como que se não sim mais menos muito onde quando qual quais ser estar ter foi era este esta isso isto esse essa cada outro outra mesmo seu sua seus suas deve devem pode podem também assim entre app apps página páginas sistema utilizador utilizadores").split(/\s+/);
+function tok(t){var s=t.toLowerCase().replace(/[^a-zà-ú0-9]+/g," ").split(/\s+/);var o={};for(var i=0;i<s.length;i++){var w=s[i];if(w.length>=4&&STOP.indexOf(w)<0&&isNaN(+w))o[w]=1;}return o;}
+function reqs(t){var l=t.split(/\n+/).map(function(x){return x.replace(/^[\s\-\*•\d.):]+/,"").trim();});var r=[];for(var i=0;i<l.length;i++){if(l[i].split(/\s+/).length>=3&&l[i].length>=12)r.push(l[i]);}return r.slice(0,14);}
+function classe(f){return f>=0.6?"ok":(f>=0.25?"meio":"off");}
+function icon(c){return c==="ok"?"✅":(c==="meio"?"🟡":"❌");}
+function cor(s){return s<=20?"var(--ok)":(s<=45?"var(--warn)":"var(--bad)");}
+function esc(s){return s.replace(/</g,"&lt;");}
+function analisar(){
+var spec=document.getElementById("spec").value,feito=document.getElementById("feito").value,out=document.getElementById("saida");
+var rs=reqs(spec);
+if(rs.length<1||!feito.trim()){out.innerHTML='<p class="aviso">Preciso da spec (um requisito por linha) <b>e</b> da descrição do que foi construído.</p>';return;}
+var tf=tok(feito);
+var items=rs.map(function(r){var ks=Object.keys(tok(r));var falta=ks.filter(function(k){return !tf[k];});var frac=ks.length?(ks.length-falta.length)/ks.length:1;return{r:r,cl:classe(frac),falta:falta.slice(0,6)};});
+var ok=items.filter(function(i){return i.cl==="ok";}).length,meio=items.filter(function(i){return i.cl==="meio";}).length,off=items.length-ok-meio;
+var drift=Math.round(100*(off+0.5*meio)/items.length);
+var ver=drift<=20?"Alinhado — deriva mínima":(drift<=45?"Deriva moderada — revê os pontos em falta":"Deriva grave — a construção afastou-se da spec");
+var h='<div class="scoreCard"><div class="ring" style="--p:'+drift+';--c:'+cor(drift)+'"><div class="ringIn"><b>'+drift+'%</b><small>deriva</small></div></div><div class="vered" style="color:'+cor(drift)+'">'+ver+'<small>'+ok+'/'+items.length+' cobertos · '+meio+' parciais · '+off+' em falta</small></div></div>';
+items.forEach(function(i){h+='<div class="req"><span>'+icon(i.cl)+'</span><div class="txt">'+esc(i.r)+(i.falta.length?'<div class="chips">'+i.falta.map(function(f){return '<span class="chip">'+esc(f)+'</span>';}).join("")+'</div>':"")+'</div></div>';});
+out.innerHTML=h;
+gravarHist(drift,items.length);
+}
+function gravarHist(s,n){var h=[];try{h=JSON.parse(localStorage.getItem("deriva_hist")||"[]");}catch(e){}h.unshift({d:new Date().toLocaleString("pt-PT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}),s:s,n:n});localStorage.setItem("deriva_hist",JSON.stringify(h.slice(0,8)));renderHist();}
+function renderHist(){var el=document.getElementById("hist");var h=[];try{h=JSON.parse(localStorage.getItem("deriva_hist")||"[]");}catch(e){}
+if(!h.length){el.innerHTML='<p class="vazio">Ainda sem análises guardadas — tudo fica no teu navegador.</p>';return;}
+el.innerHTML=h.map(function(x,i){return '<div class="histItem"><span>'+x.d+' — '+x.n+' requisitos</span><span><b style="color:'+cor(x.s)+'">'+x.s+'% deriva</b> <button class="del" data-i="'+i+'" title="apagar">✕</button></span></div>';}).join("");}
+function exemplo(){
+document.getElementById("spec").value=["Deve ter formulário de marcação com data e hora","Lista de barbeiros com fotografia e especialidade","Preçário visível com cortes e combos","Confirmação automática por email ao cliente","Painel do barbeiro com agenda do dia","Área de cliente com histórico de marcações"].join("\n");
+document.getElementById("feito").value="Página com formulário de marcação onde se escolhe data e hora em calendário. Inclui preçário com cortes e combos bem visível. Painel do barbeiro mostra a agenda do dia. A lista de barbeiros aparece apenas com nomes — sem fotografia nem especialidade. A confirmação por email ao cliente ainda não envia nada. O histórico de marcações na área de cliente ficou por fazer.";}
+function limpar(){document.getElementById("spec").value="";document.getElementById("feito").value="";document.getElementById("saida").innerHTML="";document.getElementById("spec").focus();}
+document.getElementById("btnGo").addEventListener("click",analisar);
+document.getElementById("btnEx").addEventListener("click",exemplo);
+document.getElementById("btnClear").addEventListener("click",limpar);
+document.getElementById("hist").addEventListener("click",function(e){var b=e.target.closest(".del");if(!b)return;var h=[];try{h=JSON.parse(localStorage.getItem("deriva_hist")||"[]");}catch(err){}h.splice(+b.getAttribute("data-i"),1);localStorage.setItem("deriva_hist",JSON.stringify(h));renderHist();});
+document.addEventListener("DOMContentLoaded",renderHist);
+renderHist();
+</script>
+</body>
+</html>

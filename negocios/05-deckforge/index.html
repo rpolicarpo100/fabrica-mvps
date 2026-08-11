@@ -67,5 +67,12 @@ function mudar(d){if(!window.__deck)return;atual=Math.max(0,Math.min(window.__de
 function mostrar(){window.__deck.forEach(function(s,i){s.style.display=i===atual?'flex':'none';});var p=document.getElementById('pos');if(p)p.innerText=(atual+1)+'/'+window.__deck.length;}
 document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')mudar(1);if(e.key==='ArrowLeft')mudar(-1);});
 </script>
+
+<div style="margin-top:34px;border-top:1px solid #202c46;padding-top:14px;font-size:.8rem;color:#8d97ad;font-family:system-ui,sans-serif">
+🔗 <a href="https://www.producthunt.com/search?q=Gamma+app" target="_blank" rel="noopener" style="color:#6c8cff;text-decoration:none">🎯 Inspiração: Gamma</a> ·
+<a href="https://dashboard.stripe.com/payment-links" target="_blank" rel="noopener" style="color:#6c8cff;text-decoration:none">💰 Cobrar: Stripe Payment Links</a> ·
+<a href="https://www.producthunt.com/posts/new" target="_blank" rel="noopener" style="color:#6c8cff;text-decoration:none">🚀 Lançar: Product Hunt</a>
+<br><span style="font-size:.7rem">Links externos — abrem no site publicado (GitHub Pages/Render); no preview embutido podem ser bloqueados.</span>
+</div>
 </body>
 </html>

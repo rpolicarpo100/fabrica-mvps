@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medidor — AgentQuartz (devtools trending)</title>
+<style>
+:root{--bg:#0b0e14;--card:#141a26;--txt:#e6e9f0;--mut:#8b93a7;--acc:#6c8cff;--acc2:#38d9a9;}
+*{box-sizing:border-box;margin:0}
+body{background:radial-gradient(1200px 600px at 80% -10%,#1b2440,transparent),var(--bg);color:var(--txt);font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif;padding:24px}
+.wrap{max-width:860px;margin:0 auto}
+header{text-align:center;padding:48px 16px 32px}
+header h1{font-size:2.4rem;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mut);margin-top:8px}
+.card{background:var(--card);border:1px solid #232c40;border-radius:14px;padding:20px;margin:16px 0}
+textarea{width:100%;min-height:140px;background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:10px;padding:12px;font:inherit}
+button{background:linear-gradient(90deg,var(--acc),#4f6ef0);color:#fff;border:0;border-radius:10px;padding:12px 22px;font:600 15px inherit;cursor:pointer;margin-top:12px}
+button:hover{filter:brightness(1.1)}
+.post pre{white-space:pre-wrap;background:#0d1220;border-radius:8px;padding:12px;margin:8px 0;font:14px/1.5 inherit}
+.post h3 span{color:var(--mut);font-weight:400;font-size:.8rem}
+.aviso{color:#f4bf75}
+.slide{display:none;flex-direction:column;justify-content:center;min-height:320px;background:#101828;border:1px solid #232c40;border-radius:14px;padding:40px}
+.slide.capa h1{font-size:2.2rem}
+.slide ul{margin-top:12px;color:var(--mut)}
+.nav{text-align:center;margin-top:14px}
+footer{text-align:center;color:var(--mut);font-size:.85rem;padding:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:24px 0}
+.grid .card{margin:0}
+.grid h3{color:var(--acc2);font-size:1rem}
+.grid p{color:var(--mut);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Medidor</h1>
+<p>Cola consumos 'agente | modelo | tokens entrada | tokens saída' → custo em €, projeção mensal e alerta de orçamento.</p>
+</header>
+<div class="card">
+<textarea id="entrada" placeholder="claude-code | sonnet | 1200000 | 85000"></textarea>
+<div style="margin-top:10px;color:var(--mut);font-size:.85rem">Orçamento mensal (€, opcional): <input id="orc" value="50" style="background:#0d1220;color:var(--txt);border:1px solid #2a3550;border-radius:8px;padding:8px 10px;width:90px;font:inherit"></div><div id="histmed" style="margin-top:12px;color:var(--mut);font-size:.8rem"></div>
+<button onclick="medirCustos()">💶 Medir custos</button>
+</div>
+<div id="saida"></div>
+<div class="grid">
+<div class="card"><h3>⚡ Rápido</h3><p>Do conteúdo ao resultado em segundos, sem registos nem servidores.</p></div>
+<div class="card"><h3>🔒 Privado</h3><p>Tudo corre no teu browser. Os teus textos nunca saem daqui.</p></div>
+<div class="card"><h3>💸 Modelo 2026</h3><p>Freemium: grátis até N usos/mês, Pro desbloqueia histórico e marca.</p></div>
+</div>
+<footer>Recriado pelo Agente Fábrica 2026 · inspiração: AgentQuartz (devtools trending) · implementação original<br><a href="https://dashboard.stripe.com/payment-links" target="_blank" rel="noopener" style="color:var(--acc)">💰 Cobrar: Stripe Payment Links</a> · <a href="https://www.producthunt.com/posts/new" target="_blank" rel="noopener" style="color:var(--acc)">🚀 Lançar: Product Hunt</a></footer>
+</div>
+<script>
+var PRECOS=[
+[/opus/i,{i:15,o:75}],
+[/sonnet/i,{i:3,o:15}],
+[/haiku/i,{i:0.8,o:4}],
+[/gpt.?5.*mini/i,{i:0.25,o:2}],
+[/gpt.?5/i,{i:1.25,o:10}],
+[/gemini.*flash/i,{i:0.15,o:0.6}],
+[/gemini/i,{i:1.25,o:10}]
+];
+function pDe(mo){for(var k=0;k<PRECOS.length;k++){if(PRECOS[k][0].test(mo))return PRECOS[k][1];}return {i:3,o:15};}
+function fEur(c){return c<0.01?c.toFixed(4):c.toFixed(2);}
+function fTok(t){return t>=1000000?(t/1000000).toFixed(1)+'M':(t>=1000?Math.round(t/1000)+'k':t);}
+function medirCustos(){
+var out=document.getElementById('saida');
+var linhas=document.getElementById('entrada').value.split(/\n+/).map(function(l){return l.trim();}).filter(Boolean);
+if(!linhas.length){out.innerHTML='<p class="aviso">Linhas no formato: agente | modelo | tokens entrada | tokens saída</p>';return;}
+var elo=document.getElementById('orc');var orc=elo?(parseFloat(elo.value)||0):0;
+var total=0,porA={},linhasTxt='';
+linhas.forEach(function(l){
+var p=l.split('|').map(function(x){return x.trim();});
+var ag=p[0]||'agente',mo=(p[1]||'sonnet').toLowerCase();
+var ti=parseFloat((p[2]||'0').replace(/[^\d.]/g,''))||0,to=parseFloat((p[3]||'0').replace(/[^\d.]/g,''))||0;
+var pr=pDe(mo);
+var c=(ti*pr.i+to*pr.o)/1000000;
+total+=c;porA[ag]=(porA[ag]||0)+c;
+linhasTxt+=ag+'  ('+mo+')  in '+fTok(ti)+' · out '+fTok(to)+'  →  €'+fEur(c)+'\n';
+});
+var proj=total*30;
+var txt='CUSTO DESTA SESSÃO\n\n'+linhasTxt+'\nTotal: €'+fEur(total)+'\n';
+txt+='\nSe isto for 1 dia típico → projeção: ~€'+fEur(proj)+'/mês\n';
+var nomes=Object.keys(porA).sort(function(a,b){return porA[b]-porA[a];});
+if(nomes.length>1){txt+='\nPor agente:\n';nomes.forEach(function(a){var pct=Math.round(porA[a]/total*100);var bar='';for(var i=0;i<10;i++)bar+=i<Math.round(pct/10)?'█':'░';txt+='  '+a+'  €'+fEur(porA[a])+'  '+bar+' '+pct+'%\n';});}
+if(orc>0){txt+='\nOrçamento: €'+orc+'/mês → '+(proj>orc?('⚠️ ESTOURO: projeção excede em €'+fEur(proj-orc)):('✅ dentro do orçamento (sobra ~€'+fEur(orc-proj)+')'))+'\n';}
+txt+='\nDica: mover chamadas opus→sonnet poupa ~80% na maioria dos fluxos.\n(Preços indicativos por 1M tokens — ajusta a tabela PRECOS no código.)\n';
+out.innerHTML='<div class="post"><h3>💶 Medidor de custos de agentes</h3><pre>'+txt.replace(/</g,'&lt;')+'</pre><button onclick="copiarMedidor(this)">Copiar relatório</button></div>';
+gravarMed(total,linhas.length);
+}
+function copiarMedidor(btn){var t=btn.parentNode.querySelector('pre').innerText;if(navigator.clipboard){navigator.clipboard.writeText(t);}btn.innerText='Copiado ✓';setTimeout(function(){btn.innerText='Copiar relatório';},1500);}
+function gravarMed(t,n){var h=[];try{h=JSON.parse(localStorage.getItem('medidor_hist')||'[]');}catch(e){}h.unshift({d:new Date().toLocaleDateString('pt-PT'),t:fEur(t),n:n});localStorage.setItem('medidor_hist',JSON.stringify(h.slice(0,5)));
+var el=document.getElementById('histmed');if(el&&h.length>1)el.innerHTML='<b>Sessões anteriores:</b><br>'+h.slice(1).map(function(x){return x.d+': €'+x.t+' ('+x.n+' linhas)';}).join('<br>');}
+</script>
+</body>
+</html>

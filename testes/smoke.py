@@ -24,7 +24,11 @@ def testar(pasta: Path) -> dict:
     html = idx.read_text(encoding="utf-8")
 
     # 1) Recursos externos (bloqueiam preview sandboxed)
-    externos = re.findall(r'(?:src|href)\s*=\s*"(https?://[^"]+)"', html)
+    #    src= é SEMPRE um recurso carregado (script/img/iframe).
+    #    href= só é recurso em <link> (CSS); âncoras <a href="http..."> são
+    #    navegação do utilizador — permitidas (links de inspiração/monetização).
+    externos = re.findall(r'src\s*=\s*"(https?://[^"]+)"', html)
+    externos += re.findall(r'<link[^>]*href\s*=\s*"(https?://[^"]+)"', html)
     if externos:
         erros.append(f"recursos externos bloqueiam o preview: {externos[:3]}")
 

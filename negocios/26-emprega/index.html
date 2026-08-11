@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emprega — empregos de IA em Portugal, ruído zero</title>
+<style>
+:root{--bg:#080b12;--panel:#11182a;--panel2:#0d1424;--line:#202c46;--txt:#e9edf6;--mut:#8d97ad;--acc:#6c8cff;--ok:#38d9a9;--warn:#f4bf75}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1100px 600px at 85% -10%,#16203a 0%,var(--bg) 55%);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding:22px}
+main{max-width:960px;margin:0 auto}
+header.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:10px}
+.logo{font-weight:800;font-size:1.15rem}
+.logo span{color:var(--acc)}
+.tag{font-size:.72rem;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+h1{font-size:1.6rem;margin-bottom:6px}
+.sub{color:var(--mut);margin-bottom:18px;max-width:620px}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.stat{flex:1;min-width:120px;background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+.stat b{display:block;font-size:1.4rem;color:var(--acc)}
+.stat small{color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.8px}
+.controls{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:18px}
+.controls .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text],input[type=email],input[type=number],select{background:#0a0f1c;border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:9px 12px;font:inherit;font-size:.88rem}
+input:focus,select:focus{outline:1px solid var(--acc)}
+#q{flex:1;min-width:180px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{cursor:pointer;border:1px solid var(--line);background:#0a0f1c;color:var(--mut);border-radius:999px;padding:6px 14px;font-size:.8rem}
+.chip.ativo{border-color:var(--acc);color:var(--acc);background:#6c8cff15}
+.salRow{margin-top:10px;display:flex;align-items:center;gap:12px;font-size:.85rem;color:var(--mut)}
+.salRow b{color:var(--acc);min-width:44px}
+input[type=range]{flex:1;accent-color:var(--acc)}
+.job{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+.jTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+h3{font-size:1.05rem}
+.novo{background:var(--ok);color:#06281e;font-size:.65rem;font-weight:800;border-radius:6px;padding:2px 7px;vertical-align:middle}
+.tipo{font-size:.7rem;font-weight:700;border-radius:999px;padding:4px 10px;white-space:nowrap}
+.tipo.rem{background:#38d9a918;color:var(--ok);border:1px solid #38d9a940}
+.tipo.hib{background:#f4bf7518;color:var(--warn);border:1px solid #f4bf7540}
+.tipo.pre{background:#6c8cff18;color:var(--acc);border:1px solid #6c8cff40}
+.emp{color:var(--mut);font-size:.85rem;margin:6px 0}
+.site{color:var(--acc);opacity:.75}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.tags span{font-size:.7rem;background:#0a0f1c;border:1px solid var(--line);border-radius:6px;padding:3px 8px;color:var(--mut)}
+.jBot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.jBot b{color:var(--ok);font-size:1.05rem}
+.cand{background:var(--acc);color:#081020;font-weight:700;border-radius:10px;padding:9px 16px;font-size:.85rem;text-decoration:none}
+.cand:hover{filter:brightness(1.1)}
+.del{background:none;border:none;color:var(--mut);cursor:pointer}
+.del:hover{color:#ff7d92}
+.panel{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:26px}
+.panel h2{font-size:1.05rem;margin-bottom:4px}
+.panel .dica{color:var(--mut);font-size:.82rem;margin-bottom:12px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:700px){.fgrid{grid-template-columns:1fr}}
+.fgrid .full{grid-column:1/-1}
+button.primary{background:var(--acc);border:none;color:#081020;font-weight:700;border-radius:10px;padding:11px 18px;font:inherit;cursor:pointer;margin-top:12px}
+.okmsg{color:var(--ok);font-size:.85rem;margin-top:10px;display:none}
+.vazio{color:var(--mut);font-size:.9rem;padding:18px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+footer{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:.8rem;color:var(--mut)}
+footer a{color:var(--acc);text-decoration:none;margin-right:14px}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><div class="logo">💼 <span>Emprega</span></div><span class="tag">job board vertical · offline</span></header>
+<h1>Empregos de IA em Portugal.<br>Ruído zero.</h1>
+<p class="sub">Um job board de nicho ganha de duas pontas: cobra às empresas por publicar e mantém os candidatos agarrados com curadoria. O modelo clássico do RemoteOK — aqui focado em IA 🇵🇹. <b>(dados de demonstração)</b></p>
+<div class="stats">
+<div class="stat"><b id="statTotal">–</b><small>vagas ativas</small></div>
+<div class="stat"><b id="statRem">–</b><small>remotas</small></div>
+<div class="stat"><b id="statSal">–</b><small>salário mediano</small></div>
+</div>
+<div class="controls">
+<div class="row">
+<input type="text" id="q" placeholder="🔍 Pesquisar cargo, empresa ou skill... (ex: LLM)">
+<select id="ord"><option value="rec">Mais recentes</option><option value="sal">Maior salário</option></select>
+</div>
+<div class="chips" id="tipos">
+<span class="chip ativo" data-t="Todas">Todas</span>
+<span class="chip" data-t="Remoto">🏠 Remoto</span>
+<span class="chip" data-t="Híbrido">🏢 Híbrido</span>
+<span class="chip" data-t="Presencial">📍 Presencial</span>
+</div>
+<div class="salRow"><span>Quero ganhar pelo menos</span><input type="range" id="sal" min="20" max="80" step="5" value="20"><b id="salLab">20k€</b></div>
+</div>
+<div id="lista"></div>
+<div class="panel">
+<h2>📣 Publicar uma vaga</h2>
+<p class="dica">Um job board real cobraria 150-300€ por destaque. Aqui é grátis — fica guardada no teu navegador.</p>
+<div class="fgrid">
+<input type="text" id="pe" placeholder="Empresa *">
+<input type="text" id="pc" placeholder="Cargo * (ex: Engenheiro de IA)">
+<select id="pt"><option>Remoto</option><option>Híbrido</option><option>Presencial</option></select>
+<input type="text" id="pl" placeholder="Localização (ex: Lisboa)">
+<input type="number" id="pmin" placeholder="Salário mín (k€)">
+<input type="number" id="pmax" placeholder="Salário máx (k€)">
+<input type="email" id="pm" placeholder="Email de candidaturas *" class="full">
+<input type="text" id="ptags" placeholder="Skills, separadas por vírgulas (máx 4)" class="full">
+<input type="text" id="ps" placeholder="Site (ex: tuaempresa.pt)" class="full">
+</div>
+<button class="primary" id="btnPub">🚀 Publicar vaga</button>
+<p class="okmsg" id="okpub">✅ Vaga publicada! Aparece no topo com o selo NOVO.</p>
+</div>
+<footer>
+🔗 <a href="https://remoteok.com" target="_blank" rel="noopener">🎯 Inspiração: RemoteOK ($2.5M+ ARR, 1 pessoa)</a>
+<a href="https://dashboard.stripe.com/payment-links" target="_blank" rel="noopener">💰 Cobrar destaques: Stripe Payment Links</a>
+<a href="https://www.producthunt.com/posts/new" target="_blank" rel="noopener">🚀 Lançar: Product Hunt</a>
+<br><span style="font-size:.72rem">Os links abrem no site publicado (GitHub Pages/Render); no preview embutido da app podem ser bloqueados.</span>
+</footer>
+</main>
+<script>
+var VAGAS=[
+{cargo:"Engenheiro/a de Prompts Sénior",emp:"Nebula AI",tipo:"Remoto",loc:"Qualquer lugar em 🇵🇹",min:45,max:60,tags:["LLMs","Avaliação","Python"],mail:"talento@nebula-ai.pt",site:"nebula-ai.pt"},
+{cargo:"AI Product Manager",emp:"Douro Labs",tipo:"Remoto",loc:"🇵🇹 / 🇪🇺",min:50,max:70,tags:["Produto","Agentes","B2B"],mail:"pm@dourolabs.pt",site:"dourolabs.pt"},
+{cargo:"Investigador de Segurança de Agentes",emp:"GuardaCosta",tipo:"Remoto",loc:"Qualquer lugar em 🇵🇹",min:55,max:75,tags:["Red team","Jailbreaks","Relatórios"],mail:"sec@guardacosta.pt",site:"guardacosta.pt"},
+{cargo:"Data Engineer Sénior",emp:"Tejo Analytics",tipo:"Híbrido",loc:"Porto",min:45,max:58,tags:["dbt","Airflow","DuckDB"],mail:"data@tejoanalytics.pt",site:"tejoanalytics.pt"},
+{cargo:"MLOps Engineer",emp:"FaroData",tipo:"Híbrido",loc:"Lisboa",min:40,max:55,tags:["Kubernetes","vLLM","CI/CD"],mail:"ops@farodata.pt",site:"farodata.pt"},
+{cargo:"Engenheiro de Visão Computacional",emp:"Porto Vision",tipo:"Presencial",loc:"Porto",min:38,max:50,tags:["PyTorch","Edge","Robótica"],mail:"cv@portovision.pt",site:"portovision.pt"},
+{cargo:"Redator Técnico de IA (PT-PT)",emp:"LisboaTextos",tipo:"Remoto",loc:"Qualquer lugar em 🇵🇹",min:28,max:36,tags:["Documentação","LLMs","Escrita"],mail:"jobs@lisboatexos.pt",site:"lisboatexos.pt"},
+{cargo:"Suporte ao Cliente — produtos IA",emp:"AlgarveBots",tipo:"Presencial",loc:"Faro",min:22,max:28,tags:["Suporte","Chatbots","Inglês"],mail:"rh@algarvebots.pt",site:"algarvebots.pt"}
+];
+function esc(s){return String(s).replace(/</g,"&lt;");}
+function userVagas(){try{return JSON.parse(localStorage.getItem("emprega_vagas")||"[]");}catch(e){return[];}}
+function guardarUser(v){localStorage.setItem("emprega_vagas",JSON.stringify(v));}
+var F={q:"",tipo:"Todas",ord:"rec",sal:20};
+function todas(){return userVagas().concat(VAGAS);}
+function mid(v){return (v.min+v.max)/2;}
+function filtrar(){
+var l=todas();
+if(F.tipo!=="Todas")l=l.filter(function(v){return v.tipo===F.tipo;});
+if(F.q)l=l.filter(function(v){return (v.cargo+" "+v.emp+" "+v.tags.join(" ")).toLowerCase().indexOf(F.q.toLowerCase())>=0;});
+l=l.filter(function(v){return v.max>=F.sal;});
+if(F.ord==="sal")l=l.slice().sort(function(a,b){return mid(b)-mid(a);});
+return l;
+}
+function chipClasse(t){return t==="Remoto"?"rem":(t==="Híbrido"?"hib":"pre");}
+function render(){
+var nUser=userVagas().length,all=todas();
+var rem=all.filter(function(v){return v.tipo==="Remoto";}).length;
+var meds=all.map(mid).sort(function(a,b){return a-b;});
+document.getElementById("statTotal").innerText=all.length;
+document.getElementById("statRem").innerText=all.length?Math.round(rem/all.length*100)+"%":"–";
+document.getElementById("statSal").innerText=all.length?meds[Math.floor(meds.length/2)]+"k€":"–";
+var l=filtrar(),el=document.getElementById("lista");
+if(!l.length){el.innerHTML='<p class="vazio">Nenhuma vaga com esses filtros.<br>Alarga o salário alvo — ou publica a tua em baixo 👇</p>';return;}
+el.innerHTML=l.map(function(v,i){
+var novo=i<nUser?' <span class="novo">NOVO</span>':"";
+var del=i<nUser?' <button class="del" data-i="'+i+'" title="remover vaga">✕</button>':"";
+var subj=encodeURIComponent("Candidatura: "+v.cargo+" — via Emprega");
+return '<div class="job"><div class="jTop"><h3>'+esc(v.cargo)+novo+'</h3><span class="tipo '+chipClasse(v.tipo)+'">'+v.tipo+'</span></div>'+
+'<div class="emp">'+esc(v.emp)+' · '+esc(v.loc)+' · <span class="site">'+esc(v.site)+'</span>'+del+'</div>'+
+'<div class="tags">'+v.tags.map(function(t){return '<span>'+esc(t)+'</span>';}).join("")+'</div>'+
+'<div class="jBot"><b>'+v.min+'–'+v.max+'k€</b><a class="cand" href="mailto:'+v.mail+'?subject='+subj+'">✉️ Candidatar</a></div></div>';
+}).join("");
+}
+function val(id){return document.getElementById(id).value.trim();}
+function publicar(){
+var tipo=document.getElementById("pt").value;
+var min=+val("pmin"),max=+val("pmax");
+var v={cargo:val("pc"),emp:val("pe"),tipo:tipo,loc:val("pl")||(tipo==="Remoto"?"Qualquer lugar em 🇵🇹":"Portugal"),
+min:min>0?min:25,max:max>min?max:(min>0?min+10:35),
+tags:val("ptags").split(",").map(function(s){return s.trim();}).filter(Boolean).slice(0,4),
+mail:val("pm"),site:val("ps")||"—"};
+if(!v.cargo||!v.emp||v.mail.indexOf("@")<1){document.getElementById("okpub").style.display="none";alert("Preenche pelo menos: empresa, cargo e email de candidaturas.");return;}
+var u=userVagas();u.unshift(v);guardarUser(u);
+["pe","pc","pl","pmin","pmax","pm","ptags","ps"].forEach(function(id){document.getElementById(id).value="";});
+document.getElementById("okpub").style.display="block";render();
+document.getElementById("lista").scrollIntoView({behavior:"smooth"});}
+document.getElementById("q").addEventListener("input",function(e){F.q=e.target.value;render();});
+document.getElementById("ord").addEventListener("change",function(e){F.ord=e.target.value;render();});
+document.getElementById("sal").addEventListener("input",function(e){F.sal=+e.target.value;document.getElementById("salLab").innerText=F.sal+"k€";render();});
+document.getElementById("tipos").addEventListener("click",function(e){var c=e.target.closest(".chip");if(!c)return;F.tipo=c.getAttribute("data-t");
+document.querySelectorAll("#tipos .chip").forEach(function(x){x.classList.toggle("ativo",x===c);});render();});
+document.getElementById("btnPub").addEventListener("click",publicar);
+document.getElementById("lista").addEventListener("click",function(e){var b=e.target.closest(".del");if(!b)return;var u=userVagas();u.splice(+b.getAttribute("data-i"),1);guardarUser(u);render();});
+document.addEventListener("DOMContentLoaded",render);
+render();
+</script>
+</body>
+</html>
