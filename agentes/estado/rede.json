@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-11 21:07",
-  "ciclo": 3,
-  "duracao_s": 5.2,
+  "quando": "2026-08-11 22:06",
+  "ciclo": 4,
+  "duracao_s": 3.5,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 4.0,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,22 +37,22 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.1,
+      "s": 1.4,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "DeepSeek-V4-Flash-0731",
-          "oqoqo",
-          "NudgeForMe",
-          "AI Spend Console by Rippling",
-          "SoloUno",
-          "AdmitRaven",
-          "Switchy for Mac",
-          "Lexi",
-          "Cerenovus",
-          "VoiceGecko"
+          "Airtop for Google Ads Automation",
+          "Portfolio Lab",
+          "Qwen3.8-Max",
+          "Superlog Responder",
+          "AstraPixels",
+          "SecondBrain Note by GenSpark",
+          "Remix",
+          "AI Group Call",
+          "Gutta",
+          "Vidaya"
         ],
-        "pendentes": 44,
+        "pendentes": 54,
         "fontes": {
           "mensal": {
             "ok": true,

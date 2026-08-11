@@ -439,6 +439,106 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "VoiceGecko — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "airtopforgoogleadsautoma",
+      "nome": "Airtop for Google Ads Automation",
+      "tema": "vendas/marketing",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Airtop for Google Ads Automation — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "portfoliolab",
+      "nome": "Portfolio Lab",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Portfolio Lab — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "qwen38max",
+      "nome": "Qwen3.8-Max",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Qwen3.8-Max — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "superlogresponder",
+      "nome": "Superlog Responder",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Superlog Responder — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "astrapixels",
+      "nome": "AstraPixels",
+      "tema": "devtools",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AstraPixels — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "secondbrainnotebygenspar",
+      "nome": "SecondBrain Note by GenSpark",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "SecondBrain Note by GenSpark — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "remix",
+      "nome": "Remix",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Remix — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "aigroupcall",
+      "nome": "AI Group Call",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AI Group Call — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "gutta",
+      "nome": "Gutta",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Gutta — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "vidaya",
+      "nome": "Vidaya",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-11 22:06",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Vidaya — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -457,5 +557,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-11 21:07"
+  "ultima_varrimento": "2026-08-11 22:06"
 }
