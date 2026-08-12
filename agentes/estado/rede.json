@@ -1,7 +1,7 @@
 {
-  "quando": "2026-08-12 15:16",
-  "ciclo": 14,
-  "duracao_s": 3.2,
+  "quando": "2026-08-12 16:13",
+  "ciclo": 15,
+  "duracao_s": 2.6,
   "agentes": {
     "vera": {
       "rc": 0,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.2,
+      "s": 0.5,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "RightCard",
-          "Dograh",
-          "Nearfield",
-          "Click",
-          "Cohesor"
+          "tash",
+          "Ballet",
+          "Sidekick™",
+          "Swipe",
+          "Linforge"
         ],
-        "pendentes": 90,
+        "pendentes": 95,
         "fontes": {
           "mensal": {
             "ok": true,
