@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-12 06:44",
-  "ciclo": 9,
+  "quando": "2026-08-12 08:40",
+  "ciclo": 10,
   "duracao_s": 3.0,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.5,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,18 +37,16 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.3,
+      "s": 0.8,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [
-          "August 2026"
-        ],
+        "novos": [],
         "pendentes": 80,
         "fontes": {
           "mensal": {
             "ok": true,
             "nomes_lidos": 53,
-            "novos": 1
+            "novos": 0
           },
           "diário": {
             "ok": false,

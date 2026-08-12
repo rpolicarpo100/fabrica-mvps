@@ -805,7 +805,7 @@
     "mensal": {
       "ok": true,
       "nomes_lidos": 53,
-      "novos": 1
+      "novos": 0
     },
     "diário": {
       "ok": false,
@@ -817,5 +817,5 @@
       "novos": 0
     }
   },
-  "ultima_varrimento": "2026-08-12 06:44"
+  "ultima_varrimento": "2026-08-12 08:40"
 }
