@@ -191,3 +191,14 @@
 [2026-08-12 18:10] [dinis/mercado] ⚠️ fonte snapshot indisponível: HTTP Error 500: Internal Server Error
 [2026-08-12 18:10] [dinis/mercado] varrimento: 0 novos ao vivo (—) · 98 à espera · temas {'produtividade': 85, 'devtools': 8, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 1}
 [2026-08-12 18:10] [orquestrador] ciclo #17 terminado em 2.5s · OK ✅
+[2026-08-12 19:28] [orquestrador] ═══ ciclo #18 ═══
+[2026-08-12 19:28] [orquestrador] ▶ vera…
+[2026-08-12 19:28] [vera/qualidade] verificação completa: 28/28 verdes (100.0%)
+[2026-08-12 19:28] [orquestrador] ▶ rui…
+[2026-08-12 19:28] [rui/revisão] revisão feita: 28 checklists · 0 P1 abertos · mais trabalho: 16-prep, 04-postpilot, 10-tracao
+[2026-08-12 19:28] [orquestrador] ▶ kika…
+[2026-08-12 19:28] [kika/kpis] KPIs calculados: média 84.2/100 em 28 negócios · top Escriba (100)
+[2026-08-12 19:28] [orquestrador] ▶ dinis…
+[2026-08-12 19:28] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
+[2026-08-12 19:28] [dinis/mercado] varrimento: 0 novos ao vivo (—) · 98 à espera · temas {'produtividade': 85, 'devtools': 8, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 1}
+[2026-08-12 19:28] [orquestrador] ciclo #18 terminado em 4.8s · OK ✅

@@ -992,9 +992,10 @@
       "erro": "HTTP Error 403: Forbidden"
     },
     "snapshot": {
-      "ok": false,
-      "erro": "HTTP Error 500: Internal Server Error"
+      "ok": true,
+      "nomes_lidos": 35,
+      "novos": 0
     }
   },
-  "ultima_varrimento": "2026-08-12 18:10"
+  "ultima_varrimento": "2026-08-12 19:28"
 }
