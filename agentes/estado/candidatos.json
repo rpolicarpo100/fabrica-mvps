@@ -789,13 +789,23 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Monthly Ranking — mensal PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "august2026",
+      "nome": "August 2026",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 06:44",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "August 2026 — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
     "mensal": {
       "ok": true,
       "nomes_lidos": 53,
-      "novos": 5
+      "novos": 1
     },
     "diário": {
       "ok": false,
@@ -807,5 +817,5 @@
       "novos": 0
     }
   },
-  "ultima_varrimento": "2026-08-12 05:04"
+  "ultima_varrimento": "2026-08-12 06:44"
 }
