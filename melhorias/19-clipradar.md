@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — ClipRadar (`19-clipradar`)
 
-_Revisão automática por **Rui** · 2026-08-12 08:40 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-12 10:27 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
