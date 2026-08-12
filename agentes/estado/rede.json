@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-12 16:13",
-  "ciclo": 15,
-  "duracao_s": 2.6,
+  "quando": "2026-08-12 17:15",
+  "ciclo": 16,
+  "duracao_s": 2.7,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.0,
+      "s": 2.1,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -41,13 +41,11 @@
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "tash",
-          "Ballet",
-          "Sidekick™",
-          "Swipe",
-          "Linforge"
+          "Lettertrace",
+          "CodeBurn",
+          "Media Sharing"
         ],
-        "pendentes": 95,
+        "pendentes": 98,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -61,7 +59,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 5
+            "novos": 3
           }
         }
       },
