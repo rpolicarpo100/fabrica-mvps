@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-12 13:49",
-  "ciclo": 13,
-  "duracao_s": 2.9,
+  "quando": "2026-08-12 15:16",
+  "ciclo": 14,
+  "duracao_s": 3.2,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.9,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.9,
+      "s": 1.2,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "LaraCopilot",
-          "BearDrive",
-          "Unsloth Desktop",
-          "Grok Bot",
-          "Assembly Studio"
+          "RightCard",
+          "Dograh",
+          "Nearfield",
+          "Click",
+          "Cohesor"
         ],
-        "pendentes": 85,
+        "pendentes": 90,
         "fontes": {
           "mensal": {
             "ok": true,

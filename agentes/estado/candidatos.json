@@ -849,6 +849,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Assembly Studio — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "rightcard",
+      "nome": "RightCard",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-12 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "RightCard — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "dograh",
+      "nome": "Dograh",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-12 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Dograh — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "nearfield",
+      "nome": "Nearfield",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-12 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Nearfield — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "click",
+      "nome": "Click",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-12 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Click — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "cohesor",
+      "nome": "Cohesor",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-12 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Cohesor — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -867,5 +917,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-12 13:49"
+  "ultima_varrimento": "2026-08-12 15:16"
 }
