@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-12 02:46",
-  "ciclo": 7,
-  "duracao_s": 2.9,
+  "quando": "2026-08-12 05:04",
+  "ciclo": 8,
+  "duracao_s": 2.7,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.6,
+      "s": 2.1,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.2,
+      "s": 0.5,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "BrowserOS neo",
-          "Proxy Tester by ScrapeOps",
-          "Lumichats",
-          "Plethora",
-          "Hexis"
+          "Kiro Crew",
+          "AgentMicro",
+          "Vibe Buddy",
+          "Progress AI Observability",
+          "Monthly Ranking"
         ],
-        "pendentes": 74,
+        "pendentes": 79,
         "fontes": {
           "mensal": {
             "ok": true,

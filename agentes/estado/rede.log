@@ -80,3 +80,14 @@
 [2026-08-12 02:46] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
 [2026-08-12 02:46] [dinis/mercado] varrimento: 5 novos ao vivo (BrowserOS neo, Proxy Tester by ScrapeOps, Lumichats, Plethora, Hexis) · 74 à espera · temas {'produtividade': 64, 'devtools': 5, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 1}
 [2026-08-12 02:46] [orquestrador] ciclo #7 terminado em 2.9s · OK ✅
+[2026-08-12 05:04] [orquestrador] ═══ ciclo #8 ═══
+[2026-08-12 05:04] [orquestrador] ▶ vera…
+[2026-08-12 05:04] [vera/qualidade] verificação completa: 28/28 verdes (100.0%)
+[2026-08-12 05:04] [orquestrador] ▶ rui…
+[2026-08-12 05:04] [rui/revisão] revisão feita: 28 checklists · 0 P1 abertos · mais trabalho: 16-prep, 04-postpilot, 10-tracao
+[2026-08-12 05:04] [orquestrador] ▶ kika…
+[2026-08-12 05:04] [kika/kpis] KPIs calculados: média 84.2/100 em 28 negócios · top Escriba (100)
+[2026-08-12 05:04] [orquestrador] ▶ dinis…
+[2026-08-12 05:04] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
+[2026-08-12 05:04] [dinis/mercado] varrimento: 5 novos ao vivo (Kiro Crew, AgentMicro, Vibe Buddy, Progress AI Observability, Monthly Ranking) · 79 à espera · temas {'produtividade': 68, 'devtools': 6, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 1}
+[2026-08-12 05:04] [orquestrador] ciclo #8 terminado em 2.7s · OK ✅

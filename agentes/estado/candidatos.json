@@ -739,6 +739,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Hexis — mensal PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "kirocrew",
+      "nome": "Kiro Crew",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 05:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Kiro Crew — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "agentmicro",
+      "nome": "AgentMicro",
+      "tema": "devtools",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 05:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AgentMicro — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "vibebuddy",
+      "nome": "Vibe Buddy",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 05:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Vibe Buddy — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "progressaiobservability",
+      "nome": "Progress AI Observability",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 05:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Progress AI Observability — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "monthlyranking",
+      "nome": "Monthly Ranking",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 05:04",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Monthly Ranking — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -757,5 +807,5 @@
       "novos": 0
     }
   },
-  "ultima_varrimento": "2026-08-12 02:46"
+  "ultima_varrimento": "2026-08-12 05:04"
 }
