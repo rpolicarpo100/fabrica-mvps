@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-12 23:03",
-  "ciclo": 21,
-  "duracao_s": 4.1,
+  "quando": "2026-08-12 23:59",
+  "ciclo": 22,
+  "duracao_s": 4.4,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 3.6,
+      "s": 3.8,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -37,7 +37,7 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.4,
+      "s": 0.5,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [],

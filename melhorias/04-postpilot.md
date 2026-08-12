@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — PostPilot (`04-postpilot`)
 
-_Revisão automática por **Rui** · 2026-08-12 23:03 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-12 23:59 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
