@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-12 17:15",
-  "ciclo": 16,
-  "duracao_s": 2.7,
+  "quando": "2026-08-12 18:10",
+  "ciclo": 17,
+  "duracao_s": 2.5,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.1,
+      "s": 1.5,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -37,14 +37,10 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.5,
+      "s": 1.0,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [
-          "Lettertrace",
-          "CodeBurn",
-          "Media Sharing"
-        ],
+        "novos": [],
         "pendentes": 98,
         "fontes": {
           "mensal": {
@@ -57,9 +53,8 @@
             "erro": "HTTP Error 403: Forbidden"
           },
           "snapshot": {
-            "ok": true,
-            "nomes_lidos": 35,
-            "novos": 3
+            "ok": false,
+            "erro": "HTTP Error 500: Internal Server Error"
           }
         }
       },
