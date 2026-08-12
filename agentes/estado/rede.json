@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-12 00:00",
-  "ciclo": 6,
-  "duracao_s": 2.8,
+  "quando": "2026-08-12 02:46",
+  "ciclo": 7,
+  "duracao_s": 2.9,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.9,
+      "s": 1.6,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.7,
+      "s": 1.2,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Muse Code",
-          "Atlaso",
-          "Appllama",
-          "Annotate",
-          "Dashi Metrics"
+          "BrowserOS neo",
+          "Proxy Tester by ScrapeOps",
+          "Lumichats",
+          "Plethora",
+          "Hexis"
         ],
-        "pendentes": 69,
+        "pendentes": 74,
         "fontes": {
           "mensal": {
             "ok": true,

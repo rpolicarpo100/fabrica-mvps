@@ -689,6 +689,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Dashi Metrics — mensal PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "browserosneo",
+      "nome": "BrowserOS neo",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 02:46",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "BrowserOS neo — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "proxytesterbyscrapeops",
+      "nome": "Proxy Tester by ScrapeOps",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 02:46",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Proxy Tester by ScrapeOps — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "lumichats",
+      "nome": "Lumichats",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 02:46",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Lumichats — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "plethora",
+      "nome": "Plethora",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 02:46",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Plethora — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "hexis",
+      "nome": "Hexis",
+      "tema": "produtividade",
+      "fonte": "https://hunted.space/top-products/monthly/2026/August",
+      "descoberto_em": "2026-08-12 02:46",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Hexis — mensal PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -707,5 +757,5 @@
       "novos": 0
     }
   },
-  "ultima_varrimento": "2026-08-12 00:00"
+  "ultima_varrimento": "2026-08-12 02:46"
 }
