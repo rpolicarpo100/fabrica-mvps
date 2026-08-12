@@ -1,6 +1,6 @@
 {
-  "quando": "2026-08-12 21:04",
-  "ciclo": 19,
+  "quando": "2026-08-12 22:04",
+  "ciclo": 20,
   "duracao_s": 2.6,
   "agentes": {
     "vera": {
@@ -37,7 +37,7 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.5,
+      "s": 0.4,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [],
@@ -54,7 +54,7 @@
           },
           "snapshot": {
             "ok": true,
-            "nomes_lidos": 35,
+            "nomes_lidos": 34,
             "novos": 0
           }
         }
