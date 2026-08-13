@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-13 18:11",
-  "ciclo": 33,
-  "duracao_s": 4.6,
+  "quando": "2026-08-13 19:27",
+  "ciclo": 34,
+  "duracao_s": 3.7,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.8,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.3,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,13 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.7,
+      "s": 1.3,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Qencode MCP",
-          "AIO.GEO Protocol",
-          "Oasis",
-          "Google Pixel 11",
-          "Phinq"
+          "apra-fleet"
         ],
-        "pendentes": 123,
+        "pendentes": 124,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -61,7 +57,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 5
+            "novos": 1
           }
         }
       },
