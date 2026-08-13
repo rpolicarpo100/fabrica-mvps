@@ -1129,6 +1129,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Nuphos — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "insta360x6",
+      "nome": "Insta360 X6",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 17:15",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Insta360 X6 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "fluiddocscli",
+      "nome": "FluidDocs CLI",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 17:15",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "FluidDocs CLI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "chiplab",
+      "nome": "Chiplab",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 17:15",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Chiplab — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "kivicube",
+      "nome": "Kivicube",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 17:15",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Kivicube — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "coarenabycoasty",
+      "nome": "Coarena by Coasty",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 17:15",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Coarena by Coasty — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1147,5 +1197,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-13 16:13"
+  "ultima_varrimento": "2026-08-13 17:15"
 }

@@ -345,3 +345,14 @@
 [2026-08-13 16:13] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
 [2026-08-13 16:13] [dinis/mercado] varrimento: 5 novos ao vivo (Kin Health, Caveman, Patience, Execlave, Nuphos) · 113 à espera · temas {'produtividade': 98, 'devtools': 9, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 1, 'saúde': 1}
 [2026-08-13 16:13] [orquestrador] ciclo #31 terminado em 4.8s · OK ✅
+[2026-08-13 17:15] [orquestrador] ═══ ciclo #32 ═══
+[2026-08-13 17:15] [orquestrador] ▶ vera…
+[2026-08-13 17:15] [vera/qualidade] verificação completa: 28/28 verdes (100.0%)
+[2026-08-13 17:15] [orquestrador] ▶ rui…
+[2026-08-13 17:15] [rui/revisão] revisão feita: 28 checklists · 0 P1 abertos · mais trabalho: 16-prep, 04-postpilot, 10-tracao
+[2026-08-13 17:15] [orquestrador] ▶ kika…
+[2026-08-13 17:15] [kika/kpis] KPIs calculados: média 84.2/100 em 28 negócios · top Escriba (100)
+[2026-08-13 17:15] [orquestrador] ▶ dinis…
+[2026-08-13 17:15] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
+[2026-08-13 17:15] [dinis/mercado] varrimento: 5 novos ao vivo (Insta360 X6, FluidDocs CLI, Chiplab, Kivicube, Coarena by Coasty) · 118 à espera · temas {'produtividade': 102, 'devtools': 10, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 1, 'saúde': 1}
+[2026-08-13 17:15] [orquestrador] ciclo #32 terminado em 5.0s · OK ✅

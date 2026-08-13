@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-13 16:13",
-  "ciclo": 31,
-  "duracao_s": 4.8,
+  "quando": "2026-08-13 17:15",
+  "ciclo": 32,
+  "duracao_s": 5.0,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.8,
+      "s": 3.8,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.9,
+      "s": 1.1,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Kin Health",
-          "Caveman",
-          "Patience",
-          "Execlave",
-          "Nuphos"
+          "Insta360 X6",
+          "FluidDocs CLI",
+          "Chiplab",
+          "Kivicube",
+          "Coarena by Coasty"
         ],
-        "pendentes": 113,
+        "pendentes": 118,
         "fontes": {
           "mensal": {
             "ok": true,
