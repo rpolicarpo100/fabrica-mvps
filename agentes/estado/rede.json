@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-13 13:50",
-  "ciclo": 29,
-  "duracao_s": 4.7,
+  "quando": "2026-08-13 15:16",
+  "ciclo": 30,
+  "duracao_s": 2.4,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 3.8,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.8,
+      "s": 0.4,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "WebBrain",
-          "Dishylink",
-          "ThreadPort",
-          "Pickle Browser",
-          "Skilldocs"
+          "Kane CLI",
+          "Human Behavior",
+          "Ito",
+          "Scrimba Explain",
+          "Kitbitz"
         ],
-        "pendentes": 103,
+        "pendentes": 108,
         "fontes": {
           "mensal": {
             "ok": true,

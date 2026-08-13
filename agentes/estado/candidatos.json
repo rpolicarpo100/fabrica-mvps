@@ -1029,6 +1029,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Skilldocs — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "kanecli",
+      "nome": "Kane CLI",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Kane CLI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "humanbehavior",
+      "nome": "Human Behavior",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Human Behavior — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "ito",
+      "nome": "Ito",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Ito — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "scrimbaexplain",
+      "nome": "Scrimba Explain",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Scrimba Explain — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "kitbitz",
+      "nome": "Kitbitz",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 15:16",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Kitbitz — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1047,5 +1097,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-13 13:50"
+  "ultima_varrimento": "2026-08-13 15:16"
 }
