@@ -979,6 +979,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Media Sharing — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "webbrain",
+      "nome": "WebBrain",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 13:50",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "WebBrain — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "dishylink",
+      "nome": "Dishylink",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 13:50",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Dishylink — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "threadport",
+      "nome": "ThreadPort",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 13:50",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "ThreadPort — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "picklebrowser",
+      "nome": "Pickle Browser",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 13:50",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Pickle Browser — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "skilldocs",
+      "nome": "Skilldocs",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 13:50",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Skilldocs — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -993,9 +1043,9 @@
     },
     "snapshot": {
       "ok": true,
-      "nomes_lidos": 34,
-      "novos": 0
+      "nomes_lidos": 35,
+      "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-13 12:00"
+  "ultima_varrimento": "2026-08-13 13:50"
 }
