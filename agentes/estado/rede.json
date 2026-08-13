@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-13 17:15",
-  "ciclo": 32,
-  "duracao_s": 5.0,
+  "quando": "2026-08-13 18:11",
+  "ciclo": 33,
+  "duracao_s": 4.6,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 3.8,
+      "s": 2.8,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.1,
+      "s": 1.7,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Insta360 X6",
-          "FluidDocs CLI",
-          "Chiplab",
-          "Kivicube",
-          "Coarena by Coasty"
+          "Qencode MCP",
+          "AIO.GEO Protocol",
+          "Oasis",
+          "Google Pixel 11",
+          "Phinq"
         ],
-        "pendentes": 118,
+        "pendentes": 123,
         "fontes": {
           "mensal": {
             "ok": true,

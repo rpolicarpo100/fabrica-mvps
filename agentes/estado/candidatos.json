@@ -1179,6 +1179,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Coarena by Coasty — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "qencodemcp",
+      "nome": "Qencode MCP",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 18:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Qencode MCP — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "aiogeoprotocol",
+      "nome": "AIO.GEO Protocol",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 18:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AIO.GEO Protocol — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "oasis",
+      "nome": "Oasis",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 18:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Oasis — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "googlepixel11",
+      "nome": "Google Pixel 11",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 18:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Google Pixel 11 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "phinq",
+      "nome": "Phinq",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 18:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Phinq — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1197,5 +1247,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-13 17:15"
+  "ultima_varrimento": "2026-08-13 18:11"
 }
