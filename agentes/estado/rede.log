@@ -334,3 +334,14 @@
 [2026-08-13 15:16] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
 [2026-08-13 15:16] [dinis/mercado] varrimento: 5 novos ao vivo (Kane CLI, Human Behavior, Ito, Scrimba Explain, Kitbitz) · 108 à espera · temas {'produtividade': 94, 'devtools': 9, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 1}
 [2026-08-13 15:16] [orquestrador] ciclo #30 terminado em 2.4s · OK ✅
+[2026-08-13 16:13] [orquestrador] ═══ ciclo #31 ═══
+[2026-08-13 16:13] [orquestrador] ▶ vera…
+[2026-08-13 16:13] [vera/qualidade] verificação completa: 28/28 verdes (100.0%)
+[2026-08-13 16:13] [orquestrador] ▶ rui…
+[2026-08-13 16:13] [rui/revisão] revisão feita: 28 checklists · 0 P1 abertos · mais trabalho: 16-prep, 04-postpilot, 10-tracao
+[2026-08-13 16:13] [orquestrador] ▶ kika…
+[2026-08-13 16:13] [kika/kpis] KPIs calculados: média 84.2/100 em 28 negócios · top Escriba (100)
+[2026-08-13 16:13] [orquestrador] ▶ dinis…
+[2026-08-13 16:13] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
+[2026-08-13 16:13] [dinis/mercado] varrimento: 5 novos ao vivo (Kin Health, Caveman, Patience, Execlave, Nuphos) · 113 à espera · temas {'produtividade': 98, 'devtools': 9, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 1, 'saúde': 1}
+[2026-08-13 16:13] [orquestrador] ciclo #31 terminado em 4.8s · OK ✅

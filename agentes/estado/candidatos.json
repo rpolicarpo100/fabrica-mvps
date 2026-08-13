@@ -1079,6 +1079,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Kitbitz — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "kinhealth",
+      "nome": "Kin Health",
+      "tema": "saúde",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 16:13",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Kin Health — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "caveman",
+      "nome": "Caveman",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 16:13",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Caveman — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "patience",
+      "nome": "Patience",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 16:13",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Patience — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "execlave",
+      "nome": "Execlave",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 16:13",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Execlave — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "nuphos",
+      "nome": "Nuphos",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-13 16:13",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Nuphos — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1097,5 +1147,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-13 15:16"
+  "ultima_varrimento": "2026-08-13 16:13"
 }
