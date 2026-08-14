@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-14 15:08",
-  "ciclo": 46,
-  "duracao_s": 6.9,
+  "quando": "2026-08-14 16:07",
+  "ciclo": 47,
+  "duracao_s": 2.7,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 5.9,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,15 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.9,
+      "s": 0.7,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Freebuff",
-          "Compass Calendar",
-          "Theos[RFM]",
-          "ChordViz",
-          "Occasio®"
+          "Gemini 3.7 Flash",
+          "Hoplite",
+          "isolate.video"
         ],
-        "pendentes": 139,
+        "pendentes": 142,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -61,7 +59,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 5
+            "novos": 3
           }
         }
       },
