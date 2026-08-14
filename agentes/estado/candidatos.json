@@ -1339,6 +1339,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Openmotion — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "freebuff",
+      "nome": "Freebuff",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 15:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Freebuff — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "compasscalendar",
+      "nome": "Compass Calendar",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 15:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Compass Calendar — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "theosrfm",
+      "nome": "Theos[RFM]",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 15:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Theos[RFM] — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "chordviz",
+      "nome": "ChordViz",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 15:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "ChordViz — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "occasio",
+      "nome": "Occasio®",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 15:08",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Occasio® — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1357,5 +1407,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-14 13:45"
+  "ultima_varrimento": "2026-08-14 15:08"
 }

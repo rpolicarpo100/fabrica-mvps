@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-14 13:45",
-  "ciclo": 45,
-  "duracao_s": 4.5,
+  "quando": "2026-08-14 15:08",
+  "ciclo": 46,
+  "duracao_s": 6.9,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 4.1,
+      "s": 5.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.4,
+      "s": 0.9,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "oxpecker",
-          "Suno Studio 2.0",
-          "Basedash Tasks",
-          "DeepSeek Harness",
-          "Openmotion"
+          "Freebuff",
+          "Compass Calendar",
+          "Theos[RFM]",
+          "ChordViz",
+          "Occasio®"
         ],
-        "pendentes": 134,
+        "pendentes": 139,
         "fontes": {
           "mensal": {
             "ok": true,
