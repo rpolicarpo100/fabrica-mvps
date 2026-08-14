@@ -1239,6 +1239,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "apra-fleet — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "ns1",
+      "nome": "NS1",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 11:59",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "NS1 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "browseractcloud",
+      "nome": "BrowserAct Cloud",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 11:59",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "BrowserAct Cloud — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "muse",
+      "nome": "Muse",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 11:59",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Muse — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "outcome",
+      "nome": "Outcome",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 11:59",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Outcome — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "munderdifflin",
+      "nome": "Munder Difflin",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 11:59",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Munder Difflin — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1254,8 +1304,8 @@
     "snapshot": {
       "ok": true,
       "nomes_lidos": 35,
-      "novos": 0
+      "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-14 10:18"
+  "ultima_varrimento": "2026-08-14 11:59"
 }

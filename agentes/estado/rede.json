@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-14 10:18",
-  "ciclo": 43,
-  "duracao_s": 2.4,
+  "quando": "2026-08-14 11:59",
+  "ciclo": 44,
+  "duracao_s": 16.0,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.9,
+      "s": 1.5,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,11 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.4,
+      "s": 14.5,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [],
-        "pendentes": 124,
+        "novos": [
+          "NS1",
+          "BrowserAct Cloud",
+          "Muse",
+          "Outcome",
+          "Munder Difflin"
+        ],
+        "pendentes": 129,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -55,7 +61,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 0
+            "novos": 5
           }
         }
       },
