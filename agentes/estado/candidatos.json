@@ -1289,6 +1289,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Munder Difflin — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "oxpecker",
+      "nome": "oxpecker",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "oxpecker — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "sunostudio20",
+      "nome": "Suno Studio 2.0",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Suno Studio 2.0 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "basedashtasks",
+      "nome": "Basedash Tasks",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Basedash Tasks — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "deepseekharness",
+      "nome": "DeepSeek Harness",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "DeepSeek Harness — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "openmotion",
+      "nome": "Openmotion",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-14 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Openmotion — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1307,5 +1357,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-14 11:59"
+  "ultima_varrimento": "2026-08-14 13:45"
 }
