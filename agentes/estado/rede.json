@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-15 20:40",
-  "ciclo": 75,
-  "duracao_s": 2.8,
+  "quando": "2026-08-15 21:36",
+  "ciclo": 76,
+  "duracao_s": 4.6,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.7,
+      "s": 2.7,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,7 +37,7 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.9,
+      "s": 1.8,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [],
