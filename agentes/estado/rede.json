@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-15 13:00",
-  "ciclo": 67,
-  "duracao_s": 5.1,
+  "quando": "2026-08-15 13:45",
+  "ciclo": 68,
+  "duracao_s": 3.0,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 3.9,
+      "s": 1.7,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -41,13 +41,13 @@
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Zetik",
-          "Big Mike",
-          "SalesCloser.ai",
-          "Attyn",
-          "Inferock Bench"
+          "Clamshell",
+          "Chronock",
+          "nenspace",
+          "Talvo",
+          "GLM-5.3"
         ],
-        "pendentes": 147,
+        "pendentes": 152,
         "fontes": {
           "mensal": {
             "ok": true,

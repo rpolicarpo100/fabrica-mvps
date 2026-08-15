@@ -1469,6 +1469,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Inferock Bench — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "clamshell",
+      "nome": "Clamshell",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Clamshell — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "chronock",
+      "nome": "Chronock",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Chronock — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "nenspace",
+      "nome": "nenspace",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "nenspace — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "talvo",
+      "nome": "Talvo",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Talvo — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "glm53",
+      "nome": "GLM-5.3",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "GLM-5.3 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1487,5 +1537,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-15 13:00"
+  "ultima_varrimento": "2026-08-15 13:45"
 }
