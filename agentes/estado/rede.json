@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-15 14:41",
-  "ciclo": 69,
-  "duracao_s": 4.4,
+  "quando": "2026-08-15 15:36",
+  "ciclo": 70,
+  "duracao_s": 3.2,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 3.4,
+      "s": 2.2,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,13 +37,10 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.0,
+      "s": 0.9,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [
-          "Joy",
-          "FileRouter"
-        ],
+        "novos": [],
         "pendentes": 154,
         "fontes": {
           "mensal": {
@@ -58,7 +55,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 2
+            "novos": 0
           }
         }
       },
