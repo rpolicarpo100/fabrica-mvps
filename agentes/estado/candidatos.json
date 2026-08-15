@@ -1419,6 +1419,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "isolate.video — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "zetik",
+      "nome": "Zetik",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:00",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Zetik — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "bigmike",
+      "nome": "Big Mike",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:00",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Big Mike — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "salescloserai",
+      "nome": "SalesCloser.ai",
+      "tema": "vendas/marketing",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:00",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "SalesCloser.ai — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "attyn",
+      "nome": "Attyn",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:00",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Attyn — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "inferockbench",
+      "nome": "Inferock Bench",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-15 13:00",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Inferock Bench — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1434,8 +1484,8 @@
     "snapshot": {
       "ok": true,
       "nomes_lidos": 35,
-      "novos": 0
+      "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-15 11:34"
+  "ultima_varrimento": "2026-08-15 13:00"
 }

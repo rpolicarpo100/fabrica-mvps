@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-15 11:34",
-  "ciclo": 66,
-  "duracao_s": 2.5,
+  "quando": "2026-08-15 13:00",
+  "ciclo": 67,
+  "duracao_s": 5.1,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.0,
+      "s": 3.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,11 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.4,
+      "s": 1.1,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [],
-        "pendentes": 142,
+        "novos": [
+          "Zetik",
+          "Big Mike",
+          "SalesCloser.ai",
+          "Attyn",
+          "Inferock Bench"
+        ],
+        "pendentes": 147,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -55,7 +61,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 0
+            "novos": 5
           }
         }
       },
