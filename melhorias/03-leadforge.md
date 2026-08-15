@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — LeadForge (`03-leadforge`)
 
-_Revisão automática por **Rui** · 2026-08-15 05:43 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-15 06:58 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
