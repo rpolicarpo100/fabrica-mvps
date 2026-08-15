@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-15 18:49",
-  "ciclo": 73,
-  "duracao_s": 6.8,
+  "quando": "2026-08-15 19:35",
+  "ciclo": 74,
+  "duracao_s": 2.6,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 5.3,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,7 +37,7 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.4,
+      "s": 0.5,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [],
