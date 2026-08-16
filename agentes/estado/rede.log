@@ -983,3 +983,14 @@
 [2026-08-16 11:35] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
 [2026-08-16 11:35] [dinis/mercado] varrimento: 0 novos ao vivo (—) · 154 à espera · temas {'produtividade': 135, 'devtools': 11, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 2, 'saúde': 1, 'creator': 1}
 [2026-08-16 11:35] [orquestrador] ciclo #89 terminado em 5.1s · OK ✅
+[2026-08-16 13:02] [orquestrador] ═══ ciclo #90 ═══
+[2026-08-16 13:02] [orquestrador] ▶ vera…
+[2026-08-16 13:02] [vera/qualidade] verificação completa: 28/28 verdes (100.0%)
+[2026-08-16 13:02] [orquestrador] ▶ rui…
+[2026-08-16 13:02] [rui/revisão] revisão feita: 28 checklists · 0 P1 abertos · mais trabalho: 16-prep, 04-postpilot, 10-tracao
+[2026-08-16 13:02] [orquestrador] ▶ kika…
+[2026-08-16 13:02] [kika/kpis] KPIs calculados: média 84.2/100 em 28 negócios · top Escriba (100)
+[2026-08-16 13:02] [orquestrador] ▶ dinis…
+[2026-08-16 13:02] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
+[2026-08-16 13:02] [dinis/mercado] varrimento: 5 novos ao vivo (HarnessRouter Community Edition, CostLogic, Expeditione, Chert, Blume) · 159 à espera · temas {'produtividade': 140, 'devtools': 11, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 2, 'saúde': 1, 'creator': 1}
+[2026-08-16 13:02] [orquestrador] ciclo #90 terminado em 2.9s · OK ✅
