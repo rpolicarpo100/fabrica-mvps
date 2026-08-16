@@ -939,3 +939,14 @@
 [2026-08-16 07:46] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
 [2026-08-16 07:46] [dinis/mercado] varrimento: 0 novos ao vivo (—) · 154 à espera · temas {'produtividade': 135, 'devtools': 11, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 2, 'saúde': 1, 'creator': 1}
 [2026-08-16 07:46] [orquestrador] ciclo #85 terminado em 2.4s · OK ✅
+[2026-08-16 08:48] [orquestrador] ═══ ciclo #86 ═══
+[2026-08-16 08:48] [orquestrador] ▶ vera…
+[2026-08-16 08:48] [vera/qualidade] verificação completa: 28/28 verdes (100.0%)
+[2026-08-16 08:48] [orquestrador] ▶ rui…
+[2026-08-16 08:48] [rui/revisão] revisão feita: 28 checklists · 0 P1 abertos · mais trabalho: 16-prep, 04-postpilot, 10-tracao
+[2026-08-16 08:48] [orquestrador] ▶ kika…
+[2026-08-16 08:48] [kika/kpis] KPIs calculados: média 84.2/100 em 28 negócios · top Escriba (100)
+[2026-08-16 08:48] [orquestrador] ▶ dinis…
+[2026-08-16 08:48] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
+[2026-08-16 08:48] [dinis/mercado] varrimento: 0 novos ao vivo (—) · 154 à espera · temas {'produtividade': 135, 'devtools': 11, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 2, 'saúde': 1, 'creator': 1}
+[2026-08-16 08:48] [orquestrador] ciclo #86 terminado em 4.6s · OK ✅
