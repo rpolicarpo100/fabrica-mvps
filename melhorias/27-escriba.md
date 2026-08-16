@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — Escriba (`27-escriba`)
 
-_Revisão automática por **Rui** · 2026-08-16 09:43 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-16 10:42 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
