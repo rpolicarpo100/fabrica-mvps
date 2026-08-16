@@ -1,7 +1,7 @@
 {
-  "quando": "2026-08-16 13:02",
-  "ciclo": 90,
-  "duracao_s": 2.9,
+  "quando": "2026-08-16 13:46",
+  "ciclo": 91,
+  "duracao_s": 3.0,
   "agentes": {
     "vera": {
       "rc": 0,
@@ -41,13 +41,9 @@
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "HarnessRouter Community Edition",
-          "CostLogic",
-          "Expeditione",
-          "Chert",
-          "Blume"
+          "AirAlarm"
         ],
-        "pendentes": 159,
+        "pendentes": 160,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -61,7 +57,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 5
+            "novos": 1
           }
         }
       },
