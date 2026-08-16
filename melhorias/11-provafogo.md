@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — ProvaFogo (`11-provafogo`)
 
-_Revisão automática por **Rui** · 2026-08-16 18:48 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-16 19:35 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
