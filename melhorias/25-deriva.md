@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — Deriva (`25-deriva`)
 
-_Revisão automática por **Rui** · 2026-08-16 03:13 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-16 04:02 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
