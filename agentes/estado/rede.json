@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-17 11:42",
-  "ciclo": 111,
-  "duracao_s": 4.5,
+  "quando": "2026-08-17 13:07",
+  "ciclo": 112,
+  "duracao_s": 3.7,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.9,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.2,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 2.5,
+      "s": 1.4,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Omni by xpander",
-          "TinyFish",
-          "Scholé Scenarios",
-          "Meridian",
-          "Vendo"
+          "Samepage Artifacts",
+          "Hansel by Seedling",
+          "Bulbthings",
+          "Clears",
+          "Skriptr"
         ],
-        "pendentes": 165,
+        "pendentes": 170,
         "fontes": {
           "mensal": {
             "ok": true,

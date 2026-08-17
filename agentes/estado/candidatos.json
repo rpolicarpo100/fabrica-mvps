@@ -1649,6 +1649,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Vendo — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "samepageartifacts",
+      "nome": "Samepage Artifacts",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 13:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Samepage Artifacts — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "hanselbyseedling",
+      "nome": "Hansel by Seedling",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 13:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Hansel by Seedling — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "bulbthings",
+      "nome": "Bulbthings",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 13:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Bulbthings — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "clears",
+      "nome": "Clears",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 13:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Clears — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "skriptr",
+      "nome": "Skriptr",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 13:07",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Skriptr — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1667,5 +1717,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-17 11:42"
+  "ultima_varrimento": "2026-08-17 13:07"
 }
