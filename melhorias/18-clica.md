@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — Clica (`18-clica`)
 
-_Revisão automática por **Rui** · 2026-08-17 04:59 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-17 05:52 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
