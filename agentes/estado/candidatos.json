@@ -1599,6 +1599,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "AirAlarm — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "omnibyxpander",
+      "nome": "Omni by xpander",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 11:42",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Omni by xpander — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "tinyfish",
+      "nome": "TinyFish",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 11:42",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "TinyFish — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "scholscenarios",
+      "nome": "Scholé Scenarios",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 11:42",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Scholé Scenarios — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "meridian",
+      "nome": "Meridian",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 11:42",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Meridian — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "vendo",
+      "nome": "Vendo",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-17 11:42",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Vendo — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1614,8 +1664,8 @@
     "snapshot": {
       "ok": true,
       "nomes_lidos": 35,
-      "novos": 0
+      "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-17 10:49"
+  "ultima_varrimento": "2026-08-17 11:42"
 }
