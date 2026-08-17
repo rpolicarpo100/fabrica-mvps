@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-17 13:54",
-  "ciclo": 113,
+  "quando": "2026-08-17 14:46",
+  "ciclo": 114,
   "duracao_s": 2.7,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.8,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,15 +37,10 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.9,
+      "s": 0.7,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [
-          "envfix",
-          "Treg",
-          "Startup Program by Recall.ai",
-          "OpenTrade"
-        ],
+        "novos": [],
         "pendentes": 174,
         "fontes": {
           "mensal": {
@@ -60,7 +55,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 4
+            "novos": 0
           }
         }
       },
