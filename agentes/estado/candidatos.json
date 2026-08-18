@@ -1839,6 +1839,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Reckon — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "skimrecap",
+      "nome": "Skim Recap",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 14:53",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Skim Recap — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "tinyfunnel",
+      "nome": "Tiny Funnel",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 14:53",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Tiny Funnel — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "airbuddy3",
+      "nome": "AirBuddy 3",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 14:53",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AirBuddy 3 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "superflowai",
+      "nome": "Superflow AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 14:53",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Superflow AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "finch",
+      "nome": "Finch",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 14:53",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Finch — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1857,5 +1907,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-18 13:58"
+  "ultima_varrimento": "2026-08-18 14:53"
 }
