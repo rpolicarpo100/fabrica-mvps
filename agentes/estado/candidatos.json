@@ -1739,6 +1739,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "OpenTrade — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "deepmark",
+      "nome": "Deepmark",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:09",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Deepmark — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "layerproofmatte30",
+      "nome": "LayerProof Matte 3.0",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:09",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "LayerProof Matte 3.0 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "whisperstream",
+      "nome": "Whisperstream",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:09",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Whisperstream — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "elevenlabsmcpinclaude",
+      "nome": "ElevenLabs MCP in Claude",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:09",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "ElevenLabs MCP in Claude — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "controllerai",
+      "nome": "Controller AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:09",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Controller AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1754,8 +1804,8 @@
     "snapshot": {
       "ok": true,
       "nomes_lidos": 35,
-      "novos": 0
+      "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-18 11:43"
+  "ultima_varrimento": "2026-08-18 13:09"
 }
