@@ -1,7 +1,7 @@
 {
-  "quando": "2026-08-18 21:40",
-  "ciclo": 144,
-  "duracao_s": 2.8,
+  "quando": "2026-08-18 22:43",
+  "ciclo": 145,
+  "duracao_s": 2.7,
   "agentes": {
     "vera": {
       "rc": 0,
@@ -37,7 +37,7 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.7,
+      "s": 0.5,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [],
