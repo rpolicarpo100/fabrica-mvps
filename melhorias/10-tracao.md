@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — Tração (`10-tracao`)
 
-_Revisão automática por **Rui** · 2026-08-18 20:41 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-18 21:40 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
