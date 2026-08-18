@@ -1939,6 +1939,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Shepherd Terminal — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "openindex",
+      "nome": "Open Index",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 16:49",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Open Index — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "crewtower",
+      "nome": "CrewTower",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 16:49",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "CrewTower — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "gauge",
+      "nome": "Gauge",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 16:49",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Gauge — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "atlasbyworkos",
+      "nome": "Atlas by WorkOS",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 16:49",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Atlas by WorkOS — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "hubble",
+      "nome": "Hubble",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 16:49",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Hubble — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1957,5 +2007,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-18 15:47"
+  "ultima_varrimento": "2026-08-18 16:49"
 }

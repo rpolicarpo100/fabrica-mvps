@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-18 15:47",
-  "ciclo": 138,
-  "duracao_s": 2.5,
+  "quando": "2026-08-18 16:49",
+  "ciclo": 139,
+  "duracao_s": 3.1,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.9,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.5,
+      "s": 1.0,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Meterless.ai",
-          "Dates by Agenda Hero",
-          "Salem Robotics",
-          "Clipwing Autopilot",
-          "Shepherd Terminal"
+          "Open Index",
+          "CrewTower",
+          "Gauge",
+          "Atlas by WorkOS",
+          "Hubble"
         ],
-        "pendentes": 194,
+        "pendentes": 199,
         "fontes": {
           "mensal": {
             "ok": true,
