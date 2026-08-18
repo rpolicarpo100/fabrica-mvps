@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-18 13:09",
-  "ciclo": 135,
-  "duracao_s": 2.3,
+  "quando": "2026-08-18 13:58",
+  "ciclo": 136,
+  "duracao_s": 4.2,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.8,
+      "s": 2.5,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.4,
+      "s": 1.7,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Deepmark",
-          "LayerProof Matte 3.0",
-          "Whisperstream",
-          "ElevenLabs MCP in Claude",
-          "Controller AI"
+          "Transept AI",
+          "Taku AI",
+          "monolog",
+          "Clara AI SDR",
+          "Reckon"
         ],
-        "pendentes": 179,
+        "pendentes": 184,
         "fontes": {
           "mensal": {
             "ok": true,

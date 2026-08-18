@@ -1789,6 +1789,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Controller AI — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "transeptai",
+      "nome": "Transept AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:58",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Transept AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "takuai",
+      "nome": "Taku AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:58",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Taku AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "monolog",
+      "nome": "monolog",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:58",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "monolog — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "claraaisdr",
+      "nome": "Clara AI SDR",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:58",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Clara AI SDR — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "reckon",
+      "nome": "Reckon",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 13:58",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Reckon — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1807,5 +1857,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-18 13:09"
+  "ultima_varrimento": "2026-08-18 13:58"
 }
