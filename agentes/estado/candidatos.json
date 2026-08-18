@@ -1889,6 +1889,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Finch — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "meterlessai",
+      "nome": "Meterless.ai",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Meterless.ai — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "datesbyagendahero",
+      "nome": "Dates by Agenda Hero",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Dates by Agenda Hero — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "salemrobotics",
+      "nome": "Salem Robotics",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Salem Robotics — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "clipwingautopilot",
+      "nome": "Clipwing Autopilot",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Clipwing Autopilot — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "shepherdterminal",
+      "nome": "Shepherd Terminal",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-18 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Shepherd Terminal — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -1907,5 +1957,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-18 14:53"
+  "ultima_varrimento": "2026-08-18 15:47"
 }

@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-18 14:53",
-  "ciclo": 137,
-  "duracao_s": 3.0,
+  "quando": "2026-08-18 15:47",
+  "ciclo": 138,
+  "duracao_s": 2.5,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.0,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.9,
+      "s": 0.5,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Skim Recap",
-          "Tiny Funnel",
-          "AirBuddy 3",
-          "Superflow AI",
-          "Finch"
+          "Meterless.ai",
+          "Dates by Agenda Hero",
+          "Salem Robotics",
+          "Clipwing Autopilot",
+          "Shepherd Terminal"
         ],
-        "pendentes": 189,
+        "pendentes": 194,
         "fontes": {
           "mensal": {
             "ok": true,
