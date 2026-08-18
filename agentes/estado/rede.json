@@ -1,6 +1,6 @@
 {
-  "quando": "2026-08-17 23:39",
-  "ciclo": 123,
+  "quando": "2026-08-18 01:52",
+  "ciclo": 124,
   "duracao_s": 2.8,
   "agentes": {
     "vera": {
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,

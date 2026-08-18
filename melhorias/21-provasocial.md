@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — ProvaSocial (`21-provasocial`)
 
-_Revisão automática por **Rui** · 2026-08-17 23:39 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-18 01:52 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
