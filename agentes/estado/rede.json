@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-19 13:11",
-  "ciclo": 158,
-  "duracao_s": 2.9,
+  "quando": "2026-08-19 13:59",
+  "ciclo": 159,
+  "duracao_s": 2.6,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.9,
+      "s": 1.6,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -41,13 +41,13 @@
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Clipto MCP",
-          "Astute",
-          "Origin by Cursor",
-          "Paper Critters",
-          "Edgemetry"
+          "Hosted Agents in Cluing",
+          "ChatGPT for Teens",
+          "Vois 2.0",
+          "Hexel Editor",
+          "OmniVibe"
         ],
-        "pendentes": 204,
+        "pendentes": 209,
         "fontes": {
           "mensal": {
             "ok": true,
