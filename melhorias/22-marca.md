@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — Marca (`22-marca`)
 
-_Revisão automática por **Rui** · 2026-08-19 18:54 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-19 19:41 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
