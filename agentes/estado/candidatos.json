@@ -2139,6 +2139,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "AgentR 3.0 — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "cherryblossom",
+      "nome": "Cherry Blossom",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Cherry Blossom — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "cronloopai",
+      "nome": "Cronloop AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Cronloop AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "loopcase",
+      "nome": "Loopcase",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Loopcase — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "ressearchai",
+      "nome": "Ressearch AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Ressearch AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "kihub",
+      "nome": "KiHub",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 15:47",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "KiHub — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2157,5 +2207,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-19 14:54"
+  "ultima_varrimento": "2026-08-19 15:47"
 }

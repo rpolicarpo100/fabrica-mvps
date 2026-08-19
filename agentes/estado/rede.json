@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-19 14:54",
-  "ciclo": 160,
-  "duracao_s": 3.2,
+  "quando": "2026-08-19 15:47",
+  "ciclo": 161,
+  "duracao_s": 3.4,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.0,
+      "s": 2.2,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.1,
+      "s": 1.0,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Claude Watermark Remover",
-          "Antibot",
-          "Mochi",
-          "Zyntax",
-          "AgentR 3.0"
+          "Cherry Blossom",
+          "Cronloop AI",
+          "Loopcase",
+          "Ressearch AI",
+          "KiHub"
         ],
-        "pendentes": 214,
+        "pendentes": 219,
         "fontes": {
           "mensal": {
             "ok": true,

@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — DuoDocs (`14-duodocs`)
 
-_Revisão automática por **Rui** · 2026-08-19 14:54 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-19 15:47 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
