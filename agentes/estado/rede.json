@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-19 13:59",
-  "ciclo": 159,
-  "duracao_s": 2.6,
+  "quando": "2026-08-19 14:54",
+  "ciclo": 160,
+  "duracao_s": 3.2,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.6,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.0,
+      "s": 1.1,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Hosted Agents in Cluing",
-          "ChatGPT for Teens",
-          "Vois 2.0",
-          "Hexel Editor",
-          "OmniVibe"
+          "Claude Watermark Remover",
+          "Antibot",
+          "Mochi",
+          "Zyntax",
+          "AgentR 3.0"
         ],
-        "pendentes": 209,
+        "pendentes": 214,
         "fontes": {
           "mensal": {
             "ok": true,
