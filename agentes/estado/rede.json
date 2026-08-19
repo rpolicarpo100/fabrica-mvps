@@ -1,7 +1,7 @@
 {
-  "quando": "2026-08-19 17:42",
-  "ciclo": 163,
-  "duracao_s": 3.1,
+  "quando": "2026-08-19 18:54",
+  "ciclo": 164,
+  "duracao_s": 2.9,
   "agentes": {
     "vera": {
       "rc": 0,
@@ -37,12 +37,10 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.0,
+      "s": 0.8,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [
-          "anyCreature by Gobkit"
-        ],
+        "novos": [],
         "pendentes": 225,
         "fontes": {
           "mensal": {
@@ -57,7 +55,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 1
+            "novos": 0
           }
         }
       },
