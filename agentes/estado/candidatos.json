@@ -2189,6 +2189,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "KiHub — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "basedashpublicsharing",
+      "nome": "Basedash Public Sharing",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 16:48",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Basedash Public Sharing — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "fairphonegen6",
+      "nome": "Fairphone Gen 6+",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 16:48",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Fairphone Gen 6+ — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "sider60",
+      "nome": "Sider 6.0",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 16:48",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Sider 6.0 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "expertchase20",
+      "nome": "Expert Chase 2.0",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 16:48",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Expert Chase 2.0 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "balsaui",
+      "nome": "Balsa UI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 16:48",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Balsa UI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2207,5 +2257,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-19 15:47"
+  "ultima_varrimento": "2026-08-19 16:48"
 }

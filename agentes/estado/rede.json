@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-19 15:47",
-  "ciclo": 161,
-  "duracao_s": 3.4,
+  "quando": "2026-08-19 16:48",
+  "ciclo": 162,
+  "duracao_s": 2.5,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.2,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.0,
+      "s": 0.5,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Cherry Blossom",
-          "Cronloop AI",
-          "Loopcase",
-          "Ressearch AI",
-          "KiHub"
+          "Basedash Public Sharing",
+          "Fairphone Gen 6+",
+          "Sider 6.0",
+          "Expert Chase 2.0",
+          "Balsa UI"
         ],
-        "pendentes": 219,
+        "pendentes": 224,
         "fontes": {
           "mensal": {
             "ok": true,
