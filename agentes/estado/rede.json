@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-19 21:42",
-  "ciclo": 167,
-  "duracao_s": 6.1,
+  "quando": "2026-08-19 22:43",
+  "ciclo": 168,
+  "duracao_s": 2.8,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 4.8,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,11 +37,13 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.2,
+      "s": 0.6,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [],
-        "pendentes": 225,
+        "novos": [
+          "Zyntax IDE"
+        ],
+        "pendentes": 226,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -55,7 +57,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 0
+            "novos": 1
           }
         }
       },
