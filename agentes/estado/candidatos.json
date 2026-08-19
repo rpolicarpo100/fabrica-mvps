@@ -1989,6 +1989,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Hubble — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "cliptomcp",
+      "nome": "Clipto MCP",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 13:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Clipto MCP — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "astute",
+      "nome": "Astute",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 13:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Astute — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "originbycursor",
+      "nome": "Origin by Cursor",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 13:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Origin by Cursor — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "papercritters",
+      "nome": "Paper Critters",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 13:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Paper Critters — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "edgemetry",
+      "nome": "Edgemetry",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 13:11",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Edgemetry — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2004,8 +2054,8 @@
     "snapshot": {
       "ok": true,
       "nomes_lidos": 35,
-      "novos": 0
+      "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-19 11:42"
+  "ultima_varrimento": "2026-08-19 13:11"
 }

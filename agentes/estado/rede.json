@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-19 11:42",
-  "ciclo": 157,
-  "duracao_s": 2.8,
+  "quando": "2026-08-19 13:11",
+  "ciclo": 158,
+  "duracao_s": 2.9,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.4,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,11 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.3,
+      "s": 1.0,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [],
-        "pendentes": 199,
+        "novos": [
+          "Clipto MCP",
+          "Astute",
+          "Origin by Cursor",
+          "Paper Critters",
+          "Edgemetry"
+        ],
+        "pendentes": 204,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -55,7 +61,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 0
+            "novos": 5
           }
         }
       },

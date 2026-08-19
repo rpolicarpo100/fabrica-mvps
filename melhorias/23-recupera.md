@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — Recupera (`23-recupera`)
 
-_Revisão automática por **Rui** · 2026-08-19 11:42 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-19 13:11 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
