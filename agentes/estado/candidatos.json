@@ -2239,6 +2239,16 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Balsa UI — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "anycreaturebygobkit",
+      "nome": "anyCreature by Gobkit",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-19 17:42",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "anyCreature by Gobkit — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2254,8 +2264,8 @@
     "snapshot": {
       "ok": true,
       "nomes_lidos": 35,
-      "novos": 5
+      "novos": 1
     }
   },
-  "ultima_varrimento": "2026-08-19 16:48"
+  "ultima_varrimento": "2026-08-19 17:42"
 }

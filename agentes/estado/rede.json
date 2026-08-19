@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-19 16:48",
-  "ciclo": 162,
-  "duracao_s": 2.5,
+  "quando": "2026-08-19 17:42",
+  "ciclo": 163,
+  "duracao_s": 3.1,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.9,
+      "s": 2.0,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,17 +37,13 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.5,
+      "s": 1.0,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Basedash Public Sharing",
-          "Fairphone Gen 6+",
-          "Sider 6.0",
-          "Expert Chase 2.0",
-          "Balsa UI"
+          "anyCreature by Gobkit"
         ],
-        "pendentes": 224,
+        "pendentes": 225,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -61,7 +57,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 5
+            "novos": 1
           }
         }
       },
