@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-20 14:56",
-  "ciclo": 183,
-  "duracao_s": 4.9,
+  "quando": "2026-08-20 15:50",
+  "ciclo": 184,
+  "duracao_s": 5.4,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 3.8,
+      "s": 4.1,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.0,
+      "s": 1.2,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "The New Calendly",
-          "ProtoNote",
-          "bitdrift.ai",
-          "Aloud",
-          "Grok 4.6"
+          "Roveri",
+          "Prized",
+          "NobodyWho",
+          "Revy",
+          "Shape"
         ],
-        "pendentes": 241,
+        "pendentes": 246,
         "fontes": {
           "mensal": {
             "ok": true,
