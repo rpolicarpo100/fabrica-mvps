@@ -2309,6 +2309,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Checksum AI — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "hynoteformac",
+      "nome": "HyNote for Mac",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:01",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "HyNote for Mac — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "lifelong",
+      "nome": "Lifelong",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:01",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Lifelong — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "berd",
+      "nome": "Berd",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:01",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Berd — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "zohocliq70",
+      "nome": "Zoho Cliq 7.0",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:01",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Zoho Cliq 7.0 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "cloudwaysmanagedaiagents",
+      "nome": "Cloudways Managed AI Agents",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:01",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Cloudways Managed AI Agents — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2327,5 +2377,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-20 13:12"
+  "ultima_varrimento": "2026-08-20 14:01"
 }
