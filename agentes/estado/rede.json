@@ -1,7 +1,7 @@
 {
-  "quando": "2026-08-20 07:07",
-  "ciclo": 175,
-  "duracao_s": 2.6,
+  "quando": "2026-08-20 07:58",
+  "ciclo": 176,
+  "duracao_s": 2.8,
   "agentes": {
     "vera": {
       "rc": 0,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,7 +37,7 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.5,
+      "s": 0.7,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [],
