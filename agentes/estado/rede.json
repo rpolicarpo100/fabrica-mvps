@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-20 14:01",
-  "ciclo": 182,
-  "duracao_s": 5.1,
+  "quando": "2026-08-20 14:56",
+  "ciclo": 183,
+  "duracao_s": 4.9,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 4.1,
+      "s": 3.8,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.9,
+      "s": 1.0,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "HyNote for Mac",
-          "Lifelong",
-          "Berd",
-          "Zoho Cliq 7.0",
-          "Cloudways Managed AI Agents"
+          "The New Calendly",
+          "ProtoNote",
+          "bitdrift.ai",
+          "Aloud",
+          "Grok 4.6"
         ],
-        "pendentes": 236,
+        "pendentes": 241,
         "fontes": {
           "mensal": {
             "ok": true,

@@ -2359,6 +2359,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Cloudways Managed AI Agents — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "thenewcalendly",
+      "nome": "The New Calendly",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:56",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "The New Calendly — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "protonote",
+      "nome": "ProtoNote",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:56",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "ProtoNote — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "bitdriftai",
+      "nome": "bitdrift.ai",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:56",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "bitdrift.ai — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "aloud",
+      "nome": "Aloud",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:56",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Aloud — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "grok46",
+      "nome": "Grok 4.6",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 14:56",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Grok 4.6 — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2377,5 +2427,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-20 14:01"
+  "ultima_varrimento": "2026-08-20 14:56"
 }
