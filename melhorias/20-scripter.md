@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — Scripter (`20-scripter`)
 
-_Revisão automática por **Rui** · 2026-08-20 04:00 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-20 04:55 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
