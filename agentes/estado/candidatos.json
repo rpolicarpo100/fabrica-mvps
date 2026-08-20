@@ -2259,6 +2259,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Zyntax IDE — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "peachcopilot",
+      "nome": "Peach Co-Pilot",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 13:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Peach Co-Pilot — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "hermaibrandapi",
+      "nome": "Hermai Brand API",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 13:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Hermai Brand API — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "glaspforfirefox",
+      "nome": "Glasp for Firefox",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 13:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Glasp for Firefox — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "meetstreamai",
+      "nome": "MeetStream AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 13:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "MeetStream AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "checksumai",
+      "nome": "Checksum AI",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-20 13:12",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Checksum AI — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2274,8 +2324,8 @@
     "snapshot": {
       "ok": true,
       "nomes_lidos": 35,
-      "novos": 0
+      "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-20 11:44"
+  "ultima_varrimento": "2026-08-20 13:12"
 }

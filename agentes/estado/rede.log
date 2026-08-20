@@ -1984,3 +1984,14 @@
 [2026-08-20 11:44] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
 [2026-08-20 11:44] [dinis/mercado] varrimento: 0 novos ao vivo (—) · 226 à espera · temas {'produtividade': 202, 'devtools': 16, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 2, 'saúde': 1, 'creator': 1}
 [2026-08-20 11:44] [orquestrador] ciclo #180 terminado em 4.3s · OK ✅
+[2026-08-20 13:12] [orquestrador] ═══ ciclo #181 ═══
+[2026-08-20 13:12] [orquestrador] ▶ vera…
+[2026-08-20 13:12] [vera/qualidade] verificação completa: 28/28 verdes (100.0%)
+[2026-08-20 13:12] [orquestrador] ▶ rui…
+[2026-08-20 13:12] [rui/revisão] revisão feita: 28 checklists · 0 P1 abertos · mais trabalho: 16-prep, 04-postpilot, 10-tracao
+[2026-08-20 13:12] [orquestrador] ▶ kika…
+[2026-08-20 13:12] [kika/kpis] KPIs calculados: média 84.2/100 em 28 negócios · top Escriba (100)
+[2026-08-20 13:12] [orquestrador] ▶ dinis…
+[2026-08-20 13:12] [dinis/mercado] ⚠️ fonte diário indisponível: HTTP Error 403: Forbidden
+[2026-08-20 13:12] [dinis/mercado] varrimento: 5 novos ao vivo (Peach Co-Pilot, Hermai Brand API, Glasp for Firefox, MeetStream AI, Checksum AI) · 231 à espera · temas {'produtividade': 206, 'devtools': 17, 'boring niches': 2, 'analytics': 1, 'regulação': 1, 'vendas/marketing': 2, 'saúde': 1, 'creator': 1}
+[2026-08-20 13:12] [orquestrador] ciclo #181 terminado em 2.8s · OK ✅

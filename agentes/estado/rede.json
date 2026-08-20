@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-20 11:44",
-  "ciclo": 180,
-  "duracao_s": 4.3,
+  "quando": "2026-08-20 13:12",
+  "ciclo": 181,
+  "duracao_s": 2.8,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.8,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.0,
+      "s": 0.1,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -37,11 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 1.4,
+      "s": 0.8,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [],
-        "pendentes": 226,
+        "novos": [
+          "Peach Co-Pilot",
+          "Hermai Brand API",
+          "Glasp for Firefox",
+          "MeetStream AI",
+          "Checksum AI"
+        ],
+        "pendentes": 231,
         "fontes": {
           "mensal": {
             "ok": true,
@@ -55,7 +61,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 35,
-            "novos": 0
+            "novos": 5
           }
         }
       },
