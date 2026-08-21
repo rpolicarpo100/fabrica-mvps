@@ -1,7 +1,7 @@
 {
-  "quando": "2026-08-21 11:43",
-  "ciclo": 202,
-  "duracao_s": 4.0,
+  "quando": "2026-08-21 13:12",
+  "ciclo": 203,
+  "duracao_s": 2.7,
   "agentes": {
     "vera": {
       "rc": 0,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 2.0,
+      "s": 0.7,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Epho",
-          "ShogunAI",
-          "Wizstar",
-          "fx (by Vercel)",
-          "Dockhand"
+          "Supernova",
+          "Flunkey",
+          "Antigravity IDE Extensions",
+          "Project SKY",
+          "Router by Ramp"
         ],
-        "pendentes": 251,
+        "pendentes": 256,
         "fontes": {
           "mensal": {
             "ok": true,
