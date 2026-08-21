@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-21 08:59",
-  "ciclo": 199,
-  "duracao_s": 2.7,
+  "quando": "2026-08-21 09:53",
+  "ciclo": 200,
+  "duracao_s": 2.6,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.0,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
