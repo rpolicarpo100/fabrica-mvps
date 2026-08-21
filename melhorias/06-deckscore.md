@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — DeckScore (`06-deckscore`)
 
-_Revisão automática por **Rui** · 2026-08-21 01:59 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-21 03:17 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 
