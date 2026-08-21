@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-21 14:54",
-  "ciclo": 205,
-  "duracao_s": 2.4,
+  "quando": "2026-08-21 15:49",
+  "ciclo": 206,
+  "duracao_s": 2.9,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 1.8,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -37,13 +37,10 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 0.6,
+      "s": 0.8,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [
-          "Plow Latch",
-          "Surfdeck"
-        ],
+        "novos": [],
         "pendentes": 263,
         "fontes": {
           "mensal": {
@@ -58,7 +55,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 34,
-            "novos": 2
+            "novos": 0
           }
         }
       },
