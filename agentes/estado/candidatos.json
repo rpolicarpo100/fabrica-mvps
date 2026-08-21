@@ -2609,6 +2609,26 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Lynqo — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "plowlatch",
+      "nome": "Plow Latch",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-21 14:54",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Plow Latch — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "surfdeck",
+      "nome": "Surfdeck",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-21 14:54",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Surfdeck — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2623,9 +2643,9 @@
     },
     "snapshot": {
       "ok": true,
-      "nomes_lidos": 33,
-      "novos": 5
+      "nomes_lidos": 34,
+      "novos": 2
     }
   },
-  "ultima_varrimento": "2026-08-21 14:00"
+  "ultima_varrimento": "2026-08-21 14:54"
 }
