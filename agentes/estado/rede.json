@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-22 14:40",
-  "ciclo": 228,
-  "duracao_s": 4.8,
+  "quando": "2026-08-22 15:36",
+  "ciclo": 229,
+  "duracao_s": 2.7,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.0,
+      "s": 1.9,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,13 +37,10 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 2.6,
+      "s": 0.7,
       "resumo": {
         "agente": "dinis/mercado",
-        "novos": [
-          "VeloFiler",
-          "Maccess"
-        ],
+        "novos": [],
         "pendentes": 275,
         "fontes": {
           "mensal": {
@@ -58,7 +55,7 @@
           "snapshot": {
             "ok": true,
             "nomes_lidos": 34,
-            "novos": 2
+            "novos": 0
           }
         }
       },
