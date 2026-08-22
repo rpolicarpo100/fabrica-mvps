@@ -2629,6 +2629,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Surfdeck — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "pocketbymeta",
+      "nome": "Pocket by Meta",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:02",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Pocket by Meta — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "autoclaw",
+      "nome": "AutoClaw",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:02",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "AutoClaw — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "openanalytics",
+      "nome": "Open Analytics",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:02",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Open Analytics — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "subtitlegenerator",
+      "nome": "SubtitleGenerator",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:02",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "SubtitleGenerator — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "pawvis",
+      "nome": "Pawvis",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:02",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Pawvis — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2644,8 +2694,8 @@
     "snapshot": {
       "ok": true,
       "nomes_lidos": 34,
-      "novos": 0
+      "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-22 11:36"
+  "ultima_varrimento": "2026-08-22 13:02"
 }
