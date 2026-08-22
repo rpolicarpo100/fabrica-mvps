@@ -2679,6 +2679,56 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Pawvis — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "agentsneversleep",
+      "nome": "Agents Never Sleep",
+      "tema": "devtools",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Agents Never Sleep — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "portradarformacos",
+      "nome": "Port Radar for macOS",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Port Radar for macOS — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "kerasformers",
+      "nome": "KerasFormers",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "KerasFormers — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "zero",
+      "nome": "Zero",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Zero — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "toplify",
+      "nome": "Toplify",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 13:45",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Toplify — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2697,5 +2747,5 @@
       "novos": 5
     }
   },
-  "ultima_varrimento": "2026-08-22 13:02"
+  "ultima_varrimento": "2026-08-22 13:45"
 }

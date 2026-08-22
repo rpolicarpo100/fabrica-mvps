@@ -1,11 +1,11 @@
 {
-  "quando": "2026-08-22 13:02",
-  "ciclo": 226,
-  "duracao_s": 4.5,
+  "quando": "2026-08-22 13:45",
+  "ciclo": 227,
+  "duracao_s": 5.7,
   "agentes": {
     "vera": {
       "rc": 0,
-      "s": 2.1,
+      "s": 4.1,
       "resumo": {
         "agente": "vera/qualidade",
         "verde": 28,
@@ -17,7 +17,7 @@
     },
     "rui": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "rui/revisão",
         "checklists": 28,
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
@@ -37,17 +37,17 @@
     },
     "dinis": {
       "rc": 0,
-      "s": 2.2,
+      "s": 1.5,
       "resumo": {
         "agente": "dinis/mercado",
         "novos": [
-          "Pocket by Meta",
-          "AutoClaw",
-          "Open Analytics",
-          "SubtitleGenerator",
-          "Pawvis"
+          "Agents Never Sleep",
+          "Port Radar for macOS",
+          "KerasFormers",
+          "Zero",
+          "Toplify"
         ],
-        "pendentes": 268,
+        "pendentes": 273,
         "fontes": {
           "mensal": {
             "ok": true,
