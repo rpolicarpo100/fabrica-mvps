@@ -2729,6 +2729,26 @@
       "estado": "proposto (aguarda supervisão)",
       "inspiracao": "Toplify — snapshot PH Aug 2026",
       "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "velofiler",
+      "nome": "VeloFiler",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 14:40",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "VeloFiler — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
+    },
+    {
+      "slug": "maccess",
+      "nome": "Maccess",
+      "tema": "produtividade",
+      "fonte": "https://orangebot.ai/product-hunt-today",
+      "descoberto_em": "2026-08-22 14:40",
+      "estado": "proposto (aguarda supervisão)",
+      "inspiracao": "Maccess — snapshot PH Aug 2026",
+      "brief": "Candidato descoberto ao vivo; supervisor define brief e template"
     }
   ],
   "fontes": {
@@ -2744,8 +2764,8 @@
     "snapshot": {
       "ok": true,
       "nomes_lidos": 34,
-      "novos": 5
+      "novos": 2
     }
   },
-  "ultima_varrimento": "2026-08-22 13:45"
+  "ultima_varrimento": "2026-08-22 14:40"
 }
