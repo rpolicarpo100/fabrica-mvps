@@ -1,6 +1,6 @@
 # 📋 Checklist de melhorias — DeckForge (`05-deckforge`)
 
-_Revisão automática por **Rui** · 2026-08-22 01:51 · reavaliado a cada ciclo da rede_
+_Revisão automática por **Rui** · 2026-08-22 03:08 · reavaliado a cada ciclo da rede_
 
 Legenda: ✅ feito · ⬜ por fazer · P1 crítico · P2 importante · P3 polish
 

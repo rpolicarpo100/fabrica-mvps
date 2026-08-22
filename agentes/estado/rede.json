@@ -1,6 +1,6 @@
 {
-  "quando": "2026-08-22 01:52",
-  "ciclo": 215,
+  "quando": "2026-08-22 03:08",
+  "ciclo": 216,
   "duracao_s": 2.9,
   "agentes": {
     "vera": {
@@ -27,7 +27,7 @@
     },
     "kika": {
       "rc": 0,
-      "s": 0.1,
+      "s": 0.0,
       "resumo": {
         "agente": "kika/kpis",
         "media": 84.2,
